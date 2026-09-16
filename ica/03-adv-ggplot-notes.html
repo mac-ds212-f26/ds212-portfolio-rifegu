@@ -63,7 +63,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../ica/cleaning 6.45.56 PM.html" rel="next">
+<link href="../ica/cleaning 8.11.19 PM.html" rel="next">
 <link href="../ica/ica-sample2.html" rel="prev">
 <script src="../site_libs/cookie-consent/cookie-consent.js"></script>
 <link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
@@ -408,7 +408,7 @@ cookieconsent.run({
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../ica/cleaning 6.45.56 PM.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Cleaning SFO Weather Data</span></a>
+  <a href="../ica/cleaning 8.11.19 PM.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Cleaning SFO Weather Data</span></a>
   </div>
 </li>
       </ul>
@@ -443,7 +443,7 @@ cookieconsent.run({
    
   <ul>
 <li><a href="#learning-goals" id="toc-learning-goals" class="nav-link active" data-scroll-target="#learning-goals">🧩 Learning Goals</a></li>
-  <li><a href="#introduction-03-adv-ggplot-notes-1" id="toc-introduction-03-adv-ggplot-notes-1" class="nav-link" data-scroll-target="#introduction-03-adv-ggplot-notes-1">Introduction </a></li>
+  <li><a href="#introduction-1" id="toc-introduction-1" class="nav-link" data-scroll-target="#introduction-1">Introduction </a></li>
   <li><a href="#reading-data" id="toc-reading-data" class="nav-link" data-scroll-target="#reading-data">Reading Data</a></li>
   <li><a href="#understanding-data" id="toc-understanding-data" class="nav-link" data-scroll-target="#understanding-data">Understanding Data</a></li>
   <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
@@ -484,7 +484,7 @@ cookieconsent.run({
 </ul>
 </li>
 <li>Identify when to use different <code>data</code> arguments within <code>ggplot()</code> and <code>geom_()</code> layers</li>
-</ul></section><section id="introduction-03-adv-ggplot-notes-1" class="level2"><h2 class="anchored" data-anchor-id="introduction-03-adv-ggplot-notes-1">Introduction <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
+</ul></section><section id="introduction-1" class="level2"><h2 class="anchored" data-anchor-id="introduction-1">Introduction <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
 </h2>
 <p>In this lesson, we are going to recreate <a href="https://www.nytimes.com/interactive/2016/02/19/us/2015-year-in-weather-temperature-precipitation.html">NYTimes 2015 Temperature Visualization (html)</a> using data from San Francisco (SFO) in 2011.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -1184,7 +1184,7 @@ cookieconsent.run({
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../ica/cleaning 6.45.56 PM.html" class="pagination-link" aria-label="Cleaning SFO Weather Data">
+      <a href="../ica/cleaning 8.11.19 PM.html" class="pagination-link" aria-label="Cleaning SFO Weather Data">
         <span class="nav-page-text"><span class="chapter-title">Cleaning SFO Weather Data</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -1205,9 +1205,9 @@ cookieconsent.run({
 <span id="cb4-14"><a href="#cb4-14"></a><span class="ss">  - </span>Navigate the **Examples** section for some usage examples</span>
 <span id="cb4-15"><a href="#cb4-15"></a><span class="ss">- </span>Identify when to use different <span class="in">`data`</span> arguments within <span class="in">`ggplot()`</span> and <span class="in">`geom_()`</span> layers</span>
 <span id="cb4-16"><a href="#cb4-16"></a></span>
-<span id="cb4-17"><a href="#cb4-17"></a><span class="fu">## Introduction [^03-adv-ggplot-notes-1]</span></span>
+<span id="cb4-17"><a href="#cb4-17"></a><span class="fu">## Introduction [^1]</span></span>
 <span id="cb4-18"><a href="#cb4-18"></a></span>
-<span id="cb4-19"><a href="#cb4-19"></a><span class="ot">[^03-adv-ggplot-notes-1]: </span>The exercise in this lesson are inspired by an assignment from the Concepts in Computing with Data course at UC Berkeley taught by Dr. Deborah Nolan.</span>
+<span id="cb4-19"><a href="#cb4-19"></a><span class="ot">[^1]: </span>The exercise in this lesson are inspired by an assignment from the Concepts in Computing with Data course at UC Berkeley taught by Dr. Deborah Nolan.</span>
 <span id="cb4-20"><a href="#cb4-20"></a></span>
 <span id="cb4-21"><a href="#cb4-21"></a>In this lesson, we are going to recreate <span class="co">[</span><span class="ot">NYTimes 2015 Temperature Visualization (html)</span><span class="co">](https://www.nytimes.com/interactive/2016/02/19/us/2015-year-in-weather-temperature-precipitation.html)</span> using data from San Francisco (SFO) in 2011.</span>
 <span id="cb4-22"><a href="#cb4-22"></a></span>
@@ -1224,185 +1224,156 @@ cookieconsent.run({
 <span id="cb4-33"><a href="#cb4-33"></a></span>
 <span id="cb4-34"><a href="#cb4-34"></a><span class="fu">## Understanding Data</span></span>
 <span id="cb4-35"><a href="#cb4-35"></a></span>
-<span id="cb4-36"><a href="#cb4-36"></a>Below is the codebook of the data.</span>
-<span id="cb4-37"><a href="#cb4-37"></a>Familiarize yourself with the meaning of each variable.</span>
-<span id="cb4-38"><a href="#cb4-38"></a>Use the codebook as a reference when using the data.</span>
-<span id="cb4-39"><a href="#cb4-39"></a></span>
-<span id="cb4-40"><a href="#cb4-40"></a><span class="ss">- </span><span class="in">`Month`</span>: Month of the year (1-12)</span>
-<span id="cb4-41"><a href="#cb4-41"></a><span class="ss">- </span><span class="in">`Day`</span>: Day within the month (1-31)</span>
-<span id="cb4-42"><a href="#cb4-42"></a><span class="ss">- </span><span class="in">`Low`</span>/<span class="in">`High`</span>: Low/high temperature this day</span>
-<span id="cb4-43"><a href="#cb4-43"></a><span class="ss">- </span><span class="in">`NormalLow`</span>/<span class="in">`NormalHigh`</span>: Typical low/high temperature for this day of the year</span>
-<span id="cb4-44"><a href="#cb4-44"></a><span class="ss">- </span><span class="in">`RecordLow`</span>/<span class="in">`RecordHigh`</span>: Record low/high temperature for this day of the year</span>
-<span id="cb4-45"><a href="#cb4-45"></a><span class="ss">- </span><span class="in">`LowYr`</span>/<span class="in">`HighYr`</span>: Year in which the record low/high was observed</span>
-<span id="cb4-46"><a href="#cb4-46"></a><span class="ss">- </span><span class="in">`Precip`</span>: Amount of precipitation (inches) this day</span>
-<span id="cb4-47"><a href="#cb4-47"></a><span class="ss">- </span><span class="in">`RecordPrecip`</span>: Record amount of precipitation for this day of the year</span>
-<span id="cb4-48"><a href="#cb4-48"></a><span class="ss">- </span><span class="in">`PrecipYr`</span>: Year in which the record precipitation was observed</span>
-<span id="cb4-49"><a href="#cb4-49"></a><span class="ss">- </span><span class="in">`date`</span>: The actual date in 2011 for this day in YYYY-MM-DD format</span>
-<span id="cb4-50"><a href="#cb4-50"></a><span class="ss">- </span><span class="in">`dateInYear`</span>: What day of the year is it? (1-365)</span>
-<span id="cb4-51"><a href="#cb4-51"></a><span class="ss">- </span><span class="in">`Record`</span>: Logical (TRUE/FALSE) indicating whether this day had a high temperature record</span>
-<span id="cb4-52"><a href="#cb4-52"></a><span class="ss">- </span><span class="in">`RecordText`</span>: Text that displays the record high for this day (<span class="in">`"Record high: ##"`</span>)</span>
-<span id="cb4-53"><a href="#cb4-53"></a><span class="ss">- </span><span class="in">`RecordP`</span>: Logical (TRUE/FALSE) indicating whether this day had a precipitation record</span>
-<span id="cb4-54"><a href="#cb4-54"></a><span class="ss">- </span><span class="in">`CulmPrec`</span>: Cumulative precipitation for the month up to this day</span>
+<span id="cb4-36"><a href="#cb4-36"></a>Below is the codebook of the data. Familiarize yourself with the meaning of each variable. Use the codebook as a reference when using the data.</span>
+<span id="cb4-37"><a href="#cb4-37"></a></span>
+<span id="cb4-38"><a href="#cb4-38"></a><span class="ss">- </span><span class="in">`Month`</span>: Month of the year (1-12)</span>
+<span id="cb4-39"><a href="#cb4-39"></a><span class="ss">- </span><span class="in">`Day`</span>: Day within the month (1-31)</span>
+<span id="cb4-40"><a href="#cb4-40"></a><span class="ss">- </span><span class="in">`Low`</span>/<span class="in">`High`</span>: Low/high temperature this day</span>
+<span id="cb4-41"><a href="#cb4-41"></a><span class="ss">- </span><span class="in">`NormalLow`</span>/<span class="in">`NormalHigh`</span>: Typical low/high temperature for this day of the year</span>
+<span id="cb4-42"><a href="#cb4-42"></a><span class="ss">- </span><span class="in">`RecordLow`</span>/<span class="in">`RecordHigh`</span>: Record low/high temperature for this day of the year</span>
+<span id="cb4-43"><a href="#cb4-43"></a><span class="ss">- </span><span class="in">`LowYr`</span>/<span class="in">`HighYr`</span>: Year in which the record low/high was observed</span>
+<span id="cb4-44"><a href="#cb4-44"></a><span class="ss">- </span><span class="in">`Precip`</span>: Amount of precipitation (inches) this day</span>
+<span id="cb4-45"><a href="#cb4-45"></a><span class="ss">- </span><span class="in">`RecordPrecip`</span>: Record amount of precipitation for this day of the year</span>
+<span id="cb4-46"><a href="#cb4-46"></a><span class="ss">- </span><span class="in">`PrecipYr`</span>: Year in which the record precipitation was observed</span>
+<span id="cb4-47"><a href="#cb4-47"></a><span class="ss">- </span><span class="in">`date`</span>: The actual date in 2011 for this day in YYYY-MM-DD format</span>
+<span id="cb4-48"><a href="#cb4-48"></a><span class="ss">- </span><span class="in">`dateInYear`</span>: What day of the year is it? (1-365)</span>
+<span id="cb4-49"><a href="#cb4-49"></a><span class="ss">- </span><span class="in">`Record`</span>: Logical (TRUE/FALSE) indicating whether this day had a high temperature record</span>
+<span id="cb4-50"><a href="#cb4-50"></a><span class="ss">- </span><span class="in">`RecordText`</span>: Text that displays the record high for this day (<span class="in">`"Record high: ##"`</span>)</span>
+<span id="cb4-51"><a href="#cb4-51"></a><span class="ss">- </span><span class="in">`RecordP`</span>: Logical (TRUE/FALSE) indicating whether this day had a precipitation record</span>
+<span id="cb4-52"><a href="#cb4-52"></a><span class="ss">- </span><span class="in">`CulmPrec`</span>: Cumulative precipitation for the month up to this day</span>
+<span id="cb4-53"><a href="#cb4-53"></a></span>
+<span id="cb4-54"><a href="#cb4-54"></a><span class="fu">## Exercise 1</span></span>
 <span id="cb4-55"><a href="#cb4-55"></a></span>
-<span id="cb4-56"><a href="#cb4-56"></a><span class="fu">## Exercise 1</span></span>
+<span id="cb4-56"><a href="#cb4-56"></a>Examine the <span class="co">[</span><span class="ot">NYTimes 2015 Temperature Visualization (html)</span><span class="co">](https://www.nytimes.com/interactive/2016/02/19/us/2015-year-in-weather-temperature-precipitation.html)</span> then answer the following questions.</span>
 <span id="cb4-57"><a href="#cb4-57"></a></span>
-<span id="cb4-58"><a href="#cb4-58"></a>Examine the <span class="co">[</span><span class="ot">NYTimes 2015 Temperature Visualization (html)</span><span class="co">](https://www.nytimes.com/interactive/2016/02/19/us/2015-year-in-weather-temperature-precipitation.html)</span> then answer the following questions.</span>
+<span id="cb4-58"><a href="#cb4-58"></a>**Data Storytelling**</span>
 <span id="cb4-59"><a href="#cb4-59"></a></span>
-<span id="cb4-60"><a href="#cb4-60"></a>**Data Storytelling**</span>
+<span id="cb4-60"><a href="#cb4-60"></a><span class="ss">- </span>Relate the intro paragraph: "Scientists declared that 2015 was Earth’s hottest year on record..." to the *design* of the visualization. In particular, based on the intro paragraph,</span>
 <span id="cb4-61"><a href="#cb4-61"></a></span>
-<span id="cb4-62"><a href="#cb4-62"></a><span class="ss">- </span>Relate the intro paragraph: "Scientists declared that 2015 was Earth’s hottest year on record..." to the *design* of the visualization.</span>
-<span id="cb4-63"><a href="#cb4-63"></a>  In particular, based on the intro paragraph,</span>
-<span id="cb4-64"><a href="#cb4-64"></a></span>
-<span id="cb4-65"><a href="#cb4-65"></a><span class="ss">  - </span>What key message/claim does NYTimes want readers to be able to explore?</span>
-<span id="cb4-66"><a href="#cb4-66"></a></span>
-<span id="cb4-67"><a href="#cb4-67"></a>  <span class="at">&gt; </span></span>
-<span id="cb4-68"><a href="#cb4-68"></a></span>
-<span id="cb4-69"><a href="#cb4-69"></a><span class="ss">  - </span>How did this goal inform what information is displayed in the visualization?</span>
-<span id="cb4-70"><a href="#cb4-70"></a></span>
-<span id="cb4-71"><a href="#cb4-71"></a>**Aesthetic Mapping**</span>
+<span id="cb4-62"><a href="#cb4-62"></a><span class="ss">  - </span>What key message/claim does NYTimes want readers to be able to explore?</span>
+<span id="cb4-63"><a href="#cb4-63"></a></span>
+<span id="cb4-64"><a href="#cb4-64"></a>  <span class="at">&gt; </span></span>
+<span id="cb4-65"><a href="#cb4-65"></a></span>
+<span id="cb4-66"><a href="#cb4-66"></a><span class="ss">  - </span>How did this goal inform what information is displayed in the visualization?</span>
+<span id="cb4-67"><a href="#cb4-67"></a></span>
+<span id="cb4-68"><a href="#cb4-68"></a>**Aesthetic Mapping**</span>
+<span id="cb4-69"><a href="#cb4-69"></a></span>
+<span id="cb4-70"><a href="#cb4-70"></a><span class="ss">- </span>What specific variables (from the data codebook) underlie the visualization?</span>
+<span id="cb4-71"><a href="#cb4-71"></a><span class="ss">- </span>How do these variables map to aesthetics of the visual elements, eg, position, size, shape, and color of glyphs?</span>
 <span id="cb4-72"><a href="#cb4-72"></a></span>
-<span id="cb4-73"><a href="#cb4-73"></a><span class="ss">- </span>What specific variables (from the data codebook) underlie the visualization?</span>
-<span id="cb4-74"><a href="#cb4-74"></a><span class="ss">- </span>How do these variables map to aesthetics of the visual elements, eg, position, size, shape, and color of glyphs?</span>
-<span id="cb4-75"><a href="#cb4-75"></a></span>
-<span id="cb4-76"><a href="#cb4-76"></a><span class="fu">## Exercise 2</span></span>
-<span id="cb4-77"><a href="#cb4-77"></a></span>
-<span id="cb4-78"><a href="#cb4-78"></a>Navigate the **Geoms** section of the <span class="co">[</span><span class="ot">ggplot2 reference page</span><span class="co">](https://ggplot2.tidyverse.org/reference/)</span> to find a <span class="in">`geom`</span> that corresponds to the visual elements in the temperature plot.</span>
-<span id="cb4-79"><a href="#cb4-79"></a>Using both the small thumbnail visuals on the right and the names of the <span class="in">`geom`</span>'s, brainstorm some possibilities for <span class="in">`geom`</span>'s you might use to recreate the temperature visualization.</span>
-<span id="cb4-80"><a href="#cb4-80"></a></span>
-<span id="cb4-81"><a href="#cb4-81"></a>::: {.callout-note title="Navigating Documentation / Reference Pages"}</span>
-<span id="cb4-82"><a href="#cb4-82"></a>You need to navigate the <span class="in">`geom`</span>s further by opening up their reference pages to understand if a particular <span class="in">`geom`</span> is suitable for our task.</span>
-<span id="cb4-83"><a href="#cb4-83"></a>Let's look at the <span class="co">[</span><span class="ot">`geom_point` documentation page</span><span class="co">](https://ggplot2.tidyverse.org/reference/geom_point.html)</span> to learn how to read a documentation page..</span>
-<span id="cb4-84"><a href="#cb4-84"></a></span>
-<span id="cb4-85"><a href="#cb4-85"></a>The **Usage** section shows all of the possible inputs (arguments) to the <span class="in">`geom`</span>.</span>
-<span id="cb4-86"><a href="#cb4-86"></a>These are all of the ways that a <span class="in">`geom`</span> can be customized.</span>
-<span id="cb4-87"><a href="#cb4-87"></a>Just looking at the argument names can help give a hint as to what arguments might fit our needs.</span>
-<span id="cb4-88"><a href="#cb4-88"></a></span>
-<span id="cb4-89"><a href="#cb4-89"></a>The **Arguments** section, on the other hand, explains in detail what each argument does and the possible values the argument can take.</span>
-<span id="cb4-90"><a href="#cb4-90"></a>The <span class="in">`mapping`</span>, <span class="in">`data`</span>, and <span class="in">`...`</span> arguments will be the most commonly used by far.</span>
-<span id="cb4-91"><a href="#cb4-91"></a></span>
-<span id="cb4-92"><a href="#cb4-92"></a><span class="ss">- </span><span class="in">`mapping`</span> is the argument that is being used when we specify which variables should link or map to the plot <span class="in">`aes`</span>thetics (the code inside <span class="in">`aes()`</span>).</span>
-<span id="cb4-93"><a href="#cb4-93"></a><span class="ss">- </span><span class="in">`data`</span> is the argument where we specify the dataset containing the variables that the <span class="in">`geom`</span> is using.</span>
-<span id="cb4-94"><a href="#cb4-94"></a><span class="ss">- </span><span class="in">`...`</span> is used for fixed aesthetics (ones that don't correspond to a variable), eg, to set the color of all points, we use <span class="in">`color = "red"`</span> and to set the size of all points, we use <span class="in">`size = 3`</span>.</span>
-<span id="cb4-95"><a href="#cb4-95"></a></span>
-<span id="cb4-96"><a href="#cb4-96"></a>The **Aesthetics** section of a <span class="in">`geom`</span> documentation page gives information on how the visual elements of the <span class="in">`geom`</span> correspond to data.</span>
-<span id="cb4-97"><a href="#cb4-97"></a>For example, the <span class="co">[</span><span class="ot">`geom_point` documentation page</span><span class="co">](https://ggplot2.tidyverse.org/reference/geom_point.html)</span> shows that <span class="in">`x`</span> and <span class="in">`y`</span> aesthetics are available.</span>
-<span id="cb4-98"><a href="#cb4-98"></a>It also shows some new aesthetics like <span class="in">`stroke`</span>.</span>
-<span id="cb4-99"><a href="#cb4-99"></a>:::</span>
-<span id="cb4-100"><a href="#cb4-100"></a></span>
-<span id="cb4-101"><a href="#cb4-101"></a>::: {.callout-note title="<span class="in">`data`</span> Argument"}</span>
-<span id="cb4-102"><a href="#cb4-102"></a>Previously you have used one dataset per plot by specifying that as the first argument of <span class="in">`ggplot()`</span>.</span>
-<span id="cb4-103"><a href="#cb4-103"></a>However, multiple data sets can be passed into ggplot as shown in the example below.</span>
-<span id="cb4-104"><a href="#cb4-104"></a></span>
-<span id="cb4-105"><a href="#cb4-105"></a><span class="in">```{r diamonds_scatter}</span></span>
-<span id="cb4-106"><a href="#cb4-106"></a><span class="fu">data</span>(diamonds)</span>
-<span id="cb4-107"><a href="#cb4-107"></a></span>
-<span id="cb4-108"><a href="#cb4-108"></a>diamonds_avg_price <span class="ot">&lt;-</span> diamonds <span class="sc">|&gt;</span></span>
-<span id="cb4-109"><a href="#cb4-109"></a>  <span class="fu">group_by</span>(carat) <span class="sc">|&gt;</span></span>
-<span id="cb4-110"><a href="#cb4-110"></a>  <span class="fu">summarize</span>(<span class="at">avg_price =</span> <span class="fu">mean</span>(price)) <span class="sc">|&gt;</span></span>
-<span id="cb4-111"><a href="#cb4-111"></a>  <span class="fu">arrange</span>(carat)</span>
-<span id="cb4-112"><a href="#cb4-112"></a>diamonds_avg_price <span class="ot">&lt;-</span> diamonds_avg_price[<span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">nrow</span>(diamonds_avg_price), <span class="dv">3</span>), ]</span>
+<span id="cb4-73"><a href="#cb4-73"></a><span class="fu">## Exercise 2</span></span>
+<span id="cb4-74"><a href="#cb4-74"></a></span>
+<span id="cb4-75"><a href="#cb4-75"></a>Navigate the **Geoms** section of the <span class="co">[</span><span class="ot">ggplot2 reference page</span><span class="co">](https://ggplot2.tidyverse.org/reference/)</span> to find a <span class="in">`geom`</span> that corresponds to the visual elements in the temperature plot. Using both the small thumbnail visuals on the right and the names of the <span class="in">`geom`</span>'s, brainstorm some possibilities for <span class="in">`geom`</span>'s you might use to recreate the temperature visualization.</span>
+<span id="cb4-76"><a href="#cb4-76"></a></span>
+<span id="cb4-77"><a href="#cb4-77"></a>::: {.callout-note title="Navigating Documentation / Reference Pages"}</span>
+<span id="cb4-78"><a href="#cb4-78"></a>You need to navigate the <span class="in">`geom`</span>s further by opening up their reference pages to understand if a particular <span class="in">`geom`</span> is suitable for our task. Let's look at the <span class="co">[</span><span class="ot">`geom_point` documentation page</span><span class="co">](https://ggplot2.tidyverse.org/reference/geom_point.html)</span> to learn how to read a documentation page..</span>
+<span id="cb4-79"><a href="#cb4-79"></a></span>
+<span id="cb4-80"><a href="#cb4-80"></a>The **Usage** section shows all of the possible inputs (arguments) to the <span class="in">`geom`</span>. These are all of the ways that a <span class="in">`geom`</span> can be customized. Just looking at the argument names can help give a hint as to what arguments might fit our needs.</span>
+<span id="cb4-81"><a href="#cb4-81"></a></span>
+<span id="cb4-82"><a href="#cb4-82"></a>The **Arguments** section, on the other hand, explains in detail what each argument does and the possible values the argument can take. The <span class="in">`mapping`</span>, <span class="in">`data`</span>, and <span class="in">`...`</span> arguments will be the most commonly used by far.</span>
+<span id="cb4-83"><a href="#cb4-83"></a></span>
+<span id="cb4-84"><a href="#cb4-84"></a><span class="ss">- </span><span class="in">`mapping`</span> is the argument that is being used when we specify which variables should link or map to the plot <span class="in">`aes`</span>thetics (the code inside <span class="in">`aes()`</span>).</span>
+<span id="cb4-85"><a href="#cb4-85"></a><span class="ss">- </span><span class="in">`data`</span> is the argument where we specify the dataset containing the variables that the <span class="in">`geom`</span> is using.</span>
+<span id="cb4-86"><a href="#cb4-86"></a><span class="ss">- </span><span class="in">`...`</span> is used for fixed aesthetics (ones that don't correspond to a variable), eg, to set the color of all points, we use <span class="in">`color = "red"`</span> and to set the size of all points, we use <span class="in">`size = 3`</span>.</span>
+<span id="cb4-87"><a href="#cb4-87"></a></span>
+<span id="cb4-88"><a href="#cb4-88"></a>The **Aesthetics** section of a <span class="in">`geom`</span> documentation page gives information on how the visual elements of the <span class="in">`geom`</span> correspond to data. For example, the <span class="co">[</span><span class="ot">`geom_point` documentation page</span><span class="co">](https://ggplot2.tidyverse.org/reference/geom_point.html)</span> shows that <span class="in">`x`</span> and <span class="in">`y`</span> aesthetics are available. It also shows some new aesthetics like <span class="in">`stroke`</span>.</span>
+<span id="cb4-89"><a href="#cb4-89"></a>:::</span>
+<span id="cb4-90"><a href="#cb4-90"></a></span>
+<span id="cb4-91"><a href="#cb4-91"></a>::: {.callout-note title="<span class="in">`data`</span> Argument"}</span>
+<span id="cb4-92"><a href="#cb4-92"></a>Previously you have used one dataset per plot by specifying that as the first argument of <span class="in">`ggplot()`</span>. However, multiple data sets can be passed into ggplot as shown in the example below.</span>
+<span id="cb4-93"><a href="#cb4-93"></a></span>
+<span id="cb4-94"><a href="#cb4-94"></a><span class="in">```{r diamonds_scatter}</span></span>
+<span id="cb4-95"><a href="#cb4-95"></a><span class="fu">data</span>(diamonds)</span>
+<span id="cb4-96"><a href="#cb4-96"></a></span>
+<span id="cb4-97"><a href="#cb4-97"></a>diamonds_avg_price <span class="ot">&lt;-</span> diamonds <span class="sc">|&gt;</span></span>
+<span id="cb4-98"><a href="#cb4-98"></a>  <span class="fu">group_by</span>(carat) <span class="sc">|&gt;</span></span>
+<span id="cb4-99"><a href="#cb4-99"></a>  <span class="fu">summarize</span>(<span class="at">avg_price =</span> <span class="fu">mean</span>(price)) <span class="sc">|&gt;</span></span>
+<span id="cb4-100"><a href="#cb4-100"></a>  <span class="fu">arrange</span>(carat)</span>
+<span id="cb4-101"><a href="#cb4-101"></a>diamonds_avg_price <span class="ot">&lt;-</span> diamonds_avg_price[<span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">nrow</span>(diamonds_avg_price), <span class="dv">3</span>), ]</span>
+<span id="cb4-102"><a href="#cb4-102"></a></span>
+<span id="cb4-103"><a href="#cb4-103"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb4-104"><a href="#cb4-104"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb4-105"><a href="#cb4-105"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb4-106"><a href="#cb4-106"></a>    <span class="at">data =</span> diamonds_avg_price,</span>
+<span id="cb4-107"><a href="#cb4-107"></a>    <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> avg_price),</span>
+<span id="cb4-108"><a href="#cb4-108"></a>    <span class="at">color =</span> <span class="st">"deepskyblue"</span>,</span>
+<span id="cb4-109"><a href="#cb4-109"></a>    <span class="at">size =</span> <span class="dv">3</span></span>
+<span id="cb4-110"><a href="#cb4-110"></a>  )</span>
+<span id="cb4-111"><a href="#cb4-111"></a><span class="in">```</span></span>
+<span id="cb4-112"><a href="#cb4-112"></a>:::</span>
 <span id="cb4-113"><a href="#cb4-113"></a></span>
-<span id="cb4-114"><a href="#cb4-114"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
-<span id="cb4-115"><a href="#cb4-115"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb4-116"><a href="#cb4-116"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb4-117"><a href="#cb4-117"></a>    <span class="at">data =</span> diamonds_avg_price,</span>
-<span id="cb4-118"><a href="#cb4-118"></a>    <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> avg_price),</span>
-<span id="cb4-119"><a href="#cb4-119"></a>    <span class="at">color =</span> <span class="st">"deepskyblue"</span>,</span>
-<span id="cb4-120"><a href="#cb4-120"></a>    <span class="at">size =</span> <span class="dv">3</span></span>
-<span id="cb4-121"><a href="#cb4-121"></a>  )</span>
-<span id="cb4-122"><a href="#cb4-122"></a><span class="in">```</span></span>
-<span id="cb4-123"><a href="#cb4-123"></a>:::</span>
-<span id="cb4-124"><a href="#cb4-124"></a></span>
-<span id="cb4-125"><a href="#cb4-125"></a>Look at the <span class="co">[</span><span class="ot">`geom_linerange` documentation page</span><span class="co">](https://ggplot2.tidyverse.org/reference/geom_linerange.html)</span> and start off your temperature visualization with the record lows and highs.</span>
-<span id="cb4-126"><a href="#cb4-126"></a>Your plot should look like the one below.</span>
-<span id="cb4-127"><a href="#cb4-127"></a>The hex code of the used light tan color is <span class="in">`#ECEBE3`</span>.</span>
-<span id="cb4-128"><a href="#cb4-128"></a></span>
-<span id="cb4-129"><a href="#cb4-129"></a><span class="al">![SFO Weather Records in 2011](https://hash-mac.github.io/ds212site-f26/images/sfo_first_graph.png)</span></span>
+<span id="cb4-114"><a href="#cb4-114"></a>Look at the <span class="co">[</span><span class="ot">`geom_linerange` documentation page</span><span class="co">](https://ggplot2.tidyverse.org/reference/geom_linerange.html)</span> and start off your temperature visualization with the record lows and highs. Your plot should look like the one below. The hex code of the used light tan color is <span class="in">`#ECEBE3`</span>.</span>
+<span id="cb4-115"><a href="#cb4-115"></a></span>
+<span id="cb4-116"><a href="#cb4-116"></a><span class="al">![SFO Weather Records in 2011](https://hash-mac.github.io/ds212site-f26/images/sfo_first_graph.png)</span></span>
+<span id="cb4-117"><a href="#cb4-117"></a></span>
+<span id="cb4-118"><a href="#cb4-118"></a><span class="in">```{r weather_plot_temp_records}</span></span>
+<span id="cb4-119"><a href="#cb4-119"></a><span class="fu">ggplot</span>(weather) <span class="sc">+</span></span>
+<span id="cb4-120"><a href="#cb4-120"></a>    <span class="fu">theme_classic</span>()</span>
+<span id="cb4-121"><a href="#cb4-121"></a><span class="in">```</span></span>
+<span id="cb4-122"><a href="#cb4-122"></a></span>
+<span id="cb4-123"><a href="#cb4-123"></a>::: {.callout-tip title="Keyboard Shortcuts"}</span>
+<span id="cb4-124"><a href="#cb4-124"></a>As you work on this plot, try to use some new <span class="co">[</span><span class="ot">keyboard shortcuts</span><span class="co">](https://hash-mac.github.io/ds212site-f26/app/keyboard.html)</span>. Focus on the following:</span>
+<span id="cb4-125"><a href="#cb4-125"></a></span>
+<span id="cb4-126"><a href="#cb4-126"></a><span class="ss">- </span>Insert code chunk: <span class="in">`Ctrl+Alt+I`</span> (Windows). <span class="in">`Option+Command+I`</span> (Mac).</span>
+<span id="cb4-127"><a href="#cb4-127"></a><span class="ss">- </span>Run current code chunk: <span class="in">`Ctrl+Shift+Enter`</span> (Windows). <span class="in">`Command+Shift+Return`</span> (Mac).</span>
+<span id="cb4-128"><a href="#cb4-128"></a><span class="ss">- </span>Run current line/currently selected lines: <span class="in">`Ctrl+Enter`</span> (Windows). <span class="in">`Command+Return`</span> (Mac).</span>
+<span id="cb4-129"><a href="#cb4-129"></a>:::</span>
 <span id="cb4-130"><a href="#cb4-130"></a></span>
-<span id="cb4-131"><a href="#cb4-131"></a><span class="in">```{r weather_plot_temp_records}</span></span>
-<span id="cb4-132"><a href="#cb4-132"></a><span class="fu">ggplot</span>(weather) <span class="sc">+</span></span>
-<span id="cb4-133"><a href="#cb4-133"></a>    <span class="fu">theme_classic</span>()</span>
+<span id="cb4-131"><a href="#cb4-131"></a><span class="fu">## Exercise 3</span></span>
+<span id="cb4-132"><a href="#cb4-132"></a></span>
+<span id="cb4-133"><a href="#cb4-133"></a>In your visualization, also display the usual temperatures (<span class="in">`NormalLow`</span> and <span class="in">`NormalHigh`</span>) and actual 2011 temperatures (<span class="in">`Low`</span> and <span class="in">`High`</span>). Your plot should look like the one below. The hex code of the color used for the usual temperatures is <span class="in">`"#C8B8BA"`</span> and for the color used for actual temperatures is <span class="in">`"#A90248"`</span>.</span>
 <span id="cb4-134"><a href="#cb4-134"></a></span>
-<span id="cb4-135"><a href="#cb4-135"></a></span>
-<span id="cb4-136"><a href="#cb4-136"></a>  </span>
-<span id="cb4-137"><a href="#cb4-137"></a></span>
-<span id="cb4-138"><a href="#cb4-138"></a><span class="in">```</span></span>
+<span id="cb4-135"><a href="#cb4-135"></a><span class="al">![SFO observed, Average, and Record Daily Temperatures in 2011](https://hash-mac.github.io/ds212site-f26/images/sfo_second_graph.png)</span></span>
+<span id="cb4-136"><a href="#cb4-136"></a></span>
+<span id="cb4-137"><a href="#cb4-137"></a><span class="in">```{r weather_plot_temp_all}</span></span>
+<span id="cb4-138"><a href="#cb4-138"></a></span>
 <span id="cb4-139"><a href="#cb4-139"></a></span>
-<span id="cb4-140"><a href="#cb4-140"></a>::: {.callout-tip title="Keyboard Shortcuts"}</span>
-<span id="cb4-141"><a href="#cb4-141"></a>As you work on this plot, try to use some new <span class="co">[</span><span class="ot">keyboard shortcuts</span><span class="co">](https://hash-mac.github.io/ds212site-f26/app/keyboard.html)</span>.</span>
-<span id="cb4-142"><a href="#cb4-142"></a>Focus on the following:</span>
-<span id="cb4-143"><a href="#cb4-143"></a></span>
-<span id="cb4-144"><a href="#cb4-144"></a><span class="ss">- </span>Insert code chunk: <span class="in">`Ctrl+Alt+I`</span> (Windows). <span class="in">`Option+Command+I`</span> (Mac).</span>
-<span id="cb4-145"><a href="#cb4-145"></a><span class="ss">- </span>Run current code chunk: <span class="in">`Ctrl+Shift+Enter`</span> (Windows). <span class="in">`Command+Shift+Return`</span> (Mac).</span>
-<span id="cb4-146"><a href="#cb4-146"></a><span class="ss">- </span>Run current line/currently selected lines: <span class="in">`Ctrl+Enter`</span> (Windows). <span class="in">`Command+Return`</span> (Mac).</span>
-<span id="cb4-147"><a href="#cb4-147"></a>:::</span>
-<span id="cb4-148"><a href="#cb4-148"></a></span>
-<span id="cb4-149"><a href="#cb4-149"></a><span class="fu">## Exercise 3</span></span>
-<span id="cb4-150"><a href="#cb4-150"></a></span>
-<span id="cb4-151"><a href="#cb4-151"></a>In your visualization, also display the usual temperatures (<span class="in">`NormalLow`</span> and <span class="in">`NormalHigh`</span>) and actual 2011 temperatures (<span class="in">`Low`</span> and <span class="in">`High`</span>).</span>
-<span id="cb4-152"><a href="#cb4-152"></a>Your plot should look like the one below.</span>
-<span id="cb4-153"><a href="#cb4-153"></a>The hex code of the color used for the usual temperatures is <span class="in">`"#C8B8BA"`</span> and for the color used for actual temperatures is <span class="in">`"#A90248"`</span>.</span>
+<span id="cb4-140"><a href="#cb4-140"></a><span class="in">```</span></span>
+<span id="cb4-141"><a href="#cb4-141"></a></span>
+<span id="cb4-142"><a href="#cb4-142"></a>::: {.callout-tip title="Finer Control"}</span>
+<span id="cb4-143"><a href="#cb4-143"></a>If you'd like finer control of the width of these lines/rectangles, check out the <span class="co">[</span><span class="ot">`geom_rect` documentation page</span><span class="co">](https://ggplot2.tidyverse.org/reference/geom_tile.html)</span>.</span>
+<span id="cb4-144"><a href="#cb4-144"></a>:::</span>
+<span id="cb4-145"><a href="#cb4-145"></a></span>
+<span id="cb4-146"><a href="#cb4-146"></a><span class="fu">## Exercise 4</span></span>
+<span id="cb4-147"><a href="#cb4-147"></a></span>
+<span id="cb4-148"><a href="#cb4-148"></a>Recreate the visual demarcations of the months by adding vertical lines separating the months. Brainstorm how we might draw those vertical lines. What <span class="in">`geom`</span> might we use? What subset of the data might we use in that <span class="in">`geom`</span> layer to draw lines only at the month divisions?</span>
+<span id="cb4-149"><a href="#cb4-149"></a></span>
+<span id="cb4-150"><a href="#cb4-150"></a><span class="in">```{r }</span></span>
+<span id="cb4-151"><a href="#cb4-151"></a></span>
+<span id="cb4-152"><a href="#cb4-152"></a></span>
+<span id="cb4-153"><a href="#cb4-153"></a><span class="in">```</span></span>
 <span id="cb4-154"><a href="#cb4-154"></a></span>
-<span id="cb4-155"><a href="#cb4-155"></a><span class="al">![SFO observed, Average, and Record Daily Temperatures in 2011](https://hash-mac.github.io/ds212site-f26/images/sfo_second_graph.png)</span></span>
+<span id="cb4-155"><a href="#cb4-155"></a><span class="fu">## Exercise 5</span></span>
 <span id="cb4-156"><a href="#cb4-156"></a></span>
-<span id="cb4-157"><a href="#cb4-157"></a><span class="in">```{r weather_plot_temp_all}</span></span>
+<span id="cb4-157"><a href="#cb4-157"></a>Change the x-axis labels so that the month names display in the center of each month's slice of the plot.</span>
 <span id="cb4-158"><a href="#cb4-158"></a></span>
-<span id="cb4-159"><a href="#cb4-159"></a></span>
-<span id="cb4-160"><a href="#cb4-160"></a><span class="in">```</span></span>
-<span id="cb4-161"><a href="#cb4-161"></a></span>
-<span id="cb4-162"><a href="#cb4-162"></a>::: {.callout-tip title="Finer Control"}</span>
-<span id="cb4-163"><a href="#cb4-163"></a>If you'd like finer control of the width of these lines/rectangles, check out the <span class="co">[</span><span class="ot">`geom_rect` documentation page</span><span class="co">](https://ggplot2.tidyverse.org/reference/geom_tile.html)</span>.</span>
-<span id="cb4-164"><a href="#cb4-164"></a>:::</span>
-<span id="cb4-165"><a href="#cb4-165"></a></span>
-<span id="cb4-166"><a href="#cb4-166"></a><span class="fu">## Exercise 4</span></span>
-<span id="cb4-167"><a href="#cb4-167"></a></span>
-<span id="cb4-168"><a href="#cb4-168"></a>Recreate the visual demarcations of the months by adding vertical lines separating the months.</span>
-<span id="cb4-169"><a href="#cb4-169"></a>Brainstorm how we might draw those vertical lines.</span>
-<span id="cb4-170"><a href="#cb4-170"></a>What <span class="in">`geom`</span> might we use?</span>
-<span id="cb4-171"><a href="#cb4-171"></a>What subset of the data might we use in that <span class="in">`geom`</span> layer to draw lines only at the month divisions?</span>
+<span id="cb4-159"><a href="#cb4-159"></a>::: {.callout-tip title="Month Names"}</span>
+<span id="cb4-160"><a href="#cb4-160"></a>R has built-in variables called <span class="in">`month.abb`</span> and <span class="in">`month.name`</span> that contain abbreviated and full month names.</span>
+<span id="cb4-161"><a href="#cb4-161"></a>:::</span>
+<span id="cb4-162"><a href="#cb4-162"></a></span>
+<span id="cb4-163"><a href="#cb4-163"></a>Try to figuring out this new challenge using search engines and LLMs:</span>
+<span id="cb4-164"><a href="#cb4-164"></a></span>
+<span id="cb4-165"><a href="#cb4-165"></a><span class="ss">- </span>**Search Engines.** Use Google to search for possible solutions using the jargon that is most likely to return the most relevant results. Record search queries and your thought process in selecting which search results to look at first.</span>
+<span id="cb4-166"><a href="#cb4-166"></a></span>
+<span id="cb4-167"><a href="#cb4-167"></a><span class="ss">- </span>**LLMs.** Use <span class="co">[</span><span class="ot">ChatGPT</span><span class="co">](https://chat.openai.com/)</span> or <span class="co">[</span><span class="ot">Gemini</span><span class="co">](https://gemini.google.com/)</span> with prompts that will most efficiently get you the desired results. Record the chat prompts used and output given. Evaluate the output. Do you fully understand the code generated? How can you tell that the generated code is correct?</span>
+<span id="cb4-168"><a href="#cb4-168"></a></span>
+<span id="cb4-169"><a href="#cb4-169"></a><span class="fu">## Exercise 6</span></span>
+<span id="cb4-170"><a href="#cb4-170"></a></span>
+<span id="cb4-171"><a href="#cb4-171"></a>Create a precipitation plot that looks like the following. Note that</span>
 <span id="cb4-172"><a href="#cb4-172"></a></span>
-<span id="cb4-173"><a href="#cb4-173"></a><span class="in">```{r }</span></span>
-<span id="cb4-174"><a href="#cb4-174"></a></span>
-<span id="cb4-175"><a href="#cb4-175"></a></span>
-<span id="cb4-176"><a href="#cb4-176"></a><span class="in">```</span></span>
-<span id="cb4-177"><a href="#cb4-177"></a></span>
-<span id="cb4-178"><a href="#cb4-178"></a><span class="fu">## Exercise 5</span></span>
-<span id="cb4-179"><a href="#cb4-179"></a></span>
-<span id="cb4-180"><a href="#cb4-180"></a>Change the x-axis labels so that the month names display in the center of each month's slice of the plot.</span>
-<span id="cb4-181"><a href="#cb4-181"></a></span>
-<span id="cb4-182"><a href="#cb4-182"></a>::: {.callout-tip title="Month Names"}</span>
-<span id="cb4-183"><a href="#cb4-183"></a>R has built-in variables called <span class="in">`month.abb`</span> and <span class="in">`month.name`</span> that contain abbreviated and full month names.</span>
-<span id="cb4-184"><a href="#cb4-184"></a>:::</span>
-<span id="cb4-185"><a href="#cb4-185"></a></span>
-<span id="cb4-186"><a href="#cb4-186"></a>Try to figuring out this new challenge using search engines and LLMs:</span>
-<span id="cb4-187"><a href="#cb4-187"></a></span>
-<span id="cb4-188"><a href="#cb4-188"></a><span class="ss">- </span>**Search Engines.** Use Google to search for possible solutions using the jargon that is most likely to return the most relevant results.</span>
-<span id="cb4-189"><a href="#cb4-189"></a>  Record search queries and your thought process in selecting which search results to look at first.</span>
-<span id="cb4-190"><a href="#cb4-190"></a></span>
-<span id="cb4-191"><a href="#cb4-191"></a><span class="ss">- </span>**LLMs.** Use <span class="co">[</span><span class="ot">ChatGPT</span><span class="co">](https://chat.openai.com/)</span> or <span class="co">[</span><span class="ot">Gemini</span><span class="co">](https://gemini.google.com/)</span> with prompts that will most efficiently get you the desired results.</span>
-<span id="cb4-192"><a href="#cb4-192"></a>  Record the chat prompts used and output given.</span>
-<span id="cb4-193"><a href="#cb4-193"></a>  Evaluate the output.</span>
-<span id="cb4-194"><a href="#cb4-194"></a>  Do you fully understand the code generated?</span>
-<span id="cb4-195"><a href="#cb4-195"></a>  How can you tell that the generated code is correct?</span>
-<span id="cb4-196"><a href="#cb4-196"></a></span>
-<span id="cb4-197"><a href="#cb4-197"></a><span class="fu">## Exercise 6</span></span>
-<span id="cb4-198"><a href="#cb4-198"></a></span>
-<span id="cb4-199"><a href="#cb4-199"></a>Create a precipitation plot that looks like the following.</span>
-<span id="cb4-200"><a href="#cb4-200"></a>Note that</span>
-<span id="cb4-201"><a href="#cb4-201"></a></span>
-<span id="cb4-202"><a href="#cb4-202"></a><span class="ss">- </span>The triangles point to precipitation records--refer to the data codebook above for the <span class="in">`RecordP`</span> variable.</span>
-<span id="cb4-203"><a href="#cb4-203"></a><span class="ss">- </span>The numbers on the plot indicate the total precipitation for the month--search the <span class="in">`hjust`</span> and <span class="in">`vjust`</span> options to adjust the alignment of the numbers.</span>
-<span id="cb4-204"><a href="#cb4-204"></a><span class="ss">- </span>The blue and tan colors hex codes are <span class="in">`"#32a3d8"`</span> and <span class="in">`"#ebeae2"`</span>, respectively.</span>
-<span id="cb4-205"><a href="#cb4-205"></a></span>
-<span id="cb4-206"><a href="#cb4-206"></a><span class="al">![SFO Precipitation in 2011](https://hash-mac.github.io/ds212site-f26/images/sfo_third_graph.png)</span></span>
-<span id="cb4-207"><a href="#cb4-207"></a></span>
-<span id="cb4-208"><a href="#cb4-208"></a><span class="in">```{r weather_plot_precip}</span></span>
-<span id="cb4-209"><a href="#cb4-209"></a></span>
-<span id="cb4-210"><a href="#cb4-210"></a><span class="in">```</span></span>
-<span id="cb4-211"><a href="#cb4-211"></a></span>
-<span id="cb4-212"><a href="#cb4-212"></a><span class="fu">## Done!</span></span>
-<span id="cb4-213"><a href="#cb4-213"></a></span>
-<span id="cb4-214"><a href="#cb4-214"></a><span class="ss">- </span>Check the ICA Instructions for how to (a) push your code to GitHub and (b) update your portfolio website</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb4-173"><a href="#cb4-173"></a><span class="ss">- </span>The triangles point to precipitation records--refer to the data codebook above for the <span class="in">`RecordP`</span> variable.</span>
+<span id="cb4-174"><a href="#cb4-174"></a><span class="ss">- </span>The numbers on the plot indicate the total precipitation for the month--search the <span class="in">`hjust`</span> and <span class="in">`vjust`</span> options to adjust the alignment of the numbers.</span>
+<span id="cb4-175"><a href="#cb4-175"></a><span class="ss">- </span>The blue and tan colors hex codes are <span class="in">`"#32a3d8"`</span> and <span class="in">`"#ebeae2"`</span>, respectively.</span>
+<span id="cb4-176"><a href="#cb4-176"></a></span>
+<span id="cb4-177"><a href="#cb4-177"></a><span class="al">![SFO Precipitation in 2011](https://hash-mac.github.io/ds212site-f26/images/sfo_third_graph.png)</span></span>
+<span id="cb4-178"><a href="#cb4-178"></a></span>
+<span id="cb4-179"><a href="#cb4-179"></a><span class="in">```{r weather_plot_precip}</span></span>
+<span id="cb4-180"><a href="#cb4-180"></a></span>
+<span id="cb4-181"><a href="#cb4-181"></a><span class="in">```</span></span>
+<span id="cb4-182"><a href="#cb4-182"></a></span>
+<span id="cb4-183"><a href="#cb4-183"></a><span class="fu">## Done!</span></span>
+<span id="cb4-184"><a href="#cb4-184"></a></span>
+<span id="cb4-185"><a href="#cb4-185"></a><span class="ss">- </span>Check the ICA Instructions for how to (a) push your code to GitHub and (b) update your portfolio website</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">

@@ -109,8 +109,8 @@
     ]
   },
   {
-    "objectID": "ica/03-adv-ggplot-notes.html#introduction-03-adv-ggplot-notes-1",
-    "href": "ica/03-adv-ggplot-notes.html#introduction-03-adv-ggplot-notes-1",
+    "objectID": "ica/03-adv-ggplot-notes.html#introduction-1",
+    "href": "ica/03-adv-ggplot-notes.html#introduction-1",
     "title": "3 Adv Data Viz",
     "section": "Introduction 1\n",
     "text": "Introduction 1\n\nIn this lesson, we are going to recreate NYTimes 2015 Temperature Visualization (html) using data from San Francisco (SFO) in 2011.\n\n\nScreenshot of NYTimes 2015 Temperature Visualization",
@@ -230,8 +230,8 @@
     ]
   },
   {
-    "objectID": "ica/cleaning 6.45.56 PM.html",
-    "href": "ica/cleaning 6.45.56 PM.html",
+    "objectID": "ica/cleaning 8.11.19 PM.html",
+    "href": "ica/cleaning 8.11.19 PM.html",
     "title": "Cleaning SFO Weather Data",
     "section": "",
     "text": "Exercise\nCarryout the following steps to clean and save the San Francisco Weather data. Make sure to download and add the data file to your portfolio repository as instructed.",
@@ -241,8 +241,8 @@
     ]
   },
   {
-    "objectID": "ica/cleaning 6.45.56 PM.html#exercise",
-    "href": "ica/cleaning 6.45.56 PM.html#exercise",
+    "objectID": "ica/cleaning 8.11.19 PM.html#exercise",
+    "href": "ica/cleaning 8.11.19 PM.html#exercise",
     "title": "Cleaning SFO Weather Data",
     "section": "",
     "text": "Read in the weather data in this file with the correct relative file path after you move it to the instructed location.\nThere is a variable that has values that don’t make sense in the data context. Figure out which variable this is and clean it up by making those values missing using na_if().\nCreate a variable called dateInYear that indicates the day of the year (1-365) for each case. (Jan 1 should be 1, and Dec 31 should be 365).\nCreate a variable called month_name that shows the 3-letter abbreviation for each case.\nSave the wrangled data to the data/processed/ folder using write_csv(). Name this file weather_clean.csv. Look up the documentation for this function by typing ?write_csv in the Console. You’ll need to write an appropriate relative path.",
