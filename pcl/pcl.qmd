@@ -2,13 +2,24 @@
 title: "Pre-Class Learning Summaries"
 ---
 
+## General Workflow for a Given Dataset
+
+What data do I have?
+
+↓ What question do I want to ask?
+
+↓ Which variable(s) answer my question?
+
+↓ Do I need to summarize the data?
+
+↓ Which graph communicates the answer?
+
 ## R
 
 ![](0808-r.png)
 
 ## Quarto
 
-![from qmd4sci.njtierney.com](0810-quarto.jpeg)
-## File Systems
+## ![from qmd4sci.njtierney.com](0810-quarto.jpeg)File Systems
 
 ![](0911_filesystems.png)

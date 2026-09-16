@@ -9,67 +9,102 @@ Develop a research question, then answer it through a short data story mainly co
 Provide sufficient background for readers to grasp your narrative.
 Refer to the Homework Instructions ⭐ page on the course website for details on how to submit this part.
 
+> Cappuccino prices differ from cafe to cafe, but prices may also differ across countries.
+> The TidyTuesday dataset contains information about individual cafes, including the price of a small cappuccino in both the original currency and British pounds.
+> My research question is simple; "do cappuccino prices vary substantially between countries?"
+
+## Methodology
+
+> Lets load the data;
+
 ```{r}
-# Using R
-# Option 1: tidytuesdayR R package 
-## install.packages("tidytuesdayR")
-
-install.packages("tidytuesdayR") 
-
-tuesdata <- tidytuesdayR::tt_load('2026-09-08')
-## OR
-tuesdata <- tidytuesdayR::tt_load(2026, week = 36)
-
-cafe <- tuesdata$cafe
-cappuccino_index <- tuesdata$cappuccino_index
-
-# Option 2: Read directly from GitHub
-
-cafe <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2026/2026-09-08/cafe.csv')
-cappuccino_index <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2026/2026-09-08/cappuccino_index.csv')
-
-# With either option, replace the non-breaking spaces in `country`
-
-cafe$country <- gsub("\u00a0", " ", cafe$country)
-cappuccino_index$country <- gsub("\u00a0", " ", cappuccino_index$country)
-```
-```{r}
-# Shared by James Hoffmann in a YouTube video titled 'The Surprising Things We Discovered In The Cost Of A Cappuccino' shared on 6 August 2026
-# James Hoffmann encouraged us to explore the figures ourselves and shared the full dataset in a public google sheet
-# Below is the cleaning process preparing the data for TidyTuesday
-
 library(tidyverse)
-library(janitor)
 
-cafe <- readr::read_csv(
-  "https://docs.google.com/spreadsheets/d/1l3nitpsActIEqjaHk0wQNno8FDStYLsG_amSvAbuI3w/export?format=csv",
-  show_col_types = FALSE
-) |>
-  janitor::clean_names() |>
-  dplyr::mutate(
-    urban = stringr::str_detect(urban_classification, "Urban"),
-    suburban = stringr::str_detect(urban_classification, "Suburban"),
-    rural = stringr::str_detect(urban_classification, "Rural")
-  ) |>
-  dplyr::select(
-    country,
-    city,
-    urban,
-    suburban,
-    rural,
-    hourly_wage_gbp = hourly_wage_in_gbp,
-    price_gbp = price_per_cappuccino_in_gbp,
-    original_currency = currency,
-    price = price_per_small_cappuccino,
-    hourly_wage = hourly_wage
-  )
+cafe <- read_csv(
+  "https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2026/2026-09-08/cafe.csv"
+)
+```
 
-cappuccino_index <- cafe |>
-  summarise(index = sum(price_gbp)/sum(hourly_wage_gbp)*60, n=n(), .by=country) |>
-  arrange(index) |>
-  mutate(minutes = floor(index), seconds = floor((index - floor(index))*60)) |>
-  mutate(index_as_time = paste0(minutes,":",stringr::str_pad(seconds, width = 2, pad = "0"))) |>
-  readr::write_csv("cappuccino_index.csv")
+> We need to clean the data because the dataset has an invisible character in the country names for **New Zealand and South Africa**.
+> The TidyTuesday documentation specifically warns about this because it can cause joins to fail.
+
+```{r}
+#The \u00a0 is a non-breaking space that occurs in the country names for New Zealand and South Africa.
+
+cafe <- cafe |>
+  mutate(country = gsub("\u00a0", " ", country))
 
 ```
 
+> Looking at our dataset...
+
+```{r}
+glimpse(cafe)
+```
+
+> Lets look at how many cafes do we have from each country?
+
+```{r}
+count(cafe, country)
+```
+
+> What does the cappuccino price variable look like?
+
+```{r}
+summary(cafe$price_gbp)
+```
+
+## Visualizations
+
+```{r}
+ggplot(cappuccino_index, 
+       aes(x = reorder(country, index), 
+           y = index)) +
+  geom_col() + 
+  coord_flip() + 
+  labs(
+    title = "How long does a coppucino cost a barista?",
+    x = NULL, 
+    y= "Minutes of work"
+  )
+```
+
+```{r}
+ggplot(cappuccino_index,
+       aes(x = n, y = index)) +
+  geom_point() +
+  scale_x_log10() +
+  labs(
+    title = "How Much Evidence Supports Each Country's Index?",
+    x = "Number of cafes sampled",
+    y = "Cappuccino Index (minutes)"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+ggplot(cappuccino_index,
+       aes(x = n, y = index)) +
+  geom_point() +
+  scale_x_log10() +
+  labs(
+    title = "Cappuccino Indexes Are Based on Different Sample Sizes",
+    x = "Number of cafes sampled (log scale)",
+    y = "Minutes of barista work"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+ggplot(cafe,
+       aes(x = country,
+           y = price_gbp)) +
+  geom_boxplot() +
+  coord_flip() +
+  labs(
+    title = "Cappuccino Prices Vary Within Countries",
+    x = NULL,
+    y = "Cappuccino price (£)"
+  ) +
+  theme_minimal()
+```
