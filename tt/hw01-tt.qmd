@@ -2,7 +2,74 @@
 title: "Homework 01"
 ---
 
-
 ## TidyTuesday Part
 
-Explore the week's [TidyTuesday](https://github.com/rfordatascience/tidytuesday) challenge. Develop a research question, then answer it through a short data story mainly composed of [effective visualizations]({{< var effective-viz-url >}}).  Provide sufficient background for readers to grasp your narrative.  Refer to the Homework Instructions ⭐ page on the course website for details on how to submit this part.
+Explore the week's [TidyTuesday](https://github.com/rfordatascience/tidytuesday) challenge.
+Develop a research question, then answer it through a short data story mainly composed of [effective visualizations]({{< var effective-viz-url >}}).
+Provide sufficient background for readers to grasp your narrative.
+Refer to the Homework Instructions ⭐ page on the course website for details on how to submit this part.
+
+```{r}
+# Using R
+# Option 1: tidytuesdayR R package 
+## install.packages("tidytuesdayR")
+
+install.packages("tidytuesdayR") 
+
+tuesdata <- tidytuesdayR::tt_load('2026-09-08')
+## OR
+tuesdata <- tidytuesdayR::tt_load(2026, week = 36)
+
+cafe <- tuesdata$cafe
+cappuccino_index <- tuesdata$cappuccino_index
+
+# Option 2: Read directly from GitHub
+
+cafe <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2026/2026-09-08/cafe.csv')
+cappuccino_index <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2026/2026-09-08/cappuccino_index.csv')
+
+# With either option, replace the non-breaking spaces in `country`
+
+cafe$country <- gsub("\u00a0", " ", cafe$country)
+cappuccino_index$country <- gsub("\u00a0", " ", cappuccino_index$country)
+```
+```{r}
+# Shared by James Hoffmann in a YouTube video titled 'The Surprising Things We Discovered In The Cost Of A Cappuccino' shared on 6 August 2026
+# James Hoffmann encouraged us to explore the figures ourselves and shared the full dataset in a public google sheet
+# Below is the cleaning process preparing the data for TidyTuesday
+
+library(tidyverse)
+library(janitor)
+
+cafe <- readr::read_csv(
+  "https://docs.google.com/spreadsheets/d/1l3nitpsActIEqjaHk0wQNno8FDStYLsG_amSvAbuI3w/export?format=csv",
+  show_col_types = FALSE
+) |>
+  janitor::clean_names() |>
+  dplyr::mutate(
+    urban = stringr::str_detect(urban_classification, "Urban"),
+    suburban = stringr::str_detect(urban_classification, "Suburban"),
+    rural = stringr::str_detect(urban_classification, "Rural")
+  ) |>
+  dplyr::select(
+    country,
+    city,
+    urban,
+    suburban,
+    rural,
+    hourly_wage_gbp = hourly_wage_in_gbp,
+    price_gbp = price_per_cappuccino_in_gbp,
+    original_currency = currency,
+    price = price_per_small_cappuccino,
+    hourly_wage = hourly_wage
+  )
+
+cappuccino_index <- cafe |>
+  summarise(index = sum(price_gbp)/sum(hourly_wage_gbp)*60, n=n(), .by=country) |>
+  arrange(index) |>
+  mutate(minutes = floor(index), seconds = floor((index - floor(index))*60)) |>
+  mutate(index_as_time = paste0(minutes,":",stringr::str_pad(seconds, width = 2, pad = "0"))) |>
+  readr::write_csv("cappuccino_index.csv")
+
+```
+
