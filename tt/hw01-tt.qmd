@@ -163,7 +163,7 @@ ggplot(
   )
 ) +
   geom_boxplot() +
-  geom_jitter(height = 0.1, alpha = 0.4, color= "red") +
+  geom_jitter(height = 0.1, alpha = 0.4, color= "#CC79A7") +
   labs(
     title = "Cappuccino Prices Also Vary Within Countries",
     subtitle = "Individual points represent cafes",
