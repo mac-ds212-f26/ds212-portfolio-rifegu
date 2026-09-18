@@ -71,13 +71,21 @@ Examine the [NYTimes 2015 Temperature Visualization (html)](https://www.nytimes.
 **Aesthetic Mapping**
 
 - What specific variables (from the data codebook) underlie the visualization?
+
 - `Month`: Month of the year (1-12)
+
 - `NormalLow`/`NormalHigh`: Typical low/high temperature for this day of the year
+
 - `RecordLow`/`RecordHigh`: Record low/high temperature for this day of the year
+
 - `LowYr`/`HighYr`: Year in which the record low/high was observed
+
 - `Precip`: Amount of precipitation (inches) this day
+
 - `RecordPrecip`: Record amount of precipitation for this day of the year
+
 - `PrecipYr`: Year in which the record precipitation was observe
+
 - `CulmPrec`: Cumulative precipitation for the month up to this day
 
 - How do these variables map to aesthetics of the visual elements, eg, position, size, shape, and color of glyphs?
@@ -343,4 +351,3 @@ geom_text(
 ## Done!
 
 - Check the ICA Instructions for how to (a) push your code to GitHub and (b) update your portfolio website
-
