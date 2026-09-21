@@ -165,7 +165,7 @@ transform_and_plot(nc, new_crs = "ESRI:102556" )
 
 ```{r read_county_data}
 library(USAboundaries)
- Load country boundaries data as sf object
+ #Load country boundaries data as sf object
 mn_counties <- USAboundaries::us_counties(resolution = "high", states = "Minnesota")
 ```
 
@@ -178,9 +178,17 @@ mn_counties <- USAboundaries::us_counties(resolution = "high", states = "Minneso
 
 ```{r}
 # Check the CRSs below
+st_crs(mn_cities)
+st_crs(mn_water)
+st_crs(mn_counties)
+```
 
+```{r}
 
 # Update the datasets to have the same CRS
+
+mn_counties_transformed <- mn_counties |> st_transform(crs = "NAD83")
+st_crs(mn_counties_transformed)
 
 ```
 
@@ -194,6 +202,12 @@ mn_counties <- USAboundaries::us_counties(resolution = "high", states = "Minneso
 
 ```{r}
 # Write your answer here
+
+ggplot() + 
+  geom_sf(data = mn_counties, fill = "white") +
+  geom_sf(data = mn_cities, size = 0.5) + 
+  ggthemes::theme_map()
+  
 
 ```
 
@@ -214,9 +228,16 @@ ggplot() +
 Look up the `scale_color_viridis_c()` documentation via the [ggplot2 reference](https://ggplot2.tidyverse.org/reference/scale_viridis.html).
 
 - Read the function description at the top. What is the advantage of using this function for making color palettes?
+
+  > for people with color blindness.
+
 - Look through the examples section. What is the difference between the `_d()`, `_c()`, and `_b()` variants of this function?
 
-### Adding Elevation Raster Data
+  > - **`_d()` = discrete** data (categories/groups), such as different cities.
+  >   **`_c()` = continuous** data, where color represents a continuous range of values, such as temperature or density.
+  >   **`_b()` = binned** data, where continuous values are divided into intervals/bins before colors are assigned.
+
+  ## Adding Elevation Raster Data
 
 Where are large cities located?
 Is there some relationship to local geography/terrain?
@@ -242,7 +263,44 @@ Build on our existing map by adding a raster layer for elevation as the backgrou
 - Add in the layers from the map above to show the largest cities and the county outlines. To remove a background color, use `fill = NA`.
 
 ```{r}
+ggplot() +
+  geom_raster(data = elev_df, aes(x = x, y = y, fill = elevation)) + # adding the elevation as first (bottom) layer
+  scale_fill_gradient(low = "darkgreen", high = "white", guide = FALSE) +
+  geom_sf(data = mn_counties, fill = NA, color = "black") + 
+  geom_sf(data = mn_cities |> filter(Population >= 10000), mapping = aes(color = Population, size = Population))+ # cities layer
+  scale_color_viridis_c() + # continuous (gradient) color scale
+  labs(title = "Minnesota Cities with Population >= 10,000") + 
+  ggthemes::theme_map() +
+  theme(legend.position = "bottom") # move legend
 
+seven_countyarea <- mn_counties |>
+  filter(name %in% c("Anoka", "Hennepin", "Ramsey", "Dakota", "Carver", "Washington", "Scott")) |> 
+  st_bbox()
+seven_countyarea
+
+#sf version: 1.0-19
+#elevatr version: 0.99.0
+
+elevation <- elevatr::get_elev_raster(mn_counties |> st_crop(seven_countyarea), z = 9, clip = "bbox")
+raster::crs(elevation) <- sf::st_crs(mn_counties)
+
+# Convert to data frame for plotting
+elev_df <- elevation |> terra::as.data.frame(xy = TRUE)
+colnames(elev_df) <- c("x", "y", "elevation")
+
+png("figures/tc_map_zoom.png", width = 800, height = 400)
+ggplot() +
+  geom_raster(data = elev_df, aes(x = x, y = y, fill = elevation)) + 
+  geom_sf(data = mn_counties, fill = NA, color = "black") + # county boundary layer
+  geom_sf(data = mn_water, fill = "lightsteelblue1", color = "lightsteelblue1") + # NEW: river/lake layer
+  geom_sf(data = mn_cities |> filter(Population >= 10000), mapping = aes(color = Population, size = Population)) + # cities layer
+  scale_color_viridis_c(option = "magma") + # continuous (gradient) color scale
+  scale_fill_gradient(low = "darkgreen", high = "white") + # continuous (gradient) fill scale
+  coord_sf(xlim = seven_countyarea[c("xmin", "xmax")], ylim = seven_countyarea[c("ymin", "ymax")]) + # NEW: crop map to Twin Cities bounding box
+  labs(title = "Twin Cities with Population >= 10,000") + 
+  ggthemes::theme_map() +
+  theme(legend.position = "none") # remove legend
+dev.off()
 
 ```
 
@@ -323,3 +381,4 @@ mn_counties_leaf |>
 ## Done!
 
 - Check the ICA Instructions for how to (a) push your code to GitHub and (b) update your portfolio website
+
