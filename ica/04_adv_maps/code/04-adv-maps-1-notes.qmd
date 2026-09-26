@@ -248,12 +248,12 @@ Is there some relationship to local geography/terrain?
 - `?terra::as.data.frame`
 
 ```{r get_elevation_data_zoom_out}
-elevation <- elevatr::get_elev_raster(mn_counties, z = 5, clip = "bbox")
-raster::crs(elevation) <- sf::st_crs(mn_counties)
-
-# Convert to data frame for plotting
-elev_df <- elevation |> terra::as.data.frame(xy = TRUE)
-colnames(elev_df) <- c("x", "y", "elevation")
+# elevation <- elevatr::get_elev_raster(mn_counties, z = 5, clip = "bbox")
+# raster::crs(elevation) <- sf::st_crs(mn_counties)
+# 
+# # Convert to data frame for plotting
+# elev_df <- elevation |> terra::as.data.frame(xy = TRUE)
+# colnames(elev_df) <- c("x", "y", "elevation")
 ```
 
 Build on our existing map by adding a raster layer for elevation as the background.
