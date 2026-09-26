@@ -136,8 +136,6 @@ country_counts <- cafe |>
 
 country_counts
 
-#out of these cafes I will choose 6 that have reasonable number of cafes
-
 countries_selected <- c(
   "Denmark",
   "Belgium",
@@ -146,39 +144,35 @@ countries_selected <- c(
   "India", 
   "Croatia"
 )
- 
-
-#lets filter to keep the observations that satisfy the condition
 
 cafe_selected <- cafe |>
   filter(country %in% countries_selected)
-
-#Graph time!
 
 ggplot(
   cafe_selected,
   aes(
     x = price_gbp,
-    y = country
+    y = reorder(country, price_gbp, FUN = median)
   )
 ) +
-  geom_boxplot() +
-  geom_jitter(height = 0.1, alpha = 0.4, color= "#CC79A7") +
+  geom_boxplot(
+    outlier.shape = NA
+  ) +
+  geom_jitter(
+    height = 0.1,
+    alpha = 0.4,
+    color = "black"
+  ) +
   labs(
-    title = "Cappuccino Prices Also Vary Within Countries",
-    subtitle = "Individual points represent cafes",
+    title = "Cappuccino Prices Vary Within Countries",
+    subtitle = "Denmark has the highest typical prices and greatest variation among the countries shown",
     x = "Cappuccino price (£)",
-    y = NULL
+    y = NULL,
+    caption = "Individual points represent cafés. Countries were selected based on café sample size. Source: Cappuccino Index dataset, TidyTuesday. Created by Riley Karatas | September 26, 2026."
   ) +
   theme_minimal()
-
-  
-  
-  
 ```
-
 > Although the country averages reveal differences between countries, individual cafe prices show that prices can also vary within a country.
 > For example, the sampled cafes in **Denmark** show a considerably wider range of prices than those in **Croatia** and **Brazil**.
 > Denmark also contains several higher-priced observations that extend well beyond the main cluster of cafes.
->
 > This demonstrates why looking only at a country's average can be misleading: an average summarizes the data, but it does not show the full range of prices found among individual cafes.

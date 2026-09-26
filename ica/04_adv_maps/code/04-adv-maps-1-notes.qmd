@@ -1,5 +1,5 @@
 ---
-title: "4 Adv Spatial Viz"
+title: "4 Adv Spatial Viz" 
 ---
 
 ## 🧩 Learning Goals
@@ -227,15 +227,15 @@ ggplot() +
 
 Look up the `scale_color_viridis_c()` documentation via the [ggplot2 reference](https://ggplot2.tidyverse.org/reference/scale_viridis.html).
 
-- Read the function description at the top. What is the advantage of using this function for making color palettes?
+- Read the function description at the top.
+  What is the advantage of using this function for making color palettes?
 
   > for people with color blindness.
 
-- Look through the examples section. What is the difference between the `_d()`, `_c()`, and `_b()` variants of this function?
+- Look through the examples section.
+  What is the difference between the `_d()`, `_c()`, and `_b()` variants of this function?
 
-  > - **`_d()` = discrete** data (categories/groups), such as different cities.
-  >   **`_c()` = continuous** data, where color represents a continuous range of values, such as temperature or density.
-  >   **`_b()` = binned** data, where continuous values are divided into intervals/bins before colors are assigned.
+  > - **`_d()` = discrete** data (categories/groups), such as different cities. **`_c()` = continuous** data, where color represents a continuous range of values, such as temperature or density. **`_b()` = binned** data, where continuous values are divided into intervals/bins before colors are assigned.
 
   ## Adding Elevation Raster Data
 
