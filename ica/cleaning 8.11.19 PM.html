@@ -2,17 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Cleaning SFO Weather Data – COMP/STAT212 Portfolio</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -63,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../extra/extra-sample1.html" rel="next">
+<link href="../ica/06-wrangling-1-notes.html" rel="next">
 <link href="../ica/03-adv-ggplot-notes.html" rel="prev">
 <script src="../site_libs/cookie-consent/cookie-consent.js"></script>
 <link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
@@ -73,14 +76,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-aa768d0510026dbab67ce2f8e698749f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-ce494e159dae1eb1aeb2beb157b73888.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-aa768d0510026dbab67ce2f8e698749f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-4d19aefb48ad38ff2cab56a9aaa2cf90.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-5fd28e32898afb2497d041a01aebff7a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-4d19aefb48ad38ff2cab56a9aaa2cf90.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -416,6 +419,11 @@ cookieconsent.run({
   <a href="../ica/cleaning 8.11.19 PM.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Cleaning SFO Weather Data</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ica/06-wrangling-1-notes.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6 Adv Data wrangling I</span></a>
+  </div>
+</li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -517,28 +525,28 @@ cookieconsent.run({
 <li>Save the wrangled data to the <code>data/processed/</code> folder using <code>write_csv()</code>. Name this file <code>weather_clean.csv</code>. Look up the documentation for this function by typing <code>?write_csv</code> in the Console. You’ll need to write an appropriate relative path.</li>
 </ol>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2"></a>weather <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/raw/weather.csv"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a>weather_clean <span class="ot">&lt;-</span> weather <span class="sc">|&gt;</span> </span>
-<span id="cb1-5"><a href="#cb1-5"></a>  <span class="fu">mutate</span>(<span class="at">PrecipYr =</span> <span class="fu">na_if</span>(PrecipYr, <span class="dv">99999</span>))</span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="co">#Option 1</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a>weather_clean <span class="ot">&lt;-</span> weather_clean <span class="sc">|&gt;</span> </span>
-<span id="cb1-9"><a href="#cb1-9"></a>  <span class="fu">arrange</span>(Month, Day) <span class="sc">|&gt;</span> </span>
-<span id="cb1-10"><a href="#cb1-10"></a>  <span class="fu">mutate</span>(<span class="at">dateInYear =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">365</span>)</span>
-<span id="cb1-11"><a href="#cb1-11"></a></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="co"># Option 1: via joins</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a>months <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb1-14"><a href="#cb1-14"></a>  <span class="at">Month =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>,</span>
-<span id="cb1-15"><a href="#cb1-15"></a>  <span class="at">month_name =</span> month.abb</span>
-<span id="cb1-16"><a href="#cb1-16"></a>)</span>
-<span id="cb1-17"><a href="#cb1-17"></a>weather_clean <span class="ot">&lt;-</span> weather_clean <span class="sc">|&gt;</span> </span>
-<span id="cb1-18"><a href="#cb1-18"></a>  <span class="fu">left_join</span>(months)</span>
-<span id="cb1-19"><a href="#cb1-19"></a></span>
-<span id="cb1-20"><a href="#cb1-20"></a><span class="co"># Option 2: via vector subsetting</span></span>
-<span id="cb1-21"><a href="#cb1-21"></a>weather <span class="sc">|&gt;</span> </span>
-<span id="cb1-22"><a href="#cb1-22"></a>  <span class="fu">mutate</span>(<span class="at">month_name =</span> month.abb[Month]) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a>weather <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/raw/weather.csv"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a>weather_clean <span class="ot">&lt;-</span> weather <span class="sc">|&gt;</span> </span>
+<span id="cb1-5"><a href="#cb1-5" aria-label="5"></a>  <span class="fu">mutate</span>(<span class="at">PrecipYr =</span> <span class="fu">na_if</span>(PrecipYr, <span class="dv">99999</span>))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-label="6"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-label="7"></a><span class="co">#Option 1</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-label="8"></a>weather_clean <span class="ot">&lt;-</span> weather_clean <span class="sc">|&gt;</span> </span>
+<span id="cb1-9"><a href="#cb1-9" aria-label="9"></a>  <span class="fu">arrange</span>(Month, Day) <span class="sc">|&gt;</span> </span>
+<span id="cb1-10"><a href="#cb1-10" aria-label="10"></a>  <span class="fu">mutate</span>(<span class="at">dateInYear =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">365</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-label="11"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-label="12"></a><span class="co"># Option 1: via joins</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-label="13"></a>months <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb1-14"><a href="#cb1-14" aria-label="14"></a>  <span class="at">Month =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-label="15"></a>  <span class="at">month_name =</span> month.abb</span>
+<span id="cb1-16"><a href="#cb1-16" aria-label="16"></a>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-label="17"></a>weather_clean <span class="ot">&lt;-</span> weather_clean <span class="sc">|&gt;</span> </span>
+<span id="cb1-18"><a href="#cb1-18" aria-label="18"></a>  <span class="fu">left_join</span>(months)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-label="19"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-label="20"></a><span class="co"># Option 2: via vector subsetting</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-label="21"></a>weather <span class="sc">|&gt;</span> </span>
+<span id="cb1-22"><a href="#cb1-22" aria-label="22"></a>  <span class="fu">mutate</span>(<span class="at">month_name =</span> month.abb[Month]) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 19
   Month   Day   Low  High NormalLow NormalHigh RecordLow LowYr RecordHigh HiYear
@@ -553,7 +561,7 @@ cookieconsent.run({
 #   date &lt;chr&gt;, Record &lt;lgl&gt;, RecordText &lt;chr&gt;, RecordP &lt;lgl&gt;, CulmPrec &lt;dbl&gt;,
 #   month_name &lt;chr&gt;</code></pre>
 </div>
-<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">write_csv</span>(weather_clean, <span class="at">file =</span> <span class="st">"data/processed/weather_clean.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a><span class="fu">write_csv</span>(weather_clean, <span class="at">file =</span> <span class="st">"data/processed/weather_clean.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 
@@ -665,16 +673,16 @@ cookieconsent.run({
     }
     function toggleCodeHandler(show) {
       return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
           if (show) {
             details.open = true;
           } else {
             details.removeAttribute("open");
           }
         }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
         const fromCls = show ? "hidden" : "unhidden";
         const toCls = show ? "unhidden" : "hidden";
         for (let i=0; i<cellCodeDivs.length; i++) {
@@ -1034,72 +1042,72 @@ cookieconsent.run({
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../extra/extra-sample1.html" class="pagination-link" aria-label="Extra Sample 1">
-        <span class="nav-page-text"><span class="chapter-title">Extra Sample 1</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../ica/06-wrangling-1-notes.html" class="pagination-link" aria-label="6 Adv Data wrangling I">
+        <span class="nav-page-text"><span class="chapter-title">6 Adv Data wrangling I</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">---</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="an">title:</span><span class="co"> "Cleaning SFO Weather Data"</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="co">---</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a></span>
-<span id="cb4-5"><a href="#cb4-5"></a>::: {.callout-note title="Helpful Data Wrangling Notes"}</span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="ss">- </span><span class="in">`month.abb`</span> is a built-in object in R with 3-letter month abbreviations</span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="ss">- </span>You can create your own data frame with the <span class="in">`tibble()`</span> function. Look up the documentation for this function by typing <span class="in">`?tibble::tibble`</span> in the Console.</span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="ss">- </span>You can create regular sequences in R with <span class="in">`:`</span>, eg, <span class="in">`3:5`</span> generates the sequence <span class="in">`c(3, 4, 5)`</span>.</span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="ss">- </span>You can create regular sequences in R with <span class="in">`seq()`</span>, eg, <span class="in">`seq(from = 3, to = 5, by = 1)`</span> generates the sequence <span class="in">`c(3, 4, 5)`</span>. Look up the documentation for this function by typing <span class="in">`?seq`</span> in the Console.</span>
-<span id="cb4-10"><a href="#cb4-10"></a>:::</span>
-<span id="cb4-11"><a href="#cb4-11"></a></span>
-<span id="cb4-12"><a href="#cb4-12"></a>::: {.callout-important title="Practicing Keyboard Shortcuts"}</span>
-<span id="cb4-13"><a href="#cb4-13"></a>Try out the following as you work on this exercise:</span>
-<span id="cb4-14"><a href="#cb4-14"></a></span>
-<span id="cb4-15"><a href="#cb4-15"></a><span class="ss">- </span>Tab completion (Try this out when writing your file paths! Typing out a partial path will pull up a mini file-explorer)</span>
-<span id="cb4-16"><a href="#cb4-16"></a><span class="ss">- </span>Insert a code chunk</span>
-<span id="cb4-17"><a href="#cb4-17"></a><span class="ss">- </span>Run a code chunk</span>
-<span id="cb4-18"><a href="#cb4-18"></a><span class="ss">- </span>Navigating around words and lines (selecting and deleting them)</span>
-<span id="cb4-19"><a href="#cb4-19"></a><span class="ss">- </span>Run selected lines (not a whole code chunk)</span>
-<span id="cb4-20"><a href="#cb4-20"></a><span class="ss">- </span>Insert the assignment operator (<span class="in">`&lt;-`</span>)</span>
-<span id="cb4-21"><a href="#cb4-21"></a><span class="ss">- </span>Insert the pipe operator (<span class="in">`|&gt;`</span>)</span>
-<span id="cb4-22"><a href="#cb4-22"></a>:::</span>
-<span id="cb4-23"><a href="#cb4-23"></a></span>
-<span id="cb4-24"><a href="#cb4-24"></a><span class="fu">## Exercise</span></span>
-<span id="cb4-25"><a href="#cb4-25"></a></span>
-<span id="cb4-26"><a href="#cb4-26"></a>Carryout the following steps to clean and save the San Francisco Weather data.</span>
-<span id="cb4-27"><a href="#cb4-27"></a>Make sure to download and add the data file to your portfolio repository as instructed.</span>
-<span id="cb4-28"><a href="#cb4-28"></a></span>
-<span id="cb4-29"><a href="#cb4-29"></a><span class="ss">1.  </span>Read in the weather data in this file with the correct relative file path after you move it to the instructed location.</span>
-<span id="cb4-30"><a href="#cb4-30"></a><span class="ss">2.  </span>There is a variable that has values that don't make sense in the data context. Figure out which variable this is and clean it up by making those values missing using <span class="in">`na_if()`</span>.</span>
-<span id="cb4-31"><a href="#cb4-31"></a><span class="ss">3.  </span>Create a variable called <span class="in">`dateInYear`</span> that indicates the day of the year (1-365) for each case. (Jan 1 should be 1, and Dec 31 should be 365).</span>
-<span id="cb4-32"><a href="#cb4-32"></a><span class="ss">4.  </span>Create a variable called <span class="in">`month_name`</span> that shows the 3-letter abbreviation for each case.</span>
-<span id="cb4-33"><a href="#cb4-33"></a><span class="ss">5.  </span>Save the wrangled data to the <span class="in">`data/processed/`</span> folder using <span class="in">`write_csv()`</span>. Name this file <span class="in">`weather_clean.csv`</span>. Look up the documentation for this function by typing <span class="in">`?write_csv`</span> in the Console. You'll need to write an appropriate relative path.</span>
-<span id="cb4-34"><a href="#cb4-34"></a></span>
-<span id="cb4-37"><a href="#cb4-37"></a><span class="in">```{r}</span></span>
-<span id="cb4-38"><a href="#cb4-38"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb4-39"><a href="#cb4-39"></a>weather <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/raw/weather.csv"</span>)</span>
-<span id="cb4-40"><a href="#cb4-40"></a></span>
-<span id="cb4-41"><a href="#cb4-41"></a>weather_clean <span class="ot">&lt;-</span> weather <span class="sc">|&gt;</span> </span>
-<span id="cb4-42"><a href="#cb4-42"></a>  <span class="fu">mutate</span>(<span class="at">PrecipYr =</span> <span class="fu">na_if</span>(PrecipYr, <span class="dv">99999</span>))</span>
-<span id="cb4-43"><a href="#cb4-43"></a></span>
-<span id="cb4-44"><a href="#cb4-44"></a><span class="co">#Option 1</span></span>
-<span id="cb4-45"><a href="#cb4-45"></a>weather_clean <span class="ot">&lt;-</span> weather_clean <span class="sc">|&gt;</span> </span>
-<span id="cb4-46"><a href="#cb4-46"></a>  <span class="fu">arrange</span>(Month, Day) <span class="sc">|&gt;</span> </span>
-<span id="cb4-47"><a href="#cb4-47"></a>  <span class="fu">mutate</span>(<span class="at">dateInYear =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">365</span>)</span>
-<span id="cb4-48"><a href="#cb4-48"></a></span>
-<span id="cb4-49"><a href="#cb4-49"></a><span class="co"># Option 1: via joins</span></span>
-<span id="cb4-50"><a href="#cb4-50"></a>months <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb4-51"><a href="#cb4-51"></a>  <span class="at">Month =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>,</span>
-<span id="cb4-52"><a href="#cb4-52"></a>  <span class="at">month_name =</span> month.abb</span>
-<span id="cb4-53"><a href="#cb4-53"></a>)</span>
-<span id="cb4-54"><a href="#cb4-54"></a>weather_clean <span class="ot">&lt;-</span> weather_clean <span class="sc">|&gt;</span> </span>
-<span id="cb4-55"><a href="#cb4-55"></a>  <span class="fu">left_join</span>(months)</span>
-<span id="cb4-56"><a href="#cb4-56"></a></span>
-<span id="cb4-57"><a href="#cb4-57"></a><span class="co"># Option 2: via vector subsetting</span></span>
-<span id="cb4-58"><a href="#cb4-58"></a>weather <span class="sc">|&gt;</span> </span>
-<span id="cb4-59"><a href="#cb4-59"></a>  <span class="fu">mutate</span>(<span class="at">month_name =</span> month.abb[Month]) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span>
-<span id="cb4-60"><a href="#cb4-60"></a></span>
-<span id="cb4-61"><a href="#cb4-61"></a><span class="fu">write_csv</span>(weather_clean, <span class="at">file =</span> <span class="st">"data/processed/weather_clean.csv"</span>)</span>
-<span id="cb4-62"><a href="#cb4-62"></a>  </span>
-<span id="cb4-63"><a href="#cb4-63"></a><span class="in">```</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a><span class="co">---</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a><span class="an">title:</span><span class="co"> "Cleaning SFO Weather Data"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-label="3"></a><span class="co">---</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-label="4"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-label="5"></a>::: {.callout-note title="Helpful Data Wrangling Notes"}</span>
+<span id="cb4-6"><a href="#cb4-6" aria-label="6"></a><span class="ss">- </span><span class="in">`month.abb`</span> is a built-in object in R with 3-letter month abbreviations</span>
+<span id="cb4-7"><a href="#cb4-7" aria-label="7"></a><span class="ss">- </span>You can create your own data frame with the <span class="in">`tibble()`</span> function. Look up the documentation for this function by typing <span class="in">`?tibble::tibble`</span> in the Console.</span>
+<span id="cb4-8"><a href="#cb4-8" aria-label="8"></a><span class="ss">- </span>You can create regular sequences in R with <span class="in">`:`</span>, eg, <span class="in">`3:5`</span> generates the sequence <span class="in">`c(3, 4, 5)`</span>.</span>
+<span id="cb4-9"><a href="#cb4-9" aria-label="9"></a><span class="ss">- </span>You can create regular sequences in R with <span class="in">`seq()`</span>, eg, <span class="in">`seq(from = 3, to = 5, by = 1)`</span> generates the sequence <span class="in">`c(3, 4, 5)`</span>. Look up the documentation for this function by typing <span class="in">`?seq`</span> in the Console.</span>
+<span id="cb4-10"><a href="#cb4-10" aria-label="10"></a>:::</span>
+<span id="cb4-11"><a href="#cb4-11" aria-label="11"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-label="12"></a>::: {.callout-important title="Practicing Keyboard Shortcuts"}</span>
+<span id="cb4-13"><a href="#cb4-13" aria-label="13"></a>Try out the following as you work on this exercise:</span>
+<span id="cb4-14"><a href="#cb4-14" aria-label="14"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-label="15"></a><span class="ss">- </span>Tab completion (Try this out when writing your file paths! Typing out a partial path will pull up a mini file-explorer)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-label="16"></a><span class="ss">- </span>Insert a code chunk</span>
+<span id="cb4-17"><a href="#cb4-17" aria-label="17"></a><span class="ss">- </span>Run a code chunk</span>
+<span id="cb4-18"><a href="#cb4-18" aria-label="18"></a><span class="ss">- </span>Navigating around words and lines (selecting and deleting them)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-label="19"></a><span class="ss">- </span>Run selected lines (not a whole code chunk)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-label="20"></a><span class="ss">- </span>Insert the assignment operator (<span class="in">`&lt;-`</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-label="21"></a><span class="ss">- </span>Insert the pipe operator (<span class="in">`|&gt;`</span>)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-label="22"></a>:::</span>
+<span id="cb4-23"><a href="#cb4-23" aria-label="23"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-label="24"></a><span class="fu">## Exercise</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-label="25"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-label="26"></a>Carryout the following steps to clean and save the San Francisco Weather data.</span>
+<span id="cb4-27"><a href="#cb4-27" aria-label="27"></a>Make sure to download and add the data file to your portfolio repository as instructed.</span>
+<span id="cb4-28"><a href="#cb4-28" aria-label="28"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-label="29"></a><span class="ss">1.  </span>Read in the weather data in this file with the correct relative file path after you move it to the instructed location.</span>
+<span id="cb4-30"><a href="#cb4-30" aria-label="30"></a><span class="ss">2.  </span>There is a variable that has values that don't make sense in the data context. Figure out which variable this is and clean it up by making those values missing using <span class="in">`na_if()`</span>.</span>
+<span id="cb4-31"><a href="#cb4-31" aria-label="31"></a><span class="ss">3.  </span>Create a variable called <span class="in">`dateInYear`</span> that indicates the day of the year (1-365) for each case. (Jan 1 should be 1, and Dec 31 should be 365).</span>
+<span id="cb4-32"><a href="#cb4-32" aria-label="32"></a><span class="ss">4.  </span>Create a variable called <span class="in">`month_name`</span> that shows the 3-letter abbreviation for each case.</span>
+<span id="cb4-33"><a href="#cb4-33" aria-label="33"></a><span class="ss">5.  </span>Save the wrangled data to the <span class="in">`data/processed/`</span> folder using <span class="in">`write_csv()`</span>. Name this file <span class="in">`weather_clean.csv`</span>. Look up the documentation for this function by typing <span class="in">`?write_csv`</span> in the Console. You'll need to write an appropriate relative path.</span>
+<span id="cb4-34"><a href="#cb4-34" aria-label="34"></a></span>
+<span id="cb4-37"><a href="#cb4-37" aria-label="35"></a><span class="in">```{r}</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-label="36"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb4-39"><a href="#cb4-39" aria-label="37"></a>weather <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/raw/weather.csv"</span>)</span>
+<span id="cb4-40"><a href="#cb4-40" aria-label="38"></a></span>
+<span id="cb4-41"><a href="#cb4-41" aria-label="39"></a>weather_clean <span class="ot">&lt;-</span> weather <span class="sc">|&gt;</span> </span>
+<span id="cb4-42"><a href="#cb4-42" aria-label="40"></a>  <span class="fu">mutate</span>(<span class="at">PrecipYr =</span> <span class="fu">na_if</span>(PrecipYr, <span class="dv">99999</span>))</span>
+<span id="cb4-43"><a href="#cb4-43" aria-label="41"></a></span>
+<span id="cb4-44"><a href="#cb4-44" aria-label="42"></a><span class="co">#Option 1</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-label="43"></a>weather_clean <span class="ot">&lt;-</span> weather_clean <span class="sc">|&gt;</span> </span>
+<span id="cb4-46"><a href="#cb4-46" aria-label="44"></a>  <span class="fu">arrange</span>(Month, Day) <span class="sc">|&gt;</span> </span>
+<span id="cb4-47"><a href="#cb4-47" aria-label="45"></a>  <span class="fu">mutate</span>(<span class="at">dateInYear =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">365</span>)</span>
+<span id="cb4-48"><a href="#cb4-48" aria-label="46"></a></span>
+<span id="cb4-49"><a href="#cb4-49" aria-label="47"></a><span class="co"># Option 1: via joins</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-label="48"></a>months <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb4-51"><a href="#cb4-51" aria-label="49"></a>  <span class="at">Month =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>,</span>
+<span id="cb4-52"><a href="#cb4-52" aria-label="50"></a>  <span class="at">month_name =</span> month.abb</span>
+<span id="cb4-53"><a href="#cb4-53" aria-label="51"></a>)</span>
+<span id="cb4-54"><a href="#cb4-54" aria-label="52"></a>weather_clean <span class="ot">&lt;-</span> weather_clean <span class="sc">|&gt;</span> </span>
+<span id="cb4-55"><a href="#cb4-55" aria-label="53"></a>  <span class="fu">left_join</span>(months)</span>
+<span id="cb4-56"><a href="#cb4-56" aria-label="54"></a></span>
+<span id="cb4-57"><a href="#cb4-57" aria-label="55"></a><span class="co"># Option 2: via vector subsetting</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-label="56"></a>weather <span class="sc">|&gt;</span> </span>
+<span id="cb4-59"><a href="#cb4-59" aria-label="57"></a>  <span class="fu">mutate</span>(<span class="at">month_name =</span> month.abb[Month]) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span>
+<span id="cb4-60"><a href="#cb4-60" aria-label="58"></a></span>
+<span id="cb4-61"><a href="#cb4-61" aria-label="59"></a><span class="fu">write_csv</span>(weather_clean, <span class="at">file =</span> <span class="st">"data/processed/weather_clean.csv"</span>)</span>
+<span id="cb4-62"><a href="#cb4-62" aria-label="60"></a>  </span>
+<span id="cb4-63"><a href="#cb4-63" aria-label="61"></a><span class="in">```</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
