@@ -168,7 +168,7 @@ ggplot(
     subtitle = "Denmark has the highest typical prices and greatest variation among the countries shown",
     x = "Cappuccino price (£)",
     y = NULL,
-    caption = "Individual points represent cafés. Countries were selected based on café sample size. Source: Cappuccino Index dataset, TidyTuesday. Created by Riley Karatas | September 26, 2026."
+    caption = "Countries were selected based on café sample size. Source: Cappuccino Index dataset, TidyTuesday. Created by Riley Karatas | September 26, 2026."
   ) +
   theme_minimal()
 ```
