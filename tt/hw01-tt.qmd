@@ -164,8 +164,8 @@ outliers <- cafe_selected |>
     upper = Q3 + 1.5 * IQR
   ) |>
   filter(price_gbp < lower | price_gbp > upper) |>
-  ungroup()
-
+  ungroup() 
+  
 ggplot(
   cafe_selected,
   aes(
@@ -182,17 +182,17 @@ ggplot(
     size = 3
   ) +
   labs(
-  title = "Cappuccino Prices Vary Within Selected Countries*",
-  subtitle = "Denmark has the highest typical prices and greatest variation; extreme prices occur in Denmark (£7.45, £10.31) and India (£0.93, £3.50).", 
-  x = "Cappuccino price (£)",
-  y = NULL,
-  caption = "*Countries were selected based on having at least 10 café observations per country. Data: Cappuccino Index dataset, TidyTuesday, Week of September 21, 2026.\nCreated by Riley Karatas | Creation date: September 27, 2026."
-) +
-theme_minimal() +
-theme(
-  panel.grid.major.x = element_blank(),
-  panel.grid.minor.x = element_blank()
-)
+    title = "Cappuccino Prices Vary Within Selected Countries*",
+    subtitle = "Denmark has the highest prices and variation; extreme values occur in Denmark and India.",
+    x = "Cappuccino price (£)",
+    y = NULL,
+    caption = "*Selected countries have ≥10 café observations. Data: Cappuccino Index, TidyTuesday, Week of September 21, 2026.\nCreated by Riley Karatas | Creation date: September 27, 2026."
+  ) +
+  theme_minimal() +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  ) 
 
 ```
 
