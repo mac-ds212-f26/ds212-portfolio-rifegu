@@ -130,6 +130,11 @@ ggplot(
 
 ### Graph III: Is the variation only between countries, or do prices also vary substantially **within** countries?
 
+> Although the country averages reveal differences between countries, individual cafe prices show that prices can also vary within a country.
+> For example, the sampled cafes in **Denmark** show a considerably wider range of prices than those in **Croatia** and **Brazil**.
+> Denmark also contains several higher-priced observations that extend well beyond the main cluster of cafes.
+> This demonstrates why looking only at a country's average can be misleading: an average summarizes the data, but it does not show the full range of prices found among individual cafes.
+
 ```{r}
 country_counts <- cafe |>
   count(country, sort = TRUE)
@@ -148,6 +153,19 @@ countries_selected <- c(
 cafe_selected <- cafe |>
   filter(country %in% countries_selected)
 
+# Identify boxplot outliers
+outliers <- cafe_selected |>
+  group_by(country) |>
+  mutate(
+    Q1 = quantile(price_gbp, 0.25, na.rm = TRUE),
+    Q3 = quantile(price_gbp, 0.75, na.rm = TRUE),
+    IQR = Q3 - Q1,
+    lower = Q1 - 1.5 * IQR,
+    upper = Q3 + 1.5 * IQR
+  ) |>
+  filter(price_gbp < lower | price_gbp > upper) |>
+  ungroup()
+
 ggplot(
   cafe_selected,
   aes(
@@ -155,24 +173,26 @@ ggplot(
     y = reorder(country, price_gbp, FUN = median)
   )
 ) +
-  geom_boxplot(
-    outlier.shape = NA
-  ) +
-  geom_jitter(
-    height = 0.1,
-    alpha = 0.4,
-    color = "black"
+  geom_boxplot() +
+  geom_text(
+    data = outliers,
+    aes(label = round(price_gbp, 2)),
+    nudge_x = 0.1,
+    hjust = 0,
+    size = 3
   ) +
   labs(
-    title = "Cappuccino Prices Vary Within Countries",
-    subtitle = "Denmark has the highest typical prices and greatest variation among the countries shown",
-    x = "Cappuccino price (£)",
-    y = NULL,
-    caption = "Countries were selected based on café sample size. Source: Cappuccino Index dataset, TidyTuesday. Created by Riley Karatas | September 26, 2026."
-  ) +
-  theme_minimal()
+  title = "Cappuccino Prices Vary Within Selected Countries*",
+  subtitle = "Denmark has the highest typical prices and greatest variation; extreme prices occur in Denmark (£7.45, £10.31) and India (£0.93, £3.50).", 
+  x = "Cappuccino price (£)",
+  y = NULL,
+  caption = "*Countries were selected based on having at least 10 café observations per country. Data: Cappuccino Index dataset, TidyTuesday, Week of September 21, 2026.\nCreated by Riley Karatas | Creation date: September 27, 2026."
+) +
+theme_minimal() +
+theme(
+  panel.grid.major.x = element_blank(),
+  panel.grid.minor.x = element_blank()
+)
+
 ```
-> Although the country averages reveal differences between countries, individual cafe prices show that prices can also vary within a country.
-> For example, the sampled cafes in **Denmark** show a considerably wider range of prices than those in **Croatia** and **Brazil**.
-> Denmark also contains several higher-priced observations that extend well beyond the main cluster of cafes.
-> This demonstrates why looking only at a country's average can be misleading: an average summarizes the data, but it does not show the full range of prices found among individual cafes.
+
