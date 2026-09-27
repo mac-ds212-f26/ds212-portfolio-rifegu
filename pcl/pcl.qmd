@@ -31,3 +31,7 @@ What data do I have?
 ## Advanced Spatial Viz
 
 ![](09:16_adv_spatial_viz_pcl.png)
+
+## Advanced Data Wrangling I
+
+![](Adv_data_wrangI.png)
