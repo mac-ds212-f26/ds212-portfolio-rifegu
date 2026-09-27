@@ -34,7 +34,7 @@ Make sure to download and add the data file to your portfolio repository as inst
 
 ```{r}
 library(tidyverse)
-weather <- read_csv("data/raw/weather.csv")
+weather <- read_csv("../data/raw/weather.csv")
 
 weather_clean <- weather |> 
   mutate(PrecipYr = na_if(PrecipYr, 99999))
@@ -56,6 +56,6 @@ weather_clean <- weather_clean |>
 weather |> 
   mutate(month_name = month.abb[Month]) |> head()
 
-write_csv(weather_clean, file = "data/processed/weather_clean.csv")
+write_csv(weather_clean, file = "../data/processed/weather_clean.csv")
   
 ```
