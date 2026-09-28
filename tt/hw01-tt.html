@@ -411,12 +411,12 @@ cookieconsent.run({
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../ica/03-adv-ggplot-notes.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3 Adv Data Viz</span></a>
+  <a href="../ica/01_file_systems/src/cleaning.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Cleaning SFO Weather Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../ica/01_file_systems/src/cleaning.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Cleaning SFO Weather Data</span></a>
+  <a href="../ica/03-adv-ggplot-notes.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3 Adv Data Viz</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -707,33 +707,32 @@ $ hourly_wage       &lt;dbl&gt; 140.00, 30.00, 17.88, 26.70, 140.00, 19.31, 15.0
 <span id="cb15-18"><a href="#cb15-18" aria-label="18"></a>  )</span>
 <span id="cb15-19"><a href="#cb15-19" aria-label="19"></a>) <span class="sc">+</span></span>
 <span id="cb15-20"><a href="#cb15-20" aria-label="20"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb15-21"><a href="#cb15-21" aria-label="21"></a>  <span class="co"># Outlier labels: city name + price, placed BELOW the point</span></span>
-<span id="cb15-22"><a href="#cb15-22" aria-label="22"></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb15-23"><a href="#cb15-23" aria-label="23"></a>    <span class="at">data =</span> outliers,</span>
-<span id="cb15-24"><a href="#cb15-24" aria-label="24"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(city, <span class="st">" (£"</span>, <span class="fu">round</span>(price_gbp, <span class="dv">2</span>), <span class="st">")"</span>)),</span>
-<span id="cb15-25"><a href="#cb15-25" aria-label="25"></a>    <span class="at">vjust =</span> <span class="fl">2.2</span>,      <span class="co"># pushes the label below the point</span></span>
-<span id="cb15-26"><a href="#cb15-26" aria-label="26"></a>    <span class="at">hjust =</span> <span class="fl">0.5</span>,      <span class="co"># centered under the point</span></span>
-<span id="cb15-27"><a href="#cb15-27" aria-label="27"></a>    <span class="at">size =</span> <span class="dv">3</span></span>
-<span id="cb15-28"><a href="#cb15-28" aria-label="28"></a>  ) <span class="sc">+</span></span>
-<span id="cb15-29"><a href="#cb15-29" aria-label="29"></a>  <span class="fu">labs</span>(</span>
-<span id="cb15-30"><a href="#cb15-30" aria-label="30"></a>    <span class="at">title =</span> <span class="st">"Cappuccino Prices Vary Within Selected Countries*"</span>,</span>
-<span id="cb15-31"><a href="#cb15-31" aria-label="31"></a>    <span class="at">subtitle =</span> <span class="st">"Denmark has the highest prices and variation; extreme values occur in Denmark and India."</span>,</span>
-<span id="cb15-32"><a href="#cb15-32" aria-label="32"></a>    <span class="at">x =</span> <span class="st">"Cappuccino price (£)"</span>,</span>
-<span id="cb15-33"><a href="#cb15-33" aria-label="33"></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb15-34"><a href="#cb15-34" aria-label="34"></a>    <span class="at">caption =</span> <span class="st">"*Selected countries have ≥10 café observations. Data: Cappuccino Index, TidyTuesday, Week of September 21, 2026.</span><span class="sc">\n</span><span class="st">Created by Riley Karatas | Creation date: September 27, 2026."</span></span>
-<span id="cb15-35"><a href="#cb15-35" aria-label="35"></a>  ) <span class="sc">+</span></span>
-<span id="cb15-36"><a href="#cb15-36" aria-label="36"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb15-37"><a href="#cb15-37" aria-label="37"></a>  <span class="fu">theme</span>(</span>
-<span id="cb15-38"><a href="#cb15-38" aria-label="38"></a>    <span class="co"># Keep x-axis (vertical) gridlines, remove y-axis (horizontal) gridlines</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-label="21"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb15-22"><a href="#cb15-22" aria-label="22"></a>    <span class="at">data =</span> outliers,</span>
+<span id="cb15-23"><a href="#cb15-23" aria-label="23"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(city, <span class="st">" (£"</span>, <span class="fu">round</span>(price_gbp, <span class="dv">2</span>), <span class="st">")"</span>)),</span>
+<span id="cb15-24"><a href="#cb15-24" aria-label="24"></a>    <span class="at">vjust =</span> <span class="fl">2.2</span>,</span>
+<span id="cb15-25"><a href="#cb15-25" aria-label="25"></a>    <span class="at">hjust =</span> <span class="fl">0.5</span>,</span>
+<span id="cb15-26"><a href="#cb15-26" aria-label="26"></a>    <span class="at">size =</span> <span class="dv">3</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-label="27"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-label="28"></a>  <span class="co"># Extra room on both sides so outlier labels aren't cut off</span></span>
+<span id="cb15-29"><a href="#cb15-29" aria-label="29"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="fl">0.08</span>, <span class="fl">0.15</span>))) <span class="sc">+</span></span>
+<span id="cb15-30"><a href="#cb15-30" aria-label="30"></a>  <span class="fu">labs</span>(</span>
+<span id="cb15-31"><a href="#cb15-31" aria-label="31"></a>    <span class="at">title =</span> <span class="st">"Cappuccino Prices Vary Within Selected Countries*"</span>,</span>
+<span id="cb15-32"><a href="#cb15-32" aria-label="32"></a>    <span class="at">subtitle =</span> <span class="st">"Denmark has the highest prices and variation; extreme values occur in Denmark and India."</span>,</span>
+<span id="cb15-33"><a href="#cb15-33" aria-label="33"></a>    <span class="at">x =</span> <span class="st">"Cappuccino price (£)"</span>,</span>
+<span id="cb15-34"><a href="#cb15-34" aria-label="34"></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb15-35"><a href="#cb15-35" aria-label="35"></a>    <span class="at">caption =</span> <span class="st">"*Selected countries have ≥10 café observations. Data: Cappuccino Index, TidyTuesday, Week of September 21, 2026.</span><span class="sc">\n</span><span class="st">Created by Riley Karatas | Creation date: September 27, 2026."</span></span>
+<span id="cb15-36"><a href="#cb15-36" aria-label="36"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-37"><a href="#cb15-37" aria-label="37"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb15-38"><a href="#cb15-38" aria-label="38"></a>  <span class="fu">theme</span>(</span>
 <span id="cb15-39"><a href="#cb15-39" aria-label="39"></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb15-40"><a href="#cb15-40" aria-label="40"></a>    <span class="at">panel.grid.minor.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb15-41"><a href="#cb15-41" aria-label="41"></a>    <span class="co"># Left-align title, subtitle, and caption to the plot edge</span></span>
-<span id="cb15-42"><a href="#cb15-42" aria-label="42"></a>    <span class="at">plot.title.position =</span> <span class="st">"plot"</span>,</span>
-<span id="cb15-43"><a href="#cb15-43" aria-label="43"></a>    <span class="at">plot.caption.position =</span> <span class="st">"plot"</span>,</span>
-<span id="cb15-44"><a href="#cb15-44" aria-label="44"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>),</span>
-<span id="cb15-45"><a href="#cb15-45" aria-label="45"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>),</span>
-<span id="cb15-46"><a href="#cb15-46" aria-label="46"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>)</span>
-<span id="cb15-47"><a href="#cb15-47" aria-label="47"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb15-41"><a href="#cb15-41" aria-label="41"></a>    <span class="at">plot.title.position =</span> <span class="st">"plot"</span>,</span>
+<span id="cb15-42"><a href="#cb15-42" aria-label="42"></a>    <span class="at">plot.caption.position =</span> <span class="st">"plot"</span>,</span>
+<span id="cb15-43"><a href="#cb15-43" aria-label="43"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>),</span>
+<span id="cb15-44"><a href="#cb15-44" aria-label="44"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>),</span>
+<span id="cb15-45"><a href="#cb15-45" aria-label="45"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>)</span>
+<span id="cb15-46"><a href="#cb15-46" aria-label="46"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="hw01-tt_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
@@ -1450,34 +1449,33 @@ $ hourly_wage       &lt;dbl&gt; 140.00, 30.00, 17.88, 26.70, 140.00, 19.31, 15.0
 <span id="cb16-244"><a href="#cb16-244" aria-label="224"></a>  )</span>
 <span id="cb16-245"><a href="#cb16-245" aria-label="225"></a>) <span class="sc">+</span></span>
 <span id="cb16-246"><a href="#cb16-246" aria-label="226"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb16-247"><a href="#cb16-247" aria-label="227"></a>  <span class="co"># Outlier labels: city name + price, placed BELOW the point</span></span>
-<span id="cb16-248"><a href="#cb16-248" aria-label="228"></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb16-249"><a href="#cb16-249" aria-label="229"></a>    <span class="at">data =</span> outliers,</span>
-<span id="cb16-250"><a href="#cb16-250" aria-label="230"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(city, <span class="st">" (£"</span>, <span class="fu">round</span>(price_gbp, <span class="dv">2</span>), <span class="st">")"</span>)),</span>
-<span id="cb16-251"><a href="#cb16-251" aria-label="231"></a>    <span class="at">vjust =</span> <span class="fl">2.2</span>,      <span class="co"># pushes the label below the point</span></span>
-<span id="cb16-252"><a href="#cb16-252" aria-label="232"></a>    <span class="at">hjust =</span> <span class="fl">0.5</span>,      <span class="co"># centered under the point</span></span>
-<span id="cb16-253"><a href="#cb16-253" aria-label="233"></a>    <span class="at">size =</span> <span class="dv">3</span></span>
-<span id="cb16-254"><a href="#cb16-254" aria-label="234"></a>  ) <span class="sc">+</span></span>
-<span id="cb16-255"><a href="#cb16-255" aria-label="235"></a>  <span class="fu">labs</span>(</span>
-<span id="cb16-256"><a href="#cb16-256" aria-label="236"></a>    <span class="at">title =</span> <span class="st">"Cappuccino Prices Vary Within Selected Countries*"</span>,</span>
-<span id="cb16-257"><a href="#cb16-257" aria-label="237"></a>    <span class="at">subtitle =</span> <span class="st">"Denmark has the highest prices and variation; extreme values occur in Denmark and India."</span>,</span>
-<span id="cb16-258"><a href="#cb16-258" aria-label="238"></a>    <span class="at">x =</span> <span class="st">"Cappuccino price (£)"</span>,</span>
-<span id="cb16-259"><a href="#cb16-259" aria-label="239"></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb16-260"><a href="#cb16-260" aria-label="240"></a>    <span class="at">caption =</span> <span class="st">"*Selected countries have ≥10 café observations. Data: Cappuccino Index, TidyTuesday, Week of September 21, 2026.</span><span class="sc">\n</span><span class="st">Created by Riley Karatas | Creation date: September 27, 2026."</span></span>
-<span id="cb16-261"><a href="#cb16-261" aria-label="241"></a>  ) <span class="sc">+</span></span>
-<span id="cb16-262"><a href="#cb16-262" aria-label="242"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb16-263"><a href="#cb16-263" aria-label="243"></a>  <span class="fu">theme</span>(</span>
-<span id="cb16-264"><a href="#cb16-264" aria-label="244"></a>    <span class="co"># Keep x-axis (vertical) gridlines, remove y-axis (horizontal) gridlines</span></span>
+<span id="cb16-247"><a href="#cb16-247" aria-label="227"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb16-248"><a href="#cb16-248" aria-label="228"></a>    <span class="at">data =</span> outliers,</span>
+<span id="cb16-249"><a href="#cb16-249" aria-label="229"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(city, <span class="st">" (£"</span>, <span class="fu">round</span>(price_gbp, <span class="dv">2</span>), <span class="st">")"</span>)),</span>
+<span id="cb16-250"><a href="#cb16-250" aria-label="230"></a>    <span class="at">vjust =</span> <span class="fl">2.2</span>,</span>
+<span id="cb16-251"><a href="#cb16-251" aria-label="231"></a>    <span class="at">hjust =</span> <span class="fl">0.5</span>,</span>
+<span id="cb16-252"><a href="#cb16-252" aria-label="232"></a>    <span class="at">size =</span> <span class="dv">3</span></span>
+<span id="cb16-253"><a href="#cb16-253" aria-label="233"></a>  ) <span class="sc">+</span></span>
+<span id="cb16-254"><a href="#cb16-254" aria-label="234"></a>  <span class="co"># Extra room on both sides so outlier labels aren't cut off</span></span>
+<span id="cb16-255"><a href="#cb16-255" aria-label="235"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="fl">0.08</span>, <span class="fl">0.15</span>))) <span class="sc">+</span></span>
+<span id="cb16-256"><a href="#cb16-256" aria-label="236"></a>  <span class="fu">labs</span>(</span>
+<span id="cb16-257"><a href="#cb16-257" aria-label="237"></a>    <span class="at">title =</span> <span class="st">"Cappuccino Prices Vary Within Selected Countries*"</span>,</span>
+<span id="cb16-258"><a href="#cb16-258" aria-label="238"></a>    <span class="at">subtitle =</span> <span class="st">"Denmark has the highest prices and variation; extreme values occur in Denmark and India."</span>,</span>
+<span id="cb16-259"><a href="#cb16-259" aria-label="239"></a>    <span class="at">x =</span> <span class="st">"Cappuccino price (£)"</span>,</span>
+<span id="cb16-260"><a href="#cb16-260" aria-label="240"></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb16-261"><a href="#cb16-261" aria-label="241"></a>    <span class="at">caption =</span> <span class="st">"*Selected countries have ≥10 café observations. Data: Cappuccino Index, TidyTuesday, Week of September 21, 2026.</span><span class="sc">\n</span><span class="st">Created by Riley Karatas | Creation date: September 27, 2026."</span></span>
+<span id="cb16-262"><a href="#cb16-262" aria-label="242"></a>  ) <span class="sc">+</span></span>
+<span id="cb16-263"><a href="#cb16-263" aria-label="243"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb16-264"><a href="#cb16-264" aria-label="244"></a>  <span class="fu">theme</span>(</span>
 <span id="cb16-265"><a href="#cb16-265" aria-label="245"></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb16-266"><a href="#cb16-266" aria-label="246"></a>    <span class="at">panel.grid.minor.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb16-267"><a href="#cb16-267" aria-label="247"></a>    <span class="co"># Left-align title, subtitle, and caption to the plot edge</span></span>
-<span id="cb16-268"><a href="#cb16-268" aria-label="248"></a>    <span class="at">plot.title.position =</span> <span class="st">"plot"</span>,</span>
-<span id="cb16-269"><a href="#cb16-269" aria-label="249"></a>    <span class="at">plot.caption.position =</span> <span class="st">"plot"</span>,</span>
-<span id="cb16-270"><a href="#cb16-270" aria-label="250"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>),</span>
-<span id="cb16-271"><a href="#cb16-271" aria-label="251"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>),</span>
-<span id="cb16-272"><a href="#cb16-272" aria-label="252"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>)</span>
-<span id="cb16-273"><a href="#cb16-273" aria-label="253"></a>  )</span>
-<span id="cb16-274"><a href="#cb16-274" aria-label="254"></a><span class="in">```</span></span>
+<span id="cb16-267"><a href="#cb16-267" aria-label="247"></a>    <span class="at">plot.title.position =</span> <span class="st">"plot"</span>,</span>
+<span id="cb16-268"><a href="#cb16-268" aria-label="248"></a>    <span class="at">plot.caption.position =</span> <span class="st">"plot"</span>,</span>
+<span id="cb16-269"><a href="#cb16-269" aria-label="249"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>),</span>
+<span id="cb16-270"><a href="#cb16-270" aria-label="250"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>),</span>
+<span id="cb16-271"><a href="#cb16-271" aria-label="251"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>)</span>
+<span id="cb16-272"><a href="#cb16-272" aria-label="252"></a>  )</span>
+<span id="cb16-273"><a href="#cb16-273" aria-label="253"></a><span class="in">```</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
