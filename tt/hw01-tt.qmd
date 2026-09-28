@@ -136,6 +136,8 @@ ggplot(
 > This demonstrates why looking only at a country's average can be misleading: an average summarizes the data, but it does not show the full range of prices found among individual cafes.
 
 ```{r}
+#| label: old code
+#| include: false
 country_counts <- cafe |>
   count(country, sort = TRUE)
 
@@ -194,5 +196,60 @@ ggplot(
     panel.grid.minor.x = element_blank()
   ) 
 
+```
+
+```{r}
+country_counts <- cafe |>
+  count(country, sort = TRUE)
+
+country_counts
+
+countries_selected <- c(
+  "Denmark",
+  "Belgium",
+  "Brazil",
+  "Turkiye",
+  "India", 
+  "Croatia"
+)
+
+cafe_selected <- cafe |>
+  filter(country %in% countries_selected)
+
+ggplot(
+  cafe_selected,
+  aes(
+    x = price_gbp,
+    y = reorder(country, price_gbp, FUN = median)
+  )
+) +
+  geom_boxplot() +
+  # Outlier labels: city name + price, placed BELOW the point
+  geom_text(
+    data = outliers,
+    aes(label = paste0(city, " (£", round(price_gbp, 2), ")")),
+    vjust = 2.2,      # pushes the label below the point
+    hjust = 0.5,      # centered under the point
+    size = 3
+  ) +
+  labs(
+    title = "Cappuccino Prices Vary Within Selected Countries*",
+    subtitle = "Denmark has the highest prices and variation; extreme values occur in Denmark and India.",
+    x = "Cappuccino price (£)",
+    y = NULL,
+    caption = "*Selected countries have ≥10 café observations. Data: Cappuccino Index, TidyTuesday, Week of September 21, 2026.\nCreated by Riley Karatas | Creation date: September 27, 2026."
+  ) +
+  theme_minimal() +
+  theme(
+    # Keep x-axis (vertical) gridlines, remove y-axis (horizontal) gridlines
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(),
+    # Left-align title, subtitle, and caption to the plot edge
+    plot.title.position = "plot",
+    plot.caption.position = "plot",
+    plot.title = element_text(hjust = 0),
+    plot.subtitle = element_text(hjust = 0),
+    plot.caption = element_text(hjust = 0)
+  )
 ```
 
