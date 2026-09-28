@@ -416,7 +416,7 @@ cookieconsent.run({
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../ica/cleaning 8.11.19 PM.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Cleaning SFO Weather Data</span></a>
+  <a href="../ica/01_file_systems/src/cleaning.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Cleaning SFO Weather Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -663,6 +663,9 @@ $ hourly_wage       &lt;dbl&gt; 140.00, 30.00, 17.88, 26.70, 140.00, 19.31, 15.0
 <p>The countries at the extremes show that the difference in average cappuccino prices can be substantial. The lowest-priced countries have average prices around £1–£2, while the highest-priced countries have averages above £4, with some exceeding £5.</p>
 </blockquote>
 </section><section id="graph-iii-is-the-variation-only-between-countries-or-do-prices-also-vary-substantially-within-countries" class="level3"><h3 class="anchored" data-anchor-id="graph-iii-is-the-variation-only-between-countries-or-do-prices-also-vary-substantially-within-countries">Graph III: Is the variation only between countries, or do prices also vary substantially <strong>within</strong> countries?</h3>
+<blockquote class="blockquote">
+<p>Although the country averages reveal differences between countries, individual cafe prices show that prices can also vary within a country. For example, the sampled cafes in <strong>Denmark</strong> show a considerably wider range of prices than those in <strong>Croatia</strong> and <strong>Brazil</strong>. Denmark also contains several higher-priced observations that extend well beyond the main cluster of cafes. This demonstrates why looking only at a country’s average can be misleading: an average summarizes the data, but it does not show the full range of prices found among individual cafes.</p>
+</blockquote>
 <div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-label="1"></a>country_counts <span class="ot">&lt;-</span> cafe <span class="sc">|&gt;</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-label="2"></a>  <span class="fu">count</span>(country, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
@@ -703,22 +706,34 @@ $ hourly_wage       &lt;dbl&gt; 140.00, 30.00, 17.88, 26.70, 140.00, 19.31, 15.0
 <span id="cb15-17"><a href="#cb15-17" aria-label="17"></a>    <span class="at">y =</span> <span class="fu">reorder</span>(country, price_gbp, <span class="at">FUN =</span> median)</span>
 <span id="cb15-18"><a href="#cb15-18" aria-label="18"></a>  )</span>
 <span id="cb15-19"><a href="#cb15-19" aria-label="19"></a>) <span class="sc">+</span></span>
-<span id="cb15-20"><a href="#cb15-20" aria-label="20"></a>  <span class="fu">geom_boxplot</span>(</span>
-<span id="cb15-21"><a href="#cb15-21" aria-label="21"></a>    <span class="at">outlier.shape =</span> <span class="cn">NA</span></span>
-<span id="cb15-22"><a href="#cb15-22" aria-label="22"></a>  ) <span class="sc">+</span></span>
-<span id="cb15-23"><a href="#cb15-23" aria-label="23"></a>  <span class="fu">geom_jitter</span>(</span>
-<span id="cb15-24"><a href="#cb15-24" aria-label="24"></a>    <span class="at">height =</span> <span class="fl">0.1</span>,</span>
-<span id="cb15-25"><a href="#cb15-25" aria-label="25"></a>    <span class="at">alpha =</span> <span class="fl">0.4</span>,</span>
-<span id="cb15-26"><a href="#cb15-26" aria-label="26"></a>    <span class="at">color =</span> <span class="st">"black"</span></span>
-<span id="cb15-27"><a href="#cb15-27" aria-label="27"></a>  ) <span class="sc">+</span></span>
-<span id="cb15-28"><a href="#cb15-28" aria-label="28"></a>  <span class="fu">labs</span>(</span>
-<span id="cb15-29"><a href="#cb15-29" aria-label="29"></a>    <span class="at">title =</span> <span class="st">"Cappuccino Prices Vary Within Countries"</span>,</span>
-<span id="cb15-30"><a href="#cb15-30" aria-label="30"></a>    <span class="at">subtitle =</span> <span class="st">"Denmark has the highest typical prices and greatest variation among the countries shown"</span>,</span>
-<span id="cb15-31"><a href="#cb15-31" aria-label="31"></a>    <span class="at">x =</span> <span class="st">"Cappuccino price (£)"</span>,</span>
-<span id="cb15-32"><a href="#cb15-32" aria-label="32"></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb15-33"><a href="#cb15-33" aria-label="33"></a>    <span class="at">caption =</span> <span class="st">"Countries were selected based on café sample size. Source: Cappuccino Index dataset, TidyTuesday. Created by Riley Karatas | September 26, 2026."</span></span>
-<span id="cb15-34"><a href="#cb15-34" aria-label="34"></a>  ) <span class="sc">+</span></span>
-<span id="cb15-35"><a href="#cb15-35" aria-label="35"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb15-20"><a href="#cb15-20" aria-label="20"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-label="21"></a>  <span class="co"># Outlier labels: city name + price, placed BELOW the point</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-label="22"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb15-23"><a href="#cb15-23" aria-label="23"></a>    <span class="at">data =</span> outliers,</span>
+<span id="cb15-24"><a href="#cb15-24" aria-label="24"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(city, <span class="st">" (£"</span>, <span class="fu">round</span>(price_gbp, <span class="dv">2</span>), <span class="st">")"</span>)),</span>
+<span id="cb15-25"><a href="#cb15-25" aria-label="25"></a>    <span class="at">vjust =</span> <span class="fl">2.2</span>,      <span class="co"># pushes the label below the point</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-label="26"></a>    <span class="at">hjust =</span> <span class="fl">0.5</span>,      <span class="co"># centered under the point</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-label="27"></a>    <span class="at">size =</span> <span class="dv">3</span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-label="28"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-29"><a href="#cb15-29" aria-label="29"></a>  <span class="fu">labs</span>(</span>
+<span id="cb15-30"><a href="#cb15-30" aria-label="30"></a>    <span class="at">title =</span> <span class="st">"Cappuccino Prices Vary Within Selected Countries*"</span>,</span>
+<span id="cb15-31"><a href="#cb15-31" aria-label="31"></a>    <span class="at">subtitle =</span> <span class="st">"Denmark has the highest prices and variation; extreme values occur in Denmark and India."</span>,</span>
+<span id="cb15-32"><a href="#cb15-32" aria-label="32"></a>    <span class="at">x =</span> <span class="st">"Cappuccino price (£)"</span>,</span>
+<span id="cb15-33"><a href="#cb15-33" aria-label="33"></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb15-34"><a href="#cb15-34" aria-label="34"></a>    <span class="at">caption =</span> <span class="st">"*Selected countries have ≥10 café observations. Data: Cappuccino Index, TidyTuesday, Week of September 21, 2026.</span><span class="sc">\n</span><span class="st">Created by Riley Karatas | Creation date: September 27, 2026."</span></span>
+<span id="cb15-35"><a href="#cb15-35" aria-label="35"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-36"><a href="#cb15-36" aria-label="36"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb15-37"><a href="#cb15-37" aria-label="37"></a>  <span class="fu">theme</span>(</span>
+<span id="cb15-38"><a href="#cb15-38" aria-label="38"></a>    <span class="co"># Keep x-axis (vertical) gridlines, remove y-axis (horizontal) gridlines</span></span>
+<span id="cb15-39"><a href="#cb15-39" aria-label="39"></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb15-40"><a href="#cb15-40" aria-label="40"></a>    <span class="at">panel.grid.minor.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb15-41"><a href="#cb15-41" aria-label="41"></a>    <span class="co"># Left-align title, subtitle, and caption to the plot edge</span></span>
+<span id="cb15-42"><a href="#cb15-42" aria-label="42"></a>    <span class="at">plot.title.position =</span> <span class="st">"plot"</span>,</span>
+<span id="cb15-43"><a href="#cb15-43" aria-label="43"></a>    <span class="at">plot.caption.position =</span> <span class="st">"plot"</span>,</span>
+<span id="cb15-44"><a href="#cb15-44" aria-label="44"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>),</span>
+<span id="cb15-45"><a href="#cb15-45" aria-label="45"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>),</span>
+<span id="cb15-46"><a href="#cb15-46" aria-label="46"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>)</span>
+<span id="cb15-47"><a href="#cb15-47" aria-label="47"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="hw01-tt_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
@@ -726,9 +741,6 @@ $ hourly_wage       &lt;dbl&gt; 140.00, 30.00, 17.88, 26.70, 140.00, 19.31, 15.0
 </div>
 </div>
 </div>
-<blockquote class="blockquote">
-<p>Although the country averages reveal differences between countries, individual cafe prices show that prices can also vary within a country. For example, the sampled cafes in <strong>Denmark</strong> show a considerably wider range of prices than those in <strong>Croatia</strong> and <strong>Brazil</strong>. Denmark also contains several higher-priced observations that extend well beyond the main cluster of cafes. This demonstrates why looking only at a country’s average can be misleading: an average summarizes the data, but it does not show the full range of prices found among individual cafes.</p>
-</blockquote>
 
 
 <!-- -->
@@ -1344,52 +1356,128 @@ $ hourly_wage       &lt;dbl&gt; 140.00, 30.00, 17.88, 26.70, 140.00, 19.31, 15.0
 <span id="cb16-146"><a href="#cb16-146" aria-label="130"></a></span>
 <span id="cb16-147"><a href="#cb16-147" aria-label="131"></a><span class="fu">### Graph III: Is the variation only between countries, or do prices also vary substantially **within** countries?</span></span>
 <span id="cb16-148"><a href="#cb16-148" aria-label="132"></a></span>
-<span id="cb16-151"><a href="#cb16-151" aria-label="133"></a><span class="in">```{r}</span></span>
-<span id="cb16-152"><a href="#cb16-152" aria-label="134"></a>country_counts <span class="ot">&lt;-</span> cafe <span class="sc">|&gt;</span></span>
-<span id="cb16-153"><a href="#cb16-153" aria-label="135"></a>  <span class="fu">count</span>(country, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb16-154"><a href="#cb16-154" aria-label="136"></a></span>
-<span id="cb16-155"><a href="#cb16-155" aria-label="137"></a>country_counts</span>
-<span id="cb16-156"><a href="#cb16-156" aria-label="138"></a></span>
-<span id="cb16-157"><a href="#cb16-157" aria-label="139"></a>countries_selected <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb16-158"><a href="#cb16-158" aria-label="140"></a>  <span class="st">"Denmark"</span>,</span>
-<span id="cb16-159"><a href="#cb16-159" aria-label="141"></a>  <span class="st">"Belgium"</span>,</span>
-<span id="cb16-160"><a href="#cb16-160" aria-label="142"></a>  <span class="st">"Brazil"</span>,</span>
-<span id="cb16-161"><a href="#cb16-161" aria-label="143"></a>  <span class="st">"Turkiye"</span>,</span>
-<span id="cb16-162"><a href="#cb16-162" aria-label="144"></a>  <span class="st">"India"</span>, </span>
-<span id="cb16-163"><a href="#cb16-163" aria-label="145"></a>  <span class="st">"Croatia"</span></span>
-<span id="cb16-164"><a href="#cb16-164" aria-label="146"></a>)</span>
-<span id="cb16-165"><a href="#cb16-165" aria-label="147"></a></span>
-<span id="cb16-166"><a href="#cb16-166" aria-label="148"></a>cafe_selected <span class="ot">&lt;-</span> cafe <span class="sc">|&gt;</span></span>
-<span id="cb16-167"><a href="#cb16-167" aria-label="149"></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> countries_selected)</span>
-<span id="cb16-168"><a href="#cb16-168" aria-label="150"></a></span>
-<span id="cb16-169"><a href="#cb16-169" aria-label="151"></a><span class="fu">ggplot</span>(</span>
-<span id="cb16-170"><a href="#cb16-170" aria-label="152"></a>  cafe_selected,</span>
-<span id="cb16-171"><a href="#cb16-171" aria-label="153"></a>  <span class="fu">aes</span>(</span>
-<span id="cb16-172"><a href="#cb16-172" aria-label="154"></a>    <span class="at">x =</span> price_gbp,</span>
-<span id="cb16-173"><a href="#cb16-173" aria-label="155"></a>    <span class="at">y =</span> <span class="fu">reorder</span>(country, price_gbp, <span class="at">FUN =</span> median)</span>
-<span id="cb16-174"><a href="#cb16-174" aria-label="156"></a>  )</span>
-<span id="cb16-175"><a href="#cb16-175" aria-label="157"></a>) <span class="sc">+</span></span>
-<span id="cb16-176"><a href="#cb16-176" aria-label="158"></a>  <span class="fu">geom_boxplot</span>(</span>
-<span id="cb16-177"><a href="#cb16-177" aria-label="159"></a>    <span class="at">outlier.shape =</span> <span class="cn">NA</span></span>
-<span id="cb16-178"><a href="#cb16-178" aria-label="160"></a>  ) <span class="sc">+</span></span>
-<span id="cb16-179"><a href="#cb16-179" aria-label="161"></a>  <span class="fu">geom_jitter</span>(</span>
-<span id="cb16-180"><a href="#cb16-180" aria-label="162"></a>    <span class="at">height =</span> <span class="fl">0.1</span>,</span>
-<span id="cb16-181"><a href="#cb16-181" aria-label="163"></a>    <span class="at">alpha =</span> <span class="fl">0.4</span>,</span>
-<span id="cb16-182"><a href="#cb16-182" aria-label="164"></a>    <span class="at">color =</span> <span class="st">"black"</span></span>
-<span id="cb16-183"><a href="#cb16-183" aria-label="165"></a>  ) <span class="sc">+</span></span>
-<span id="cb16-184"><a href="#cb16-184" aria-label="166"></a>  <span class="fu">labs</span>(</span>
-<span id="cb16-185"><a href="#cb16-185" aria-label="167"></a>    <span class="at">title =</span> <span class="st">"Cappuccino Prices Vary Within Countries"</span>,</span>
-<span id="cb16-186"><a href="#cb16-186" aria-label="168"></a>    <span class="at">subtitle =</span> <span class="st">"Denmark has the highest typical prices and greatest variation among the countries shown"</span>,</span>
-<span id="cb16-187"><a href="#cb16-187" aria-label="169"></a>    <span class="at">x =</span> <span class="st">"Cappuccino price (£)"</span>,</span>
-<span id="cb16-188"><a href="#cb16-188" aria-label="170"></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb16-189"><a href="#cb16-189" aria-label="171"></a>    <span class="at">caption =</span> <span class="st">"Countries were selected based on café sample size. Source: Cappuccino Index dataset, TidyTuesday. Created by Riley Karatas | September 26, 2026."</span></span>
-<span id="cb16-190"><a href="#cb16-190" aria-label="172"></a>  ) <span class="sc">+</span></span>
-<span id="cb16-191"><a href="#cb16-191" aria-label="173"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb16-192"><a href="#cb16-192" aria-label="174"></a><span class="in">```</span></span>
-<span id="cb16-193"><a href="#cb16-193" aria-label="175"></a><span class="at">&gt; Although the country averages reveal differences between countries, individual cafe prices show that prices can also vary within a country.</span></span>
-<span id="cb16-194"><a href="#cb16-194" aria-label="176"></a><span class="at">&gt; For example, the sampled cafes in **Denmark** show a considerably wider range of prices than those in **Croatia** and **Brazil**.</span></span>
-<span id="cb16-195"><a href="#cb16-195" aria-label="177"></a><span class="at">&gt; Denmark also contains several higher-priced observations that extend well beyond the main cluster of cafes.</span></span>
-<span id="cb16-196"><a href="#cb16-196" aria-label="178"></a><span class="at">&gt; This demonstrates why looking only at a country's average can be misleading: an average summarizes the data, but it does not show the full range of prices found among individual cafes.</span></span>
+<span id="cb16-149"><a href="#cb16-149" aria-label="133"></a><span class="at">&gt; Although the country averages reveal differences between countries, individual cafe prices show that prices can also vary within a country.</span></span>
+<span id="cb16-150"><a href="#cb16-150" aria-label="134"></a><span class="at">&gt; For example, the sampled cafes in **Denmark** show a considerably wider range of prices than those in **Croatia** and **Brazil**.</span></span>
+<span id="cb16-151"><a href="#cb16-151" aria-label="135"></a><span class="at">&gt; Denmark also contains several higher-priced observations that extend well beyond the main cluster of cafes.</span></span>
+<span id="cb16-152"><a href="#cb16-152" aria-label="136"></a><span class="at">&gt; This demonstrates why looking only at a country's average can be misleading: an average summarizes the data, but it does not show the full range of prices found among individual cafes.</span></span>
+<span id="cb16-153"><a href="#cb16-153" aria-label="137"></a></span>
+<span id="cb16-156"><a href="#cb16-156" aria-label="138"></a><span class="in">```{r}</span></span>
+<span id="cb16-157"><a href="#cb16-157" aria-label="139"></a><span class="co">#| label: old code</span></span>
+<span id="cb16-158"><a href="#cb16-158" aria-label="140"></a><span class="co">#| include: false</span></span>
+<span id="cb16-159"><a href="#cb16-159" aria-label="141"></a>country_counts <span class="ot">&lt;-</span> cafe <span class="sc">|&gt;</span></span>
+<span id="cb16-160"><a href="#cb16-160" aria-label="142"></a>  <span class="fu">count</span>(country, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-161"><a href="#cb16-161" aria-label="143"></a></span>
+<span id="cb16-162"><a href="#cb16-162" aria-label="144"></a>country_counts</span>
+<span id="cb16-163"><a href="#cb16-163" aria-label="145"></a></span>
+<span id="cb16-164"><a href="#cb16-164" aria-label="146"></a>countries_selected <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb16-165"><a href="#cb16-165" aria-label="147"></a>  <span class="st">"Denmark"</span>,</span>
+<span id="cb16-166"><a href="#cb16-166" aria-label="148"></a>  <span class="st">"Belgium"</span>,</span>
+<span id="cb16-167"><a href="#cb16-167" aria-label="149"></a>  <span class="st">"Brazil"</span>,</span>
+<span id="cb16-168"><a href="#cb16-168" aria-label="150"></a>  <span class="st">"Turkiye"</span>,</span>
+<span id="cb16-169"><a href="#cb16-169" aria-label="151"></a>  <span class="st">"India"</span>, </span>
+<span id="cb16-170"><a href="#cb16-170" aria-label="152"></a>  <span class="st">"Croatia"</span></span>
+<span id="cb16-171"><a href="#cb16-171" aria-label="153"></a>)</span>
+<span id="cb16-172"><a href="#cb16-172" aria-label="154"></a></span>
+<span id="cb16-173"><a href="#cb16-173" aria-label="155"></a>cafe_selected <span class="ot">&lt;-</span> cafe <span class="sc">|&gt;</span></span>
+<span id="cb16-174"><a href="#cb16-174" aria-label="156"></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> countries_selected)</span>
+<span id="cb16-175"><a href="#cb16-175" aria-label="157"></a></span>
+<span id="cb16-176"><a href="#cb16-176" aria-label="158"></a><span class="co"># Identify boxplot outliers</span></span>
+<span id="cb16-177"><a href="#cb16-177" aria-label="159"></a>outliers <span class="ot">&lt;-</span> cafe_selected <span class="sc">|&gt;</span></span>
+<span id="cb16-178"><a href="#cb16-178" aria-label="160"></a>  <span class="fu">group_by</span>(country) <span class="sc">|&gt;</span></span>
+<span id="cb16-179"><a href="#cb16-179" aria-label="161"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb16-180"><a href="#cb16-180" aria-label="162"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(price_gbp, <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb16-181"><a href="#cb16-181" aria-label="163"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(price_gbp, <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb16-182"><a href="#cb16-182" aria-label="164"></a>    <span class="at">IQR =</span> Q3 <span class="sc">-</span> Q1,</span>
+<span id="cb16-183"><a href="#cb16-183" aria-label="165"></a>    <span class="at">lower =</span> Q1 <span class="sc">-</span> <span class="fl">1.5</span> <span class="sc">*</span> IQR,</span>
+<span id="cb16-184"><a href="#cb16-184" aria-label="166"></a>    <span class="at">upper =</span> Q3 <span class="sc">+</span> <span class="fl">1.5</span> <span class="sc">*</span> IQR</span>
+<span id="cb16-185"><a href="#cb16-185" aria-label="167"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb16-186"><a href="#cb16-186" aria-label="168"></a>  <span class="fu">filter</span>(price_gbp <span class="sc">&lt;</span> lower <span class="sc">|</span> price_gbp <span class="sc">&gt;</span> upper) <span class="sc">|&gt;</span></span>
+<span id="cb16-187"><a href="#cb16-187" aria-label="169"></a>  <span class="fu">ungroup</span>() </span>
+<span id="cb16-188"><a href="#cb16-188" aria-label="170"></a>  </span>
+<span id="cb16-189"><a href="#cb16-189" aria-label="171"></a><span class="fu">ggplot</span>(</span>
+<span id="cb16-190"><a href="#cb16-190" aria-label="172"></a>  cafe_selected,</span>
+<span id="cb16-191"><a href="#cb16-191" aria-label="173"></a>  <span class="fu">aes</span>(</span>
+<span id="cb16-192"><a href="#cb16-192" aria-label="174"></a>    <span class="at">x =</span> price_gbp,</span>
+<span id="cb16-193"><a href="#cb16-193" aria-label="175"></a>    <span class="at">y =</span> <span class="fu">reorder</span>(country, price_gbp, <span class="at">FUN =</span> median)</span>
+<span id="cb16-194"><a href="#cb16-194" aria-label="176"></a>  )</span>
+<span id="cb16-195"><a href="#cb16-195" aria-label="177"></a>) <span class="sc">+</span></span>
+<span id="cb16-196"><a href="#cb16-196" aria-label="178"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb16-197"><a href="#cb16-197" aria-label="179"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb16-198"><a href="#cb16-198" aria-label="180"></a>    <span class="at">data =</span> outliers,</span>
+<span id="cb16-199"><a href="#cb16-199" aria-label="181"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(price_gbp, <span class="dv">2</span>)),</span>
+<span id="cb16-200"><a href="#cb16-200" aria-label="182"></a>    <span class="at">nudge_x =</span> <span class="fl">0.1</span>,</span>
+<span id="cb16-201"><a href="#cb16-201" aria-label="183"></a>    <span class="at">hjust =</span> <span class="dv">0</span>,</span>
+<span id="cb16-202"><a href="#cb16-202" aria-label="184"></a>    <span class="at">size =</span> <span class="dv">3</span></span>
+<span id="cb16-203"><a href="#cb16-203" aria-label="185"></a>  ) <span class="sc">+</span></span>
+<span id="cb16-204"><a href="#cb16-204" aria-label="186"></a>  <span class="fu">labs</span>(</span>
+<span id="cb16-205"><a href="#cb16-205" aria-label="187"></a>    <span class="at">title =</span> <span class="st">"Cappuccino Prices Vary Within Selected Countries*"</span>,</span>
+<span id="cb16-206"><a href="#cb16-206" aria-label="188"></a>    <span class="at">subtitle =</span> <span class="st">"Denmark has the highest prices and variation; extreme values occur in Denmark and India."</span>,</span>
+<span id="cb16-207"><a href="#cb16-207" aria-label="189"></a>    <span class="at">x =</span> <span class="st">"Cappuccino price (£)"</span>,</span>
+<span id="cb16-208"><a href="#cb16-208" aria-label="190"></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb16-209"><a href="#cb16-209" aria-label="191"></a>    <span class="at">caption =</span> <span class="st">"*Selected countries have ≥10 café observations. Data: Cappuccino Index, TidyTuesday, Week of September 21, 2026.</span><span class="sc">\n</span><span class="st">Created by Riley Karatas | Creation date: September 27, 2026."</span></span>
+<span id="cb16-210"><a href="#cb16-210" aria-label="192"></a>  ) <span class="sc">+</span></span>
+<span id="cb16-211"><a href="#cb16-211" aria-label="193"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb16-212"><a href="#cb16-212" aria-label="194"></a>  <span class="fu">theme</span>(</span>
+<span id="cb16-213"><a href="#cb16-213" aria-label="195"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb16-214"><a href="#cb16-214" aria-label="196"></a>    <span class="at">panel.grid.minor.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb16-215"><a href="#cb16-215" aria-label="197"></a>  ) </span>
+<span id="cb16-216"><a href="#cb16-216" aria-label="198"></a></span>
+<span id="cb16-217"><a href="#cb16-217" aria-label="199"></a><span class="in">```</span></span>
+<span id="cb16-218"><a href="#cb16-218" aria-label="200"></a></span>
+<span id="cb16-221"><a href="#cb16-221" aria-label="201"></a><span class="in">```{r}</span></span>
+<span id="cb16-222"><a href="#cb16-222" aria-label="202"></a>country_counts <span class="ot">&lt;-</span> cafe <span class="sc">|&gt;</span></span>
+<span id="cb16-223"><a href="#cb16-223" aria-label="203"></a>  <span class="fu">count</span>(country, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-224"><a href="#cb16-224" aria-label="204"></a></span>
+<span id="cb16-225"><a href="#cb16-225" aria-label="205"></a>country_counts</span>
+<span id="cb16-226"><a href="#cb16-226" aria-label="206"></a></span>
+<span id="cb16-227"><a href="#cb16-227" aria-label="207"></a>countries_selected <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb16-228"><a href="#cb16-228" aria-label="208"></a>  <span class="st">"Denmark"</span>,</span>
+<span id="cb16-229"><a href="#cb16-229" aria-label="209"></a>  <span class="st">"Belgium"</span>,</span>
+<span id="cb16-230"><a href="#cb16-230" aria-label="210"></a>  <span class="st">"Brazil"</span>,</span>
+<span id="cb16-231"><a href="#cb16-231" aria-label="211"></a>  <span class="st">"Turkiye"</span>,</span>
+<span id="cb16-232"><a href="#cb16-232" aria-label="212"></a>  <span class="st">"India"</span>, </span>
+<span id="cb16-233"><a href="#cb16-233" aria-label="213"></a>  <span class="st">"Croatia"</span></span>
+<span id="cb16-234"><a href="#cb16-234" aria-label="214"></a>)</span>
+<span id="cb16-235"><a href="#cb16-235" aria-label="215"></a></span>
+<span id="cb16-236"><a href="#cb16-236" aria-label="216"></a>cafe_selected <span class="ot">&lt;-</span> cafe <span class="sc">|&gt;</span></span>
+<span id="cb16-237"><a href="#cb16-237" aria-label="217"></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> countries_selected)</span>
+<span id="cb16-238"><a href="#cb16-238" aria-label="218"></a></span>
+<span id="cb16-239"><a href="#cb16-239" aria-label="219"></a><span class="fu">ggplot</span>(</span>
+<span id="cb16-240"><a href="#cb16-240" aria-label="220"></a>  cafe_selected,</span>
+<span id="cb16-241"><a href="#cb16-241" aria-label="221"></a>  <span class="fu">aes</span>(</span>
+<span id="cb16-242"><a href="#cb16-242" aria-label="222"></a>    <span class="at">x =</span> price_gbp,</span>
+<span id="cb16-243"><a href="#cb16-243" aria-label="223"></a>    <span class="at">y =</span> <span class="fu">reorder</span>(country, price_gbp, <span class="at">FUN =</span> median)</span>
+<span id="cb16-244"><a href="#cb16-244" aria-label="224"></a>  )</span>
+<span id="cb16-245"><a href="#cb16-245" aria-label="225"></a>) <span class="sc">+</span></span>
+<span id="cb16-246"><a href="#cb16-246" aria-label="226"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb16-247"><a href="#cb16-247" aria-label="227"></a>  <span class="co"># Outlier labels: city name + price, placed BELOW the point</span></span>
+<span id="cb16-248"><a href="#cb16-248" aria-label="228"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb16-249"><a href="#cb16-249" aria-label="229"></a>    <span class="at">data =</span> outliers,</span>
+<span id="cb16-250"><a href="#cb16-250" aria-label="230"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(city, <span class="st">" (£"</span>, <span class="fu">round</span>(price_gbp, <span class="dv">2</span>), <span class="st">")"</span>)),</span>
+<span id="cb16-251"><a href="#cb16-251" aria-label="231"></a>    <span class="at">vjust =</span> <span class="fl">2.2</span>,      <span class="co"># pushes the label below the point</span></span>
+<span id="cb16-252"><a href="#cb16-252" aria-label="232"></a>    <span class="at">hjust =</span> <span class="fl">0.5</span>,      <span class="co"># centered under the point</span></span>
+<span id="cb16-253"><a href="#cb16-253" aria-label="233"></a>    <span class="at">size =</span> <span class="dv">3</span></span>
+<span id="cb16-254"><a href="#cb16-254" aria-label="234"></a>  ) <span class="sc">+</span></span>
+<span id="cb16-255"><a href="#cb16-255" aria-label="235"></a>  <span class="fu">labs</span>(</span>
+<span id="cb16-256"><a href="#cb16-256" aria-label="236"></a>    <span class="at">title =</span> <span class="st">"Cappuccino Prices Vary Within Selected Countries*"</span>,</span>
+<span id="cb16-257"><a href="#cb16-257" aria-label="237"></a>    <span class="at">subtitle =</span> <span class="st">"Denmark has the highest prices and variation; extreme values occur in Denmark and India."</span>,</span>
+<span id="cb16-258"><a href="#cb16-258" aria-label="238"></a>    <span class="at">x =</span> <span class="st">"Cappuccino price (£)"</span>,</span>
+<span id="cb16-259"><a href="#cb16-259" aria-label="239"></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb16-260"><a href="#cb16-260" aria-label="240"></a>    <span class="at">caption =</span> <span class="st">"*Selected countries have ≥10 café observations. Data: Cappuccino Index, TidyTuesday, Week of September 21, 2026.</span><span class="sc">\n</span><span class="st">Created by Riley Karatas | Creation date: September 27, 2026."</span></span>
+<span id="cb16-261"><a href="#cb16-261" aria-label="241"></a>  ) <span class="sc">+</span></span>
+<span id="cb16-262"><a href="#cb16-262" aria-label="242"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb16-263"><a href="#cb16-263" aria-label="243"></a>  <span class="fu">theme</span>(</span>
+<span id="cb16-264"><a href="#cb16-264" aria-label="244"></a>    <span class="co"># Keep x-axis (vertical) gridlines, remove y-axis (horizontal) gridlines</span></span>
+<span id="cb16-265"><a href="#cb16-265" aria-label="245"></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb16-266"><a href="#cb16-266" aria-label="246"></a>    <span class="at">panel.grid.minor.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb16-267"><a href="#cb16-267" aria-label="247"></a>    <span class="co"># Left-align title, subtitle, and caption to the plot edge</span></span>
+<span id="cb16-268"><a href="#cb16-268" aria-label="248"></a>    <span class="at">plot.title.position =</span> <span class="st">"plot"</span>,</span>
+<span id="cb16-269"><a href="#cb16-269" aria-label="249"></a>    <span class="at">plot.caption.position =</span> <span class="st">"plot"</span>,</span>
+<span id="cb16-270"><a href="#cb16-270" aria-label="250"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>),</span>
+<span id="cb16-271"><a href="#cb16-271" aria-label="251"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>),</span>
+<span id="cb16-272"><a href="#cb16-272" aria-label="252"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>)</span>
+<span id="cb16-273"><a href="#cb16-273" aria-label="253"></a>  )</span>
+<span id="cb16-274"><a href="#cb16-274" aria-label="254"></a><span class="in">```</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
