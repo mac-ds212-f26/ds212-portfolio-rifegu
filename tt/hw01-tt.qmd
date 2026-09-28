@@ -224,14 +224,15 @@ ggplot(
   )
 ) +
   geom_boxplot() +
-  # Outlier labels: city name + price, placed BELOW the point
   geom_text(
     data = outliers,
     aes(label = paste0(city, " (£", round(price_gbp, 2), ")")),
-    vjust = 2.2,      # pushes the label below the point
-    hjust = 0.5,      # centered under the point
+    vjust = 2.2,
+    hjust = 0.5,
     size = 3
   ) +
+  # Extra room on both sides so outlier labels aren't cut off
+  scale_x_continuous(expand = expansion(mult = c(0.08, 0.15))) +
   labs(
     title = "Cappuccino Prices Vary Within Selected Countries*",
     subtitle = "Denmark has the highest prices and variation; extreme values occur in Denmark and India.",
@@ -241,10 +242,8 @@ ggplot(
   ) +
   theme_minimal() +
   theme(
-    # Keep x-axis (vertical) gridlines, remove y-axis (horizontal) gridlines
     panel.grid.major.y = element_blank(),
     panel.grid.minor.y = element_blank(),
-    # Left-align title, subtitle, and caption to the plot edge
     plot.title.position = "plot",
     plot.caption.position = "plot",
     plot.title = element_text(hjust = 0),
