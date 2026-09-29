@@ -35,3 +35,13 @@ What data do I have?
 ## Advanced Data Wrangling I
 
 ![](Adv_data_wrangI.png)
+
+## Advanced Data Wrangling II
+
+### Strings
+
+![](str_mindmap.png)
+
+### Regular Expressions
+
+### ![](regular_expressions_mindmap.png)  Joins ![](joins_mindmap.png)
