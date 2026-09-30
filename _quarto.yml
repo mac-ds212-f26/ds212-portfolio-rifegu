@@ -82,6 +82,7 @@ book:
       - ica/adv_viz/03-adv-ggplot-notes.qmd
       - ica/04_adv_maps/code/04-adv-maps-1-notes.qmd
       - ica/adv_data_wrangling/src/06-wrangling-1-notes.qmd
+      - ica/adv_data_wrangling/src/07-wrangling-2.qmd
 
     - part: "Extras"
       chapters:
