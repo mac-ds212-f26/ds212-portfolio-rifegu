@@ -79,9 +79,9 @@ book:
       - ica/ica-sample1.qmd
       - ica/ica-sample2.qmd
       - ica/01_file_systems/src/cleaning.qmd
-      - ica/03-adv-ggplot-notes.qmd
+      - ica/adv_viz/03-adv-ggplot-notes.qmd
       - ica/04_adv_maps/code/04-adv-maps-1-notes.qmd
-      - ica/06-wrangling-1-notes.qmd
+      - ica/adv_data_wrangling/src/06-wrangling-1-notes.qmd
 
     - part: "Extras"
       chapters:
