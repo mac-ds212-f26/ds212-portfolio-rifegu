@@ -48,4 +48,6 @@ What data do I have?
 
 ## Missing Values
 
-![](Missing_Values.png)
+## ![](Missing_Values.png)Functions
+
+![](functions_pcl.png)
