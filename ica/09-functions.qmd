@@ -1,5 +1,8 @@
 ---
 title: "9 Functions"
+editor: 
+  markdown: 
+    wrap: sentence
 ---
 
 ## 🧩 Learning Goals
@@ -442,6 +445,15 @@ The function should be able to handle counting by multiple variables.
 Test your function with two different sets of arguments using the `diamonds` dataset.
 
 ```{r}
+count_prop <- function(df, count_vars) {
+  df |>
+    count(pick({{ count_vars }})) |>
+    mutate(prop = n/sum(n))
+}
+
+count_prop(diamonds, count_vars = cut)
+
+count_prop(diamonds, count_vars = c(cut, color))
 
 ```
 
@@ -453,8 +465,17 @@ Test your function using the `diamonds` dataset.
 
 ```{r}
 
+scatter_with_smooths <- function(df, x, y) {
+  ggplot(df, aes(x = {{ x }}, y = {{ y }})) +
+    geom_point() +
+    geom_smooth(color = "blue") +
+    geom_smooth(method = "lm", color = "red")
+}
+
+scatter_with_smooths(diamonds, x = carat, y = price)
 ```
 
 ## Done!
 
 - Check the ICA Instructions for how to (a) push your code to GitHub and (b) update your portfolio website
+
