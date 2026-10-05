@@ -1,5 +1,118 @@
 ---
-title: "Extra Sample 1"
+title: "FLS2 Project Extra Credit"
 ---
 
-Add content here
+```{r}
+## Plot for Visualizing Taxonomic Rank
+
+library(ggplot2)
+
+# Taxonomic information
+taxonomy <- data.frame(
+  rank = c(
+    "Domain",
+    "Kingdom",
+    "Clade",
+    "Phylum",
+    "Class",
+    "Order",
+    "Family",
+    "Genus",
+    "Species"
+  ),
+  name = c(
+    "Eukaryota",
+    "Plantae",
+    "Angiosperms",
+    "Tracheophyta",
+    "Magnoliopsida",
+    "Solanales",
+    "Solanaceae",
+    "Nicotiana",
+    "Nicotiana benthamiana"
+  ),
+  y = 9:1
+)
+
+# Box dimensions
+box_width <- 1.0
+box_height <- 0.62
+
+ggplot(taxonomy, aes(x = 0, y = y)) +
+  
+  # Connecting line
+  geom_segment(
+    aes(
+      x = 0,
+      xend = 0,
+      y = y - box_height / 2,
+      yend = y - 1 + box_height / 2
+    ),
+    linewidth = 0.7,
+    color = "#4A5568"
+  ) +
+  
+  # White boxes
+  geom_tile(
+    width = box_width,
+    height = box_height,
+    fill = "white",
+    color = "#243447",
+    linewidth = 0.4
+  ) +
+  
+  # Angiosperm box highlighted
+  geom_tile(
+    data = taxonomy[taxonomy$rank == "Clade", ],
+    width = box_width,
+    height = box_height,
+    fill = "#DCEFF0",
+    color = "#2F6F73",
+    linewidth = 1
+  ) +
+  
+  # Rank labels
+  geom_text(
+    aes(
+      y = y + 0.12,
+      label = rank
+    ),
+    size = 3.3,
+    fontface = "bold",
+    color = "#243447"
+  ) +
+  
+  # Taxon names
+  geom_text(
+    aes(
+      y = y - 0.12,
+      label = name
+    ),
+    size = 3.5,
+    color = "#243447"
+  ) +
+  
+  # Italicize species
+  geom_text(
+    data = taxonomy[taxonomy$rank == "Species", ],
+    aes(
+      y = y - 0.12,
+      label = name
+    ),
+    size = 3.5,
+    fontface = "italic",
+    color = "#243447"
+  ) +
+  
+  coord_cartesian(
+    xlim = c(-1.2, 1.2),
+    ylim = c(0.35, 9.65)
+  ) +
+  
+  theme_void() +
+  
+  theme(
+    plot.margin = margin(20, 20, 20, 20)
+  )
+```
+
