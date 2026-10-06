@@ -25,6 +25,7 @@ spotify <- map_dfr(files, fromJSON)
 
 glimpse(spotify)
 ```
+
 > Now we need to clean the data in a way we can understand and analyze better!
 
 ```{r}
@@ -46,19 +47,23 @@ spotify_clean <- spotify %>%
 
 glimpse(spotify_clean)
 ```
+
 ```{r}
 range(spotify_clean$date, na.rm = TRUE)
 ```
+
 > We have almost exactly a year worth of listening data!
 
 ```{r}
 sum(spotify_clean$minutesPlayed, na.rm = TRUE)
 ```
+
 ```{r}
 spotify_clean %>%
   count(artistName, sort = TRUE) %>%
   head(20)
 ```
+
 > And this is my 20 most frequent played artists!
 
 ```{r}
@@ -74,6 +79,7 @@ artist_minutes <- spotify_clean %>%
 
 head(artist_minutes, 20)
 ```
+
 > This gives us my actual top artists by listening time.
 
 > Now let's calculate artist and the month
@@ -138,4 +144,5 @@ ggplot(
   )
 
 ```
+
 > The conlcusion is that I listen to a lot of Amy Winehouse depending on the month. It seems that my taste in music is quite international with Russian, Turkish, French Afro-beat and English songs.
