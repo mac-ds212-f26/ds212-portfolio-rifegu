@@ -131,17 +131,20 @@ ggplot(
     name = "Minutes listened"
   ) +
   labs(
-    title = "A Year in My Soundtrack",
-    subtitle = "Amy Winehouse is my top listened artist this year",
-    x = NULL,
-    y = NULL, 
-    caption = "*My top 12 frequently listened artists and their change against months. \nData: Spotify User Data, Spotify, Week of October 5th, 2026.\nCreated by Riley Karatas | Creation date: October 5th, 2026."
-  ) +
-  theme_minimal() +
-  theme(
-    axis.text.x = element_text(angle = 45, hjust = 1),
-    panel.grid = element_blank()
-  )
+  title = "A Year in My Soundtrack",
+  subtitle = "Amy Winehouse is my top listened artist this year",
+  x = NULL,
+  y = NULL, 
+  caption = "*My top 12 frequently listened artists and their change against months. \nData: Spotify User Data, Spotify, Week of October 5th, 2026.\nCreated by Riley Karatas | Creation date: October 5th, 2026."
+) +
+theme_minimal() +
+theme(
+  axis.text.x = element_text(angle = 45, hjust = 1),
+  panel.grid = element_blank(),
+  plot.title = element_text(hjust = 0),
+  plot.subtitle = element_text(hjust = 0),
+  plot.caption = element_text(hjust = 0)
+)
 
 ```
 
