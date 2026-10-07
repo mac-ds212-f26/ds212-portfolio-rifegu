@@ -122,12 +122,16 @@ If you define an object in the function, it won't be accessible outside that fun
 #| output: asis
 
 average_new <- function(x, remove_nas = TRUE) {
-  sum(x, na.rm = remove_nas)/length(x)
+  average <- sum(x, na.rm = remove_nas)/length(x)
   fun_new_thing_within_function <- "Fun times!"
+  
+  list(
+    average = average,
+    message = fun_new_thing_within_function
+  )
 }
 
 average_new(1:3)
-fun_new_thing_within_function
 ```
 
 Scoping is important to consider if you try to refer to objects that aren't passed as arguments.
@@ -207,17 +211,17 @@ It may help to refer to the `stringr` cheatsheet.
 
 ```{r}
 
+
 format_phone_number <- function(nums) {
   nums <- str_remove_all(nums, "[^[:alnum:]]")
   area <- str_sub(nums, 1, 3)
   num3 <- str_sub(nums, 4, 6)
   num4 <- str_sub(nums, 7, 10)
-  # str_glue("({area}) {num3}-{num4}")
+  
   str_c("(", area, ")", num3, "-", num4)
 }
 
 format_phone_number(c("651-330-8661", "6516966000", "800 867 5309"))
-
 ```
 
 ## Call Functions
@@ -247,8 +251,11 @@ The above code works because the first argument of `ggplot` is `data` and the se
 ```{r}
 #| error: true
 
-ggplot(aes(x = carat, y = price), diamonds) + 
-    geom_point()
+ggplot(
+  data = diamonds,
+  mapping = aes(x = carat, y = price)
+) +
+  geom_point()
 ```
 
 However, if we name the arguments, we would be using the **name matching** approach and the code would work as shown below:
@@ -366,10 +373,12 @@ We might write this function:
 
 ```{r}
 group_means <- function(df, group_var, mean_var) {
-    df |>
-        group_by(group_var) |>
-        summarize(mean = mean(mean_var))
+  df |>
+    group_by({{ group_var }}) |>
+    summarize(mean = mean({{ mean_var }}))
 }
+
+group_means(diamonds, group_var = cut, mean_var = carat)
 ```
 
 Let's use it on the `diamonds` dataset to compute the mean size (`carat`) by diamond `cut`:
@@ -432,8 +441,8 @@ To fix this, we need the `pick()` function to get R to see `{{` `group_var` `}}`
 
 ```{r}
 group_means <- function(df, group_var, mean_var) {
-    df |>
-    group_by(pick({{ group_var }})) |>
+  df |>
+    group_by(across({{ group_var }})) |>
     summarize(mean = mean({{ mean_var }}))
 }
 ```
@@ -478,4 +487,3 @@ scatter_with_smooths(diamonds, x = carat, y = price)
 ## Done!
 
 - Check the ICA Instructions for how to (a) push your code to GitHub and (b) update your portfolio website
-
