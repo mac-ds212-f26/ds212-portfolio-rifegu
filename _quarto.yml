@@ -84,6 +84,7 @@ book:
       - ica/adv_data_wrangling/src/06-wrangling-1-notes.qmd
       - ica/adv_data_wrangling/src/07-wrangling-2.qmd
       - ica/09-functions.qmd
+      - ica/10-base-r.qmd
 
     - part: "Extras"
       chapters:
