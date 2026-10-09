@@ -46,8 +46,8 @@ What data do I have?
 
 ### ![](regular_expressions_mindmap.png) Joins ![](joins_mindmap.png)
 
-## Missing Values
+### Missing Values
 
-## ![](Missing_Values.png)Functions
+### ![](Missing_Values.png)Functions
 
 ![](functions_pcl.png)
