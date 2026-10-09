@@ -44,10 +44,20 @@ What data do I have?
 
 ### Regular Expressions
 
-### ![](regular_expressions_mindmap.png) Joins ![](joins_mindmap.png)
+![](regular_expressions_mindmap.png)
+
+### Joins
+
+![](joins_mindmap.png)
 
 ### Missing Values
 
-### ![](Missing_Values.png)Functions
+![](Missing_Values.png)
+
+### Functions
 
 ![](functions_pcl.png)
+
+### Base R
+
+![](Base%20_R.png)
