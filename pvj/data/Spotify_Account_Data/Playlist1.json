@@ -1,0 +1,310 @@
+{
+  "playlists" : [ {
+    "name" : "Ailemle 2013 MN",
+    "lastModifiedDate" : "2025-09-22",
+    "collaborators" : [ ],
+    "items" : [ {
+      "track" : {
+        "trackName" : "Stitches",
+        "artistName" : "Shawn Mendes",
+        "albumName" : "Handwritten",
+        "trackUri" : "spotify:track:5jsw9uXEGuKyJzs0boZ1bT"
+      },
+      "addedDate" : "2024-08-24"
+    }, {
+      "track" : {
+        "trackName" : "Bright",
+        "artistName" : "Echosmith",
+        "albumName" : "Talking Dreams",
+        "trackUri" : "spotify:track:3WKg25vrbjJlkhsgl2W4p3"
+      },
+      "addedDate" : "2024-08-24"
+    }, {
+      "track" : {
+        "trackName" : "Budapest",
+        "artistName" : "George Ezra",
+        "albumName" : "Wanted on Voyage",
+        "trackUri" : "spotify:track:2ixsaeFioXJmMgkkbd4uj1"
+      },
+      "addedDate" : "2024-08-24"
+    }, {
+      "track" : {
+        "trackName" : "Cool Kids",
+        "artistName" : "Echosmith",
+        "albumName" : "Talking Dreams",
+        "trackUri" : "spotify:track:13P5rwmk2EsoFRIz9UCeh9"
+      },
+      "addedDate" : "2024-08-24"
+    }, {
+      "track" : {
+        "trackName" : "Riptide",
+        "artistName" : "Vance Joy",
+        "albumName" : "Dream Your Life Away",
+        "trackUri" : "spotify:track:3JvrhDOgAt6p7K8mDyZwRd"
+      },
+      "addedDate" : "2024-08-24"
+    }, {
+      "track" : {
+        "trackName" : "Rude",
+        "artistName" : "MAGIC!",
+        "albumName" : "Don't Kill the Magic",
+        "trackUri" : "spotify:track:6RtPijgfPKROxEzTHNRiDp"
+      },
+      "addedDate" : "2024-08-24"
+    }, {
+      "track" : {
+        "trackName" : "Hey, Soul Sister",
+        "artistName" : "Train",
+        "albumName" : "Save Me, San Francisco (Golden Gate Edition)",
+        "trackUri" : "spotify:track:4HlFJV71xXKIGcU3kRyttv"
+      },
+      "addedDate" : "2024-08-24"
+    }, {
+      "track" : {
+        "trackName" : "Renegades",
+        "artistName" : "X Ambassadors",
+        "albumName" : "VHS",
+        "trackUri" : "spotify:track:0fYVliAYKHuPmECRs1pbRf"
+      },
+      "addedDate" : "2024-08-24"
+    }, {
+      "track" : {
+        "trackName" : "Shut Up and Dance",
+        "artistName" : "WALK THE MOON",
+        "albumName" : "TALKING IS HARD",
+        "trackUri" : "spotify:track:4kbj5MwxO1bq9wjT5g9HaA"
+      },
+      "addedDate" : "2024-08-24"
+    } ],
+    "numberOfFollowers" : 0
+  }, {
+    "name" : "Meyhane",
+    "lastModifiedDate" : "2024-07-22",
+    "collaborators" : [ ],
+    "items" : [ {
+      "track" : {
+        "trackName" : "Şu Gelen Atlı mıdır",
+        "artistName" : "Cemal Çınarlı",
+        "albumName" : "Taş Plak Meyhaneleri, Vol. 2",
+        "trackUri" : "spotify:track:1qEZ2uJCQNljzB2LI49EY6"
+      },
+      "addedDate" : "2024-07-22"
+    } ],
+    "numberOfFollowers" : 0
+  }, {
+    "name" : "Akdeniz",
+    "lastModifiedDate" : "2024-08-24",
+    "collaborators" : [ ],
+    "items" : [ {
+      "track" : {
+        "trackName" : "Sevda Sinemalarda",
+        "artistName" : "Yaşar",
+        "albumName" : "Sevda Sinemalarda",
+        "trackUri" : "spotify:track:6GfmOg17SKnOIQFg6WLg9U"
+      },
+      "addedDate" : "2024-07-21"
+    }, {
+      "track" : {
+        "trackName" : "Kuşlar",
+        "artistName" : "Yaşar",
+        "albumName" : "Esirinim",
+        "trackUri" : "spotify:track:4IdhlNzOclxsoRMOmgKOS0"
+      },
+      "addedDate" : "2024-07-21"
+    }, {
+      "track" : {
+        "trackName" : "Nara",
+        "artistName" : "Yaşar",
+        "albumName" : "Şehir Yalnızlığı",
+        "trackUri" : "spotify:track:11m3VyqxqUiiviJnwEzwBb"
+      },
+      "addedDate" : "2024-07-24"
+    } ],
+    "numberOfFollowers" : 0
+  }, {
+    "name" : "Last lamp post at midnight",
+    "lastModifiedDate" : "2024-07-21",
+    "collaborators" : [ ],
+    "items" : [ {
+      "track" : {
+        "trackName" : "Strangers In The Night",
+        "artistName" : "Frank Sinatra",
+        "albumName" : "Strangers In The Night",
+        "trackUri" : "spotify:track:74VR3AkGPhbYXnxcOYa16x"
+      },
+      "addedDate" : "2024-07-21"
+    } ],
+    "numberOfFollowers" : 0
+  }, {
+    "name" : "Old girl",
+    "lastModifiedDate" : "2026-07-08",
+    "collaborators" : [ ],
+    "items" : [ {
+      "track" : {
+        "trackName" : "The Winner Takes It All",
+        "artistName" : "ABBA",
+        "albumName" : "Super Trouper",
+        "trackUri" : "spotify:track:3oEkrIfXfSh9zGnE7eBzSV"
+      },
+      "addedDate" : "2024-07-21"
+    } ],
+    "numberOfFollowers" : 0
+  }, {
+    "name" : "rusty electric guitar ",
+    "lastModifiedDate" : "2024-07-21",
+    "collaborators" : [ ],
+    "items" : [ {
+      "track" : {
+        "trackName" : "Smooth (feat. Rob Thomas)",
+        "artistName" : "Santana",
+        "albumName" : "Supernatural (Legacy Edition)",
+        "trackUri" : "spotify:track:2pX4FpOgwItRVPPUFdRcxA"
+      },
+      "addedDate" : "2024-07-21"
+    }, {
+      "track" : {
+        "trackName" : "Jessie's Girl",
+        "artistName" : "Rick Springfield",
+        "albumName" : "Working Class Dog",
+        "trackUri" : "spotify:track:5RsUlxLto4NZbhJpqJbHfN"
+      },
+      "addedDate" : "2024-07-21"
+    } ],
+    "numberOfFollowers" : 0
+  }, {
+    "name" : "TURK",
+    "lastModifiedDate" : "2024-07-21",
+    "collaborators" : [ ],
+    "items" : [ ],
+    "numberOfFollowers" : 0
+  }, {
+    "name" : "coşmalık-ımsı rock",
+    "lastModifiedDate" : "2024-07-24",
+    "collaborators" : [ ],
+    "items" : [ {
+      "track" : {
+        "trackName" : "Hani Benim Olacaktın",
+        "artistName" : "Haluk Levent",
+        "albumName" : "Mektup",
+        "trackUri" : "spotify:track:5BGIAVaz1TqMWbrYS8gDaq"
+      },
+      "addedDate" : "2024-07-21"
+    }, {
+      "track" : {
+        "trackName" : "Bu Akşam",
+        "artistName" : "Duman",
+        "albumName" : "Belki Alışman Lazım",
+        "trackUri" : "spotify:track:6jo5kjABNphNwXQ8ZyOLtZ"
+      },
+      "addedDate" : "2024-07-22"
+    }, {
+      "track" : {
+        "trackName" : "İstanbul",
+        "artistName" : "Duman",
+        "albumName" : "Eski Köprünün Altında",
+        "trackUri" : "spotify:track:0k8ezY3B5dO9KsSz9dHCXz"
+      },
+      "addedDate" : "2024-07-24"
+    } ],
+    "numberOfFollowers" : 0
+  }, {
+    "name" : "eski turk dizisi ",
+    "lastModifiedDate" : "2024-07-24",
+    "collaborators" : [ ],
+    "items" : [ {
+      "track" : {
+        "trackName" : "Anlamazdın",
+        "artistName" : "Ayla Dikmen",
+        "albumName" : "Klasikler",
+        "trackUri" : "spotify:track:1qwQ1P3FwFouG1zTIBkGXU"
+      },
+      "addedDate" : "2024-07-21"
+    }, {
+      "track" : {
+        "trackName" : "Yalancı Bahar",
+        "artistName" : "Aşkın Nur Yengi",
+        "albumName" : "2002",
+        "trackUri" : "spotify:track:5pRYlG0LqPhBdRDB8wJV5i"
+      },
+      "addedDate" : "2024-07-21"
+    }, {
+      "track" : {
+        "trackName" : "Sultan-ı Yegah",
+        "artistName" : "Nur Yoldas",
+        "albumName" : "Sultan-ı Yegah",
+        "trackUri" : "spotify:track:0cZgkcbssrcJeetG4GXoLc"
+      },
+      "addedDate" : "2024-07-21"
+    }, {
+      "track" : {
+        "trackName" : "Özledim",
+        "artistName" : "İzel",
+        "albumName" : "Özledim",
+        "trackUri" : "spotify:track:2xWvjkDJ6eiTuzII6DOvNQ"
+      },
+      "addedDate" : "2024-07-24"
+    } ],
+    "numberOfFollowers" : 0
+  }, {
+    "name" : "modu biliyorsun",
+    "lastModifiedDate" : "2024-07-22",
+    "collaborators" : [ ],
+    "items" : [ {
+      "track" : {
+        "trackName" : "Çakıl Taşları",
+        "artistName" : "Şebnem Ferah",
+        "albumName" : "Can Kırıkları",
+        "trackUri" : "spotify:track:03sf6gnuqZNE9sGrRi8WAc"
+      },
+      "addedDate" : "2024-07-21"
+    }, {
+      "track" : {
+        "trackName" : "Madem",
+        "artistName" : "Dolu Kadehi Ters Tut",
+        "albumName" : "Karanlık",
+        "trackUri" : "spotify:track:0AHY9HLMYcbscA2s4KEiJc"
+      },
+      "addedDate" : "2024-07-21"
+    }, {
+      "track" : {
+        "trackName" : "İstanbul Beyefendisi",
+        "artistName" : "Yaşlı Amca",
+        "albumName" : "Akşamüstü",
+        "trackUri" : "spotify:track:1XJN6kQ2Qkxgsf2pL9Xfmy"
+      },
+      "addedDate" : "2024-07-21"
+    }, {
+      "track" : {
+        "trackName" : "Çoban Yıldızı",
+        "artistName" : "Teoman",
+        "albumName" : "İnsanlık Halleri",
+        "trackUri" : "spotify:track:1KE7c3NIUbKZMuQZsRRflk"
+      },
+      "addedDate" : "2024-07-21"
+    }, {
+      "track" : {
+        "trackName" : "Burası İstanbul",
+        "artistName" : "Nil Karaibrahimgil",
+        "albumName" : "Burası İstanbul (Organize İşler Sazan Sarmalı Orijinal Film Müziği)",
+        "trackUri" : "spotify:track:6atEnsEnO6g0ZDJH1gRIG9"
+      },
+      "addedDate" : "2024-07-22"
+    }, {
+      "track" : {
+        "trackName" : "Erkekler Ağlamaz",
+        "artistName" : "Nilüfer",
+        "albumName" : "12 Düet",
+        "trackUri" : "spotify:track:4GutydtMcQzh5hlI9W4wAO"
+      },
+      "addedDate" : "2024-07-22"
+    } ],
+    "description" : "teoman, dolu kadehi ters tut, sebnem ferah",
+    "numberOfFollowers" : 0
+  }, {
+    "name" : "Ö",
+    "lastModifiedDate" : "2023-09-17",
+    "collaborators" : [ ],
+    "items" : [ ],
+    "numberOfFollowers" : 0
+  } ]
+}

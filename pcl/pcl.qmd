@@ -2,10 +2,62 @@
 title: "Pre-Class Learning Summaries"
 ---
 
+## General Workflow for a Given Dataset
+
+What data do I have?
+
+↓ What question do I want to ask?
+
+↓ Which variable(s) answer my question?
+
+↓ Do I need to summarize the data?
+
+↓ Which graph communicates the answer?
+
 ## R
 
 ![](0808-r.png)
 
 ## Quarto
 
-![from qmd4sci.njtierney.com](0810-quarto.jpeg)
+## ![from qmd4sci.njtierney.com](0810-quarto.jpeg)File Systems
+
+![](0911_filesystems.png)
+
+## Advanced Data Viz
+
+![](09:16_advdataviz.png)
+
+## Advanced Spatial Viz
+
+![](09:16_adv_spatial_viz_pcl.png)
+
+## Advanced Data Wrangling I
+
+![](Adv_data_wrangI.png)
+
+## Advanced Data Wrangling II
+
+### Strings
+
+![](str_mindmap.png)
+
+### Regular Expressions
+
+![](regular_expressions_mindmap.png)
+
+### Joins
+
+![](joins_mindmap.png)
+
+### Missing Values
+
+![](Missing_Values.png)
+
+### Functions
+
+![](functions_pcl.png)
+
+### Base R
+
+![](Base%20_R.png)

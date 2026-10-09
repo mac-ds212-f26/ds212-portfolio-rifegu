@@ -2,4 +2,150 @@
 title: "Personal Visualization Journey"
 ---
 
-Add content here
+# A Year in My Soundtrack
+
+> How did my music obsessions change throughout the year?
+
+> Let's load the data and read in the json files I received from Spotify website.
+
+```{r}
+library(jsonlite)
+library(dplyr)
+library(purrr)
+
+files <- list.files(
+  "data/Spotify_Account_Data",
+  pattern = "StreamingHistory_music_.*\\.json$",
+  full.names = TRUE
+)
+
+files
+
+spotify <- map_dfr(files, fromJSON)
+
+glimpse(spotify)
+```
+
+> Now we need to clean the data in a way we can understand and analyze better!
+
+```{r}
+spotify_clean <- spotify %>%
+  select(
+    endTime,
+    artistName,
+    trackName,
+    msPlayed
+  ) %>%
+  mutate(
+    datetime = as.POSIXct(endTime, format = "%Y-%m-%d %H:%M", tz = "UTC"),
+    date = as.Date(datetime),
+    hour = as.integer(format(datetime, "%H")),
+    day = format(datetime, "%A"),
+    month = format(datetime, "%Y-%m"),
+    minutesPlayed = msPlayed / 60000
+  )
+
+glimpse(spotify_clean)
+```
+
+```{r}
+range(spotify_clean$date, na.rm = TRUE)
+```
+
+> We have almost exactly a year worth of listening data!
+
+```{r}
+sum(spotify_clean$minutesPlayed, na.rm = TRUE)
+```
+
+```{r}
+spotify_clean %>%
+  count(artistName, sort = TRUE) %>%
+  head(20)
+```
+
+> And this is my 20 most frequent played artists!
+
+```{r}
+artist_minutes <- spotify_clean %>%
+  filter(artistName != "Unknown Artist") %>%
+  group_by(artistName) %>%
+  summarise(
+    minutes = sum(minutesPlayed, na.rm = TRUE),
+    plays = n(),
+    .groups = "drop"
+  ) %>%
+  arrange(desc(minutes))
+
+head(artist_minutes, 20)
+```
+
+> This gives us my actual top artists by listening time.
+
+> Now let's calculate artist and the month
+
+```{r}
+monthly_artist <- spotify_clean %>%
+  filter(artistName != "Unknown Artist") %>%
+  group_by(month, artistName) %>%
+  summarise(
+    minutes = sum(minutesPlayed, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+top_artists <- artist_minutes %>%
+  slice_head(n = 12) %>%
+  pull(artistName)
+
+monthly_top <- monthly_artist %>%
+  filter(artistName %in% top_artists)
+
+monthly_top
+```
+
+> Let's start visualizing
+
+```{r}
+library(ggplot2)
+library(tidyr)
+
+monthly_top <- monthly_artist %>%
+  filter(artistName %in% top_artists) %>%
+  complete(
+    month,
+    artistName,
+    fill = list(minutes = 0)
+  )
+
+ggplot(
+  monthly_top,
+  aes(
+    x = month,
+    y = artistName,
+    fill = minutes
+  )
+) +
+  geom_tile(color = "white") +
+  scale_fill_viridis_c(
+    option = "C",
+    name = "Minutes listened"
+  ) +
+  labs(
+  title = "A Year in My Soundtrack",
+  subtitle = "Amy Winehouse is my top listened artist this year",
+  x = NULL,
+  y = NULL, 
+  caption = "*My top 12 frequently listened artists and their change against months. \nData: Spotify User Data, Spotify, Week of October 5th, 2026.\nCreated by Riley Karatas | Creation date: October 5th, 2026."
+) +
+theme_minimal() +
+theme(
+  axis.text.x = element_text(angle = 45, hjust = 1),
+  panel.grid = element_blank(),
+  plot.title = element_text(hjust = 0),
+  plot.subtitle = element_text(hjust = 0),
+  plot.caption = element_text(hjust = 0)
+)
+
+```
+
+> The conlcusion is that I listen to a lot of Amy Winehouse depending on the month. It seems that my taste in music is quite international with Russian, Turkish, French Afro-beat and English songs.
