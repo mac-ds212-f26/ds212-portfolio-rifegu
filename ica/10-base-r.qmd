@@ -346,6 +346,11 @@ class(results)
 Return every element except the last value.
 
 ```{r}
+get_all_but_last <- function(x) {
+    head(x, -1)
+    # x[1:(length(x)-1)]
+}
+get_all_but_last(1:10)
 
 ```
 
@@ -355,6 +360,11 @@ Return every element except the last value.
 Return only even values (and no missing values).
 
 ```{r}
+get_evens <- function(x) {
+    x[x %% 2 == 0 & !is.na(x)]
+}
+
+get_evens(c(1, 2, 7, NA))
 
 ```
 
@@ -400,11 +410,10 @@ When you're done developing your function, remove these objects to declutter you
 
 ```{r}
 #| eval: false
-
-fit_mod_and_extract <- function(___) {
+fit_mod_and_extract <- function(data, yvar, preds, pred_of_interest) {
     # Use str_c to create a string (formula_str) that looks like "yvar ~ pred1 + pred2"
     # Look at the documentation for a helpful argument
-    mod_formula_str <-
+    mod_formula_str <- str_c(yvar, "~", str_c(preds, collapse = "+"))
     mod_form <- as.formula(mod_formula_str)
 
     # Fit a linear model using the constructed formula and given data
@@ -416,16 +425,16 @@ fit_mod_and_extract <- function(___) {
     # Return the coefficient estimate and CI for the predictor of interest
     tibble(
         which_pred = pred_of_interest,
-        estimate = ___,
-        ci_lower = ___,
-        ci_upper = ___
+        estimate = mod$coefficients[pred_of_interest],
+        ci_lower = ci[pred_of_interest, "2.5 %"],
+        ci_upper = ci[pred_of_interest, "97.5 %"]
     )
 }
+
+
+fit_mod_and_extract(data = mtcars, yvar = "mpg", preds = c("hp", "wt"), pred_of_interest = "hp")
 ```
 
-```{r}
-
-```
 
 
 ## Debugging Strategies
