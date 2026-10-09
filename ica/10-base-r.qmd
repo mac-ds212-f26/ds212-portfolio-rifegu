@@ -325,7 +325,19 @@ For each of the tasks below, write a function that take a vector as input return
 Return the elements at even-numbered positions. (Hint: use the `seq()` function.)
 
 ```{r}
+get_even_pos <- function(x) {
+    if (length(x) <= 1) {
+        print("No even positions")
+    } else {
+        idx <- seq(2, length(x), by = 2)
+        x[idx]
+    }
+}
+get_even_pos(1:10)
 
+
+results <- try(My_own_sum(c("a","b","c")), silent = TRUE)
+class(results)
 ```
 
 
