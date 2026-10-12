@@ -50,14 +50,18 @@ What data do I have?
 
 ![](joins_mindmap.png)
 
-### Missing Values
+## Missing Values
 
 ![](Missing_Values.png)
 
-### Functions
+## Functions
 
 ![](functions_pcl.png)
 
-### Base R
+## Base R
 
 ![](Base%20_R.png)
+
+## Iterations
+
+![](R_Iteration.png)
