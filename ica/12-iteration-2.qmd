@@ -36,7 +36,12 @@ Recall that:
 First, write out the steps in words. Then translate each step to code.
 
 ```{r}
+col_classes <- vector("character", ncol(mtcars))
 
+# Data frames are **lists** of columns, so this loop iterates over the columns
+for (i in seq_along(mtcars)) {
+    col_classes[i] <- class(mtcars[[i]])
+}
 ```
 
 
@@ -175,7 +180,22 @@ We want to compute several summary statistics on each quantitative variable in a
 Once you've done that with `map()`, write a `for` loop to achieve the same result. Which do you prefer in terms of ease of code writing and readability?
 
 ```{r}
+# Function to summarize
+summ_stats <- function(x) {
+    tibble(
+        mean = mean(x, na.rm = TRUE),
+        median = median(x, na.rm = TRUE),
+        sd = sd(x, na.rm = TRUE),
+        iqr = IQR(x, na.rm = TRUE)
+    )
+}
+# Data Subset: Only Quantitative Variables
+diamonds_num <- diamonds |> select(where(is.numeric))
 
+# Option 1: map + bind_rows() + add variable names
+map(diamonds_num, summ_stats) |>
+  bind_rows() |>
+  mutate(variable = colnames(diamonds_num))
 ```
 
 
@@ -239,7 +259,19 @@ Create 2 small examples that show how `pmap()` works with `str_sub()`. Your exam
 - Use different arguments for `start` and `end` but a fixed `string`
 
 ```{r}
+string_data <- tibble(
+    string = c("apple", "banana", "cherry"),
+    start = c(1, 2, 4),
+    end = c(2, 3, 5)
+)
 
+pmap_chr(string_data, str_sub)
+
+string_data <- tibble(
+    start = c(1, 2, 4),
+    end = c(2, 3, 5)
+)
+pmap_chr(string_data, str_sub, string = "abcde")
 ```
 
 
@@ -281,7 +313,8 @@ fit_model <- function(data, mod_formula, remove_outliers) {
 }
 
 # use pmap()
-
+df_arg_combos |> mutate(fit_mod = pmap(df_arg_combos, fit_model, data = diamonds)) |>
+  head() |> print()
 ```
 
 
