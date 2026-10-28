@@ -73,3 +73,7 @@ What data do I have?
 ## API I
 
 ![](API.png)
+
+## Web Scrapping
+
+![](Web_Scraping.png)
