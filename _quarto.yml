@@ -83,10 +83,11 @@ book:
       - ica/04_adv_maps/code/04-adv-maps-1-notes.qmd
       - ica/adv_data_wrangling/src/06-wrangling-1-notes.qmd
       - ica/adv_data_wrangling/src/07-wrangling-2.qmd
-      - ica/09-functions.qmd
-      - ica/10-base-r.qmd
+      - ica/09_functions/09-functions.qmd
+      - ica/10_base_r/10-base-r.qmd
       - ica/11-iteration-1.qmd
       - ica/12-iteration-2.qmd
+      - ica/14-apis-2.qmd
 
     - part: "Extras"
       chapters:
