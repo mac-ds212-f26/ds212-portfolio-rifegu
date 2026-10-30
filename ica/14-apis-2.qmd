@@ -171,16 +171,16 @@ We will use the `httr2` package to build up a full URL from its parts because of
 ```{r httr2_census}
 
 req <- request("https://api.census.gov") |>
-    req_url_path_append("data") |>
-    req_url_path_append("2019") |>
-    req_url_path_append("acs") |>
-    req_url_path_append("acs1") |>
-    req_url_query(
-        get = c("NAME", "B02015_009E", "B02015_009M"), 
-        `for` = I("state:*"), 
-        key = census_api_key, 
-        .multi = "comma"
-    )
+  req_url_path_append("data") |>
+  req_url_path_append("2019") |>
+  req_url_path_append("acs") |>
+  req_url_path_append("acs1") |>
+  req_url_query(
+    get = c("NAME", "B02015_009E", "B02015_009M"),
+    `for` = I("state:*"),
+    key = census_api_key,
+    .multi = "comma"
+  )
 ```
 
 **Why would we ever use these steps instead of just using the full URL as a string?**
@@ -231,8 +231,18 @@ After creating an app key, copy it into a text file and save it as `bgg_key.txt`
 
 ```{r}
 
-
 bgg_key <- readLines("bgg_key.txt")
+
+items <- resp |> xml_find_all("item")
+
+bgg_results <- data.frame(
+  id = items |> xml_attr("id"),
+  type = items |> xml_attr("type"),
+  name = items |> xml_find_first("name") |> xml_attr("value"),
+  yearpublished = items |> xml_find_first("yearpublished") |> xml_attr("value")
+)
+
+bgg_results
 ```
 
 ### Navigate API Documentation
@@ -516,3 +526,4 @@ resp_pt$response$docs |>
 ## Done!
 
 - Check the ICA Instructions for how to (a) push your code to GitHub and (b) update your portfolio website
+
