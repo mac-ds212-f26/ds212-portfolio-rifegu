@@ -78,16 +78,24 @@ In our work with maps, we've used the `tidycensus` package to obtain census data
 `tidycensus` is a wrapper package that makes it easy to obtain desired census information:
 
 ```{r tidycensus}
-#| eval: false
 
-tidycensus::get_acs(
-    year = 2020,
-    state = "MN",
-    geography = "tract",
-    variables = c("B01003_001", "B19013_001"),
-    output = "wide",
-    geometry = TRUE
+library(tidycensus)
+
+# Register API key from your local .Renviron file
+census_api_key(Sys.getenv("CENSUS_API_KEY"))
+
+# Download ACS data
+acs_data <- tidycensus::get_acs(
+  year = 2020,
+  state = "MN",
+  geography = "tract",
+  variables = c("B01003_001", "B19013_001"),
+  output = "wide",
+  geometry = TRUE
 )
+
+# View results
+head(acs_data)
 ```
 
 What is going on behind the scenes with `get_acs()`?
@@ -123,12 +131,10 @@ Copy and paste your key into a new text file:
 Read in the key with the following code:
 
 ```{r read_census_api_key2}
-#| eval: false
 
 census_api_key <- readLines("census_api_key.txt")
-
 # if you will be below the query limit, you can pass an empty key as follows
-census_api_key <- ""
+census_api_key <- "11b60daf79b43d649f8c62ffe69a415ee3839ab6"
 ```
 
 ### Navigate API Documentation
@@ -163,7 +169,6 @@ We will use the `httr2` package to build up a full URL from its parts because of
   - We can see from [here](https://www.census.gov/data/developers/guidance/api-user-guide.Help_&_Contact_Us.html) that providing an API key is achieved with `key=YOUR_API_KEY`.
 
 ```{r httr2_census}
-#| eval: false
 
 req <- request("https://api.census.gov") |>
     req_url_path_append("data") |>
@@ -189,7 +194,7 @@ req <- request("https://api.census.gov") |>
 Once we've fully constructed our request, we can use `req_perform()` to send out the API request and get a **response**.
 
 ```{r census_request}
-#| eval: false
+
 
 resp <- req_perform(req)
 ```
@@ -204,7 +209,7 @@ We can navigate to the request URL to see the structure of this output.
   - Without `simplifyVector = TRUE`, the JSON is read in as a list.
 
 ```{r census_json}
-#| eval: false
+
 
 resp_json_df <- resp |> resp_body_json(simplifyVector = TRUE)
 
@@ -225,7 +230,7 @@ An app can be registered by first filling the application on <https://boardgameg
 After creating an app key, copy it into a text file and save it as `bgg_key.txt` then read it into R as follows:
 
 ```{r}
-#| eval: false
+
 
 bgg_key <- readLines("bgg_key.txt")
 ```
@@ -244,7 +249,7 @@ Let's start at the top of the API documentation page to see how to navigate this
 The following request searches for board games, board game accessories, and board game expansions with the words "mystery" and "curse" in the title:
 
 ```{r httr2_bgg}
-#| eval: false
+
 
 req <- request("https://boardgamegeek.com/xmlapi2") |>
     req_url_path_append("search") |>
@@ -263,7 +268,7 @@ We can navigate to the request URL to see the structure of this output.
 - We can use `resp_body_xml()` to read in the XML as an R object.
 
 ```{r bgg_response}
-#| eval: false
+
 
 resp <- req_perform(req)
 resp
@@ -277,7 +282,7 @@ The XML output is not packaged in a nice way.
 Let's first use the `xml_structure()` function to see how information is organized:
 
 ```{r xml_structure}
-#| eval: false
+
 
 xml_structure(resp)
 ```
@@ -293,7 +298,7 @@ The key navigation and extraction functions in `xml2` are:
   - `<node_name attribute_name1="attribute_value1" attribute_name2="attribute_value2">`
 
 ```{r xml_nav_extract}
-#| eval: false
+
 
 # Get the item nodes in 2 different ways
 resp |> xml_find_all("item")
@@ -354,7 +359,7 @@ As with your census API key, save this key in a `.txt` file, and read it in and 
 Make Git ignores it via GitHub Desktop (**Right click** the file --\> select **Ignore file (add to .gitignore)**.
 
 ```{r nyt_key_2}
-#| eval: false
+
 
 times_key <- read_lines("nyt_api_key.txt")
 ```
@@ -386,7 +391,7 @@ The scheme, hostname, and path (`http://api.nytimes.com/svc/search/v2/articlesea
 We can use the `httr2` package to build up a full URL from its parts:
 
 ```{r httr2_nyt}
-#| eval: false
+
 
 req <- request("http://api.nytimes.com") |>
     req_url_path_append("svc") |>
@@ -399,7 +404,7 @@ req <- request("http://api.nytimes.com") |>
 We can write a function to generate the URL for a user-specified query:
 
 ```{r create_nyt_url}
-#| eval: false
+
 
 create_nyt_url <- function(query, key) {
     request("http://api.nytimes.com") |>
@@ -419,7 +424,7 @@ Let's use this function to find articles related to:
 Let's see how these queries are translated into the URLs:
 
 ```{r use_create_nyt_url}
-#| eval: false
+
 
 req_fb <- create_nyt_url(query = "Ferris Bueller's Day Off", key = times_key)
 req_pt <- create_nyt_url(query = "Penn & Teller", key = times_key)
@@ -428,7 +433,7 @@ req_pt <- create_nyt_url(query = "Penn & Teller", key = times_key)
 We can use `req_perform()` to send out the request and `resp_body_json()` to parse the resulting JSON:
 
 ```{r nyt_responses}
-#| eval: false
+
 
 resp_pt <- req_pt |> req_perform() |> resp_body_json(simplifyVector = TRUE)
 ```
@@ -451,7 +456,7 @@ Using base R subsetting, we can access elements of a list in three ways:
 - By *position* with double square brackets `[[`:
 
 ```{r list_access1}
-#| eval: false
+
 
 # This gets the first element of the list
 resp_pt[[1]]
@@ -460,7 +465,7 @@ resp_pt[[1]]
 - By *name* with double square brackets `[[`: (note that list elements are not always named, so this won't always be possible)
 
 ```{r list_access2}
-#| eval: false
+
 
 # Accessing by name directly
 resp_pt[["status"]]
@@ -473,7 +478,7 @@ resp_pt[[which_element]]
 - By *name* with a dollar sign `$`: (Helpful tip: For this mode of access, RStudio allows tab completion to fill in the full name)
 
 ```{r list_access3}
-#| eval: false
+
 
 resp_pt$status
 ```
@@ -482,7 +487,7 @@ We can retrieve these *nested* attributes by sequentially accessing the object k
 For example, the `meta` element would be accessed as follows:
 
 ```{r list_access4}
-#| eval: false
+
 
 resp_pt$response$meta
 ```
