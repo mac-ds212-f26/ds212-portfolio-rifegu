@@ -53,10 +53,6 @@ In a real project, we would use `duckdb_read_csv()` to store data directly into 
 
 In the toy example below, we have a dataset on Spotify songs (`all_spotify_songs.csv`) and store in a database table called `"songs"`:
 
-```{r, eval= FALSE} 
-
-duckdb_read_csv(con, "songs", "https://hash-mac.github.io/ds212site-f26/relative/path/to/all_spotify_songs.csv")
-```
 
 Here, we'll use datasets from the `nycflights13` package.
 
