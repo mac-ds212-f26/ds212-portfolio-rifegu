@@ -76,4 +76,8 @@ What data do I have?
 
 ## Web Scrapping
 
-![](Web_Scraping.png)
+## ![](Web_Scraping.png) 
+
+## Databases
+
+![](Databases.png)
