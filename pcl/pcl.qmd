@@ -81,3 +81,7 @@ What data do I have?
 ## Databases
 
 ![](Databases.png)
+
+## 17: Effective Viz, Data Storytelling
+
+![](Data_Storytelling.png)

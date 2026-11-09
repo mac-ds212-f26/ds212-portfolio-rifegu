@@ -220,4 +220,3 @@ ggplot(
     plot.caption = element_text(hjust = 0)
   )
 ```
-
