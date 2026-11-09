@@ -148,4 +148,76 @@ theme(
 
 ```
 
-> The conlcusion is that I listen to a lot of Amy Winehouse depending on the month. It seems that my taste in music is quite international with Russian, Turkish, French Afro-beat and English songs.
+> The conlcusion is that I listen to a lot of Amy Winehouse depending on the month.
+> It seems that my taste in music is quite international with Russian, Turkish, French Afro-beat and English songs.
+
+# My PVJ After First Round of Edits
+
+```{r}
+library(ggplot2)
+library(tidyr)
+
+monthly_top <- monthly_artist %>%
+  filter(artistName %in% top_artists) %>%
+  complete(
+    month,
+    artistName,
+    fill = list(minutes = 0)
+  )
+
+# Reorder months to start from January
+month_order <- monthly_top %>%
+  distinct(month) %>%
+  mutate(
+    month_num = as.integer(format(as.Date(paste0(month, "-01")), "%m")),
+    year_part = as.integer(format(as.Date(paste0(month, "-01")), "%Y"))
+  ) %>%
+  arrange(month_num, year_part) %>%
+  pull(month)
+
+month_labels <- setNames(
+  format(as.Date(paste0(month_order, "-01")), "%b %Y"),
+  month_order
+)
+
+monthly_top <- monthly_top %>%
+  mutate(
+    month = factor(month, levels = month_order),
+    minutes_bin = cut(
+      minutes,
+      breaks = c(-1, 25, 75, 150, 250, Inf),
+      labels = c("0–25", "25–75", "75–150", "150–250", "250+")
+    )
+  )
+
+ggplot(
+  monthly_top,
+  aes(
+    x = month,
+    y = artistName,
+    fill = minutes_bin
+  )
+) +
+  geom_tile(color = "white") +
+  scale_fill_viridis_d(
+    option = "C",
+    name = "Minutes listened"
+  ) +
+  scale_x_discrete(labels = month_labels) +
+  labs(
+    title = "A Year in My Soundtrack",
+    subtitle = "Amy Winehouse is my top listened artist this year",
+    x = NULL,
+    y = NULL,
+    caption = "*My top 12 frequently listened artists and their change against months. \nData: Spotify User Data, Spotify, Week of October 5th, 2026.\nCreated by Riley Karatas | Creation date: October 5th, 2026."
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    panel.grid = element_blank(),
+    plot.title = element_text(hjust = 0),
+    plot.subtitle = element_text(hjust = 0),
+    plot.caption = element_text(hjust = 0)
+  )
+```
+
