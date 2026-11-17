@@ -374,6 +374,11 @@ cookieconsent.run({
   <a href="../../../tt/hw01-tt.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Homework 01</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../tt/hw08-tt.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Homework 08</span></a>
+  </div>
+</li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -698,8 +703,8 @@ cookieconsent.run({
 <div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-label="1"></a><span class="fu">str_view</span>(string1, <span class="at">html =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output-display">
-<div class="str_view html-widget html-fill-item" id="htmlwidget-eff37b93cd4b4f650d06" style="width:960px;height:100%;"></div>
-<script type="application/json" data-for="htmlwidget-eff37b93cd4b4f650d06">{"x":{"html":"<ul>\n  <li><pre>Record temp:<span class='special'>\t<\/span>102<\/pre><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="str_view html-widget html-fill-item" id="htmlwidget-7facd21799cac55ac0ea" style="width:960px;height:100%;"></div>
+<script type="application/json" data-for="htmlwidget-7facd21799cac55ac0ea">{"x":{"html":"<ul>\n  <li><pre>Record temp:<span class='special'>\t<\/span>102<\/pre><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section><section id="combine" class="level3"><h3 class="anchored" data-anchor-id="combine">Combine</h3>
@@ -869,32 +874,32 @@ cookieconsent.run({
 <span id="cb60-2"><a href="#cb60-2" aria-label="2"></a><span class="fu">data</span>(fruit)</span>
 <span id="cb60-3"><a href="#cb60-3" aria-label="3"></a><span class="fu">sample</span>(fruit, <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output cell-output-stdout">
-<pre><code> [1] "mulberry"   "cherimoya"  "bilberry"   "papaya"     "nectarine" 
- [6] "apricot"    "plum"       "durian"     "guava"      "star fruit"</code></pre>
+<pre><code> [1] "jujube"       "pamelo"       "watermelon"   "fig"          "currant"     
+ [6] "chili pepper" "dragonfruit"  "cherimoya"    "star fruit"   "mango"       </code></pre>
 </div>
 </div>
 <div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-label="1"></a><span class="fu">data</span>(words)</span>
 <span id="cb62-2"><a href="#cb62-2" aria-label="2"></a><span class="fu">sample</span>(words, <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output cell-output-stdout">
-<pre><code> [1] "chairman"  "white"     "work"      "wind"      "only"      "therefore"
- [7] "compute"   "smoke"     "without"   "red"      </code></pre>
+<pre><code> [1] "always"  "land"    "propose" "certain" "trust"   "summer"  "even"   
+ [8] "dry"     "they"    "fast"   </code></pre>
 </div>
 </div>
 <div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-label="1"></a><span class="fu">data</span>(sentences)</span>
 <span id="cb64-2"><a href="#cb64-2" aria-label="2"></a><span class="fu">sample</span>(sentences, <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output cell-output-stdout">
-<pre><code> [1] "The clan gathered on each dull night."          
- [2] "On the islands the sea breeze is soft and mild."
- [3] "She was kind to sick old people."               
- [4] "A thin stripe runs down the middle."            
- [5] "Hop over the fence and plunge in."              
- [6] "The rude laugh filled the empty room."          
- [7] "An abrupt start does not win the prize."        
- [8] "A sip of tea revives his tired friend."         
- [9] "The first part of the plan needs changing."     
-[10] "A pod is what peas always grow in."             </code></pre>
+<pre><code> [1] "The sheep were led home by a dog."                  
+ [2] "The soft cushion broke the man's fall."             
+ [3] "The hostess taught the new maid to serve."          
+ [4] "Thieves who rob friends deserve jail."              
+ [5] "The horse balked and threw the tall rider."         
+ [6] "There is a strong chance it will happen once more." 
+ [7] "Add salt before you fry the egg."                   
+ [8] "Many hands help get the job done."                  
+ [9] "The goose was brought straight from the old market."
+[10] "The chair looked strong but had no bottom."         </code></pre>
 </div>
 </div>
 <p>We can use <code>str_view()</code> with the <code>pattern</code> argument to see what parts of a string match the regex supplied in the <code>pattern</code> argument. (Matches are enclosed in <code>&lt;&gt;</code>.)</p>
@@ -1090,7 +1095,7 @@ cookieconsent.run({
   ..   letterId = col_double(),
   ..   question_only = col_character()
   .. )
- - attr(*, "problems")=&lt;pointer: 0x14f0c76c0&gt; </code></pre>
+ - attr(*, "problems")=&lt;pointer: 0x12ee872a0&gt; </code></pre>
 </div>
 </div>
 <p>Take a couple minutes to scroll through the <a href="https://pudding.cool/2018/11/dearabby/">30 Years of American Anxieties</a> article to get ideas for themes that you might want to search for using regular expressions.</p>
