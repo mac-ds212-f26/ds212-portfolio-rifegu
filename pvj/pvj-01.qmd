@@ -383,3 +383,137 @@ ggplot(
     plot.margin = margin(t = 10, r = 15, b = 10, l = 10)
   )
 ```
+
+## PVJ 4th ROUND OF EDITS
+
+```{r}
+library(ggplot2)
+library(tidyr)
+library(stringr)
+library(ggtext)   # needed for selective bold (element_markdown)
+
+monthly_top <- monthly_artist %>%
+  filter(artistName %in% top_artists) %>%
+  complete(
+    month,
+    artistName,
+    fill = list(minutes = 0)
+  )
+
+# Order months chronologically by actual date, not by month-number-then-year
+month_order <- monthly_top %>%
+  distinct(month) %>%
+  mutate(month_date = as.Date(paste0(month, "-01"))) %>%
+  arrange(month_date) %>%
+  pull(month)
+
+# Two-line x-axis labels: month on top, year only where it changes
+month_labels <- sapply(seq_along(month_order), function(i) {
+  d   <- as.Date(paste0(month_order[i], "-01"))
+  mon <- format(d, "%b")
+  yr  <- format(d, "%Y")
+  if (i == 1 || format(as.Date(paste0(month_order[i - 1], "-01")), "%Y") != yr) {
+    paste0(mon, "\n", yr)
+  } else {
+    mon
+  }
+})
+names(month_labels) <- month_order
+
+# Artists called out in the narrative — bolded wherever they appear (y-axis + subtitle)
+highlight_artists <- c("Amy Winehouse", "Qendresa", "GIMS")
+
+monthly_top <- monthly_top %>%
+  mutate(
+    month = factor(month, levels = month_order),
+    artistName = factor(artistName, levels = rev(top_artists)),
+    minutes_bin = cut(
+      minutes,
+      breaks = c(-1, 25, 75, 150, 250, Inf),
+      labels = c("0–25", "25–75", "75–150", "150–250", "250+")
+    )
+  )
+
+# Manual palette: the 0–25 bin is by far the most common value on the grid,
+# so it's now muted/receding instead of the brightest color — otherwise it
+# dominates the eye and drowns out the surges the chart is actually about.
+# Saturation now increases with rarity/intensity instead of being inverted.
+bin_colors <- c(
+  "0–25"    = "#D7DBE3",  # muted grey-blue — common bin, recedes into background
+  "25–75"   = "#8E7CC3",  # soft purple
+  "75–150"  = "#D6456C",  # rose — starts to pop
+  "150–250" = "#F2A341",  # orange — pops
+  "250+"    = "#F2D230"   # gold — rarest bin, most attention-grabbing
+)
+
+# Labels: no legend title, "min" appended only to the first label
+bin_labels <- c("0–25 min", "25–75 min", "75–150 min", "150–250 min", "250+ min")
+names(bin_labels) <- names(bin_colors)
+
+# Bold just the highlighted artist names in the y-axis labels (markdown bold,
+# rendered via element_markdown), everything else stays regular weight
+y_labels <- setNames(
+  ifelse(
+    rev(top_artists) %in% highlight_artists,
+    paste0("**", rev(top_artists), "**"),
+    rev(top_artists)
+  ),
+  rev(top_artists)
+)
+
+# Bold the same artist names inside the subtitle text (markdown bold)
+subtitle_text <- "Amy Winehouse anchors nearly every month, but a few artists like Qendresa and GIMS surge briefly before fading out again."
+for (a in highlight_artists) {
+  subtitle_text <- str_replace(subtitle_text, fixed(a), paste0("**", a, "**"))
+}
+
+ggplot(
+  monthly_top,
+  aes(
+    x = month,
+    y = artistName,
+    fill = minutes_bin
+  )
+) +
+  geom_tile(color = "white") +
+  scale_fill_manual(
+    values = bin_colors,
+    labels = bin_labels,
+    name = NULL
+  ) +
+  scale_x_discrete(labels = month_labels) +
+  scale_y_discrete(labels = y_labels) +
+  labs(
+    title = "A month-by-month look at my most-played artists",
+    subtitle = str_wrap(subtitle_text, width = 90),
+    x = NULL,
+    y = NULL,
+    caption = paste0(
+      "Created by Riley Karatas on October 5th, 2026, based on data from Spotify ",
+      "User Data\n",
+      "My top 12 frequently listened artists in descending order and their change against months."
+    )
+  ) +
+  theme_minimal(base_family = "Georgia") +
+  theme(
+    plot.title.position = "plot",
+    plot.caption.position = "plot",
+    plot.title = element_text(hjust = 0, face = "bold", size = 13),
+    # Subtitle rendered as markdown so the highlighted names can render bold
+    plot.subtitle = element_markdown(hjust = 0, size = 9.5, color = "grey40", lineheight = 1.1),
+    plot.caption = element_text(
+      hjust = 0,
+      size = 7.5,
+      color = "grey60",
+      margin = margin(t = 14)
+    ),
+    axis.text.x = element_text(angle = 0, hjust = 0.5, size = 8.5),
+    # Y-axis rendered as markdown so only the highlighted artists come out bold
+    axis.text.y = element_markdown(color = "black", size = 8.5),
+    panel.grid = element_blank(),
+    legend.justification = "left",
+    legend.text = element_text(size = 8.5),
+    legend.key.size = unit(0.4, "cm"),
+    plot.margin = margin(t = 10, r = 15, b = 16, l = 10)
+  )
+```
